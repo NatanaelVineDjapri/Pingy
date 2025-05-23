@@ -2,47 +2,89 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',
+        'avatar',
+        'banner',
+        'description',
+        'dob',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected $casts =[
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+
+    ];
+
+    public function tweets(){
+        return $this->hasMany(Tweet::class)->latest();
+    }
+
+    public function connections(){
+        return $this->belongsToMany(User::class,'connections','user_id','following_user_id');
+    }
+
+    public function follow(User $user){
+        return $this->connections()->save($user);
+    }
+
+    public function unfollow(User $user){
+        return $this->connections()->detach($user);
+    }
+
+    public function toggleFollow(User $user)
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+       return $this->connections()->toggle($user);   
+    }
+
+    public function following(User $user){
+        return $this->connections()->where('following_user_id',$user->id)->exists();
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function getAvatar($value){
+        if($value){
+            return asset('storage/'.$value);
+        }
+        return asset('');
+    }
+
+    public function getBanner($value){
+        if($value){
+            return asset('storage/'.$value);
+        }
+        return asset('');
+    }
+
+    public function getHomeTweets(){
+        $followedUserIds = $this->connections()->pluck('id');
+        $followedUserIds->push($this->id);
+         //pluck buat ambil .. dri array,push masukin id lu sendiri
+
+        return Tweet::where('user_id',$followedUserIds)->withLikes()->latest()->paginate(20);
     }
 }
