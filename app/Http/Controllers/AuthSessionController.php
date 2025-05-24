@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +24,7 @@ class AuthSessionController extends Controller
         return redirect()->intended('teamproject');
         }
         return back()->withErrors([
-            'email' => 'Sorry, your password was incorrect. Please double-check your password.',
+            'email' => 'Sorry, your email/password was incorrect. Please double-check your email/password.',
         ])->onlyInput('email');
     }
     public function logout(Request $request)
@@ -37,23 +38,32 @@ class AuthSessionController extends Controller
         return redirect('/login');
     }
     public function register(Request $request){
-    $validated = $request->validate([
+    
+        $validator = Validator::make($request->all(), [
         'username' => ['required', 'string', 'max:255', 'unique:users,username'],
-        'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'email', 'unique:users,email'],
         'password' => ['required', 'min:6', 'confirmed'],
-        'dob' => ['required', 'date'],
-    ]);
-    $user = User::create([
-        'username' => $validated['username'],
-        'name' => $validated['name'],
-        'email' => $validated['email'],
-        'password' => Hash::make($validated['password']),
-        'dob' => $validated['dob'],
-    ]);
-    Auth::login($user);
+        'dob' => ['required', 'date', 'before:-13 years'],
+        ]);
 
-    return redirect('teamproject');
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator, 'register')
+                ->onlyInput('username');
+        }
+
+        $validated = $validator->validated();
+
+        $user = User::create([
+            'username' => $validated['username'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'dob' => $validated['dob'],
+        ]);
+
+        Auth::login($user);
+
+        return redirect('teamproject');
     }
 
 }
