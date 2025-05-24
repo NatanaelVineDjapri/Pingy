@@ -11,7 +11,7 @@ use App\Models\User;
 class AuthSessionController extends Controller
 {
     public function formLogin(){
-        return view('login');  
+        return view('auth.login');  
     }
 
     public function manualLogin(Request $request){

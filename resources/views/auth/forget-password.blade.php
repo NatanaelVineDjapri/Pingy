@@ -21,7 +21,6 @@
                 <div class="toggle-panel toggle-right">
                     <h1 class="h1-pinkys">Forgot Your Password, Pingys?</h1>
                     <p>No worries! Just fill in the form and we'll help you reset it</p>
-                    <!-- <button class="hidden" id="register">Sign Up</button> -->
                 </div>
             </div>
         </div>
@@ -41,10 +40,9 @@
                                 <p>{{ $error }}</p>
                              @endforeach
                          </div>
-                     @endif
+                    @endif
             </form>
         </div>
-    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 
 </html>

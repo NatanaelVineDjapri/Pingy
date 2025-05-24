@@ -10,7 +10,7 @@ use App\Models\User;
 class ForgetPasswordController extends Controller
 {
     public function formForgetPassword(){
-        return view('forget-password');
+        return view('auth.forget-password');
     }
 
     public function submitForgetPassForm(Request $request){

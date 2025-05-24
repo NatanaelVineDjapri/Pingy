@@ -50,8 +50,6 @@
                              @endforeach
                          </div>
                      @endif
-
-                
             </form>
         </div>
         <div class="toggle-container">
@@ -69,8 +67,6 @@
             </div>
         </div>
     </div>
-
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
-
 </html>
