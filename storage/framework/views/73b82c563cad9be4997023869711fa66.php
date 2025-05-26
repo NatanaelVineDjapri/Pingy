@@ -63,7 +63,7 @@ unset($__errorArgs, $__bag); ?> -->
                     <p><?php echo e($tweet->body); ?></p>
                     <?php if($tweet->tweetImage): ?>
                         <div class="tweet-image">
-                                    <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>" alt="Tweet image" style="max-width: 80%; border-radius: 10px; margin-top: 10px;">
+                                    <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>" alt="Tweet image" style="width: 100%; max-width: 675px; border-radius: 10px; margin-top: 10px;">
                                 </div>
                     <?php endif; ?>
                     <form action="<?php echo e(route('deletetweet', $tweet->id)); ?>" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class="delete-form">

@@ -19,6 +19,23 @@
                     <img src="{{ asset('storage/' . $tweet->tweetImage) }}" class="tweet-img" alt="Tweet image">
                 </div>
                 @endif
+                 <ul class="retweeticons">
+                            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                            <span>{{ $tweet->comments_count }}</span>
+
+
+                            <ion-icon name="repeat-outline"></ion-icon>
+                            <span>{{ $tweet->comments_count }}</span>
+                            
+                            <ion-icon name="heart-outline"></ion-icon>
+                             <span>{{ $tweet->likes_count }}</span>
+
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                             <span>{{ $tweet->comments_count }}</span>
+
+                             
+                            
+                        </ul>
             </div>
         </div>
         @endforeach
@@ -106,5 +123,22 @@
     max-width: 80%;
     border-radius: 10px;
 }
+
+.retweeticons {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    padding-top:5px
+}
+
+
+
+.delete-btn ion-icon {
+    font-size: 17px;
+    color: #fba7c9;
+}
+
 
 </style>

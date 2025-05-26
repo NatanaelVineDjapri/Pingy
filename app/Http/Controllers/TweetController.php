@@ -23,16 +23,20 @@ class TweetController extends Controller
     }
 
     public function store(Request $request){
-         if ($request->hasFile('tweetImage') && !$request->filled('body')) {
-            $path = $request->file('tweetImage')->store('previews', 'public');
-            return redirect()->back()->with('previewPath', $path);
-        }
+        //  if ($request->hasFile('tweetImage') && !$request->filled('body')) {
+        //     return redirect()->back()->withErrors(['error' => 'Teks atau gambar harus diisi.']);
+        // }
+       
         $validated = $request->validate([
-            'body' => 'required|max:255',
+            'body' => 'nullable|max:255',
             'tweetImage' => 'nullable|image|max:2048' //maksimal 2mb
         ]);
 
+        if (!$request->filled('body') && !$request->hasFile('tweetImage')) {
+        return redirect()->back()->withErrors(['error' => 'Teks atau gambar harus diisi.']);
+        }
         $validated['user_id']= auth()->id();
+        $validated['body'] = $request->input('body');
 
         if($request->hasFile('tweetImage')){
             $validated['tweetImage'] = $request->file('tweetImage')//ngambil file itu

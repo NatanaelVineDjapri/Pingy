@@ -19,6 +19,23 @@
                     <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>" class="tweet-img" alt="Tweet image">
                 </div>
                 <?php endif; ?>
+                 <ul class="retweeticons">
+                            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                            <span><?php echo e($tweet->comments_count); ?></span>
+
+
+                            <ion-icon name="repeat-outline"></ion-icon>
+                            <span><?php echo e($tweet->comments_count); ?></span>
+                            
+                            <ion-icon name="heart-outline"></ion-icon>
+                             <span><?php echo e($tweet->likes_count); ?></span>
+
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                             <span><?php echo e($tweet->comments_count); ?></span>
+
+                             
+                            
+                        </ul>
             </div>
         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -106,6 +123,23 @@
     max-width: 80%;
     border-radius: 10px;
 }
+
+.retweeticons {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    padding-top:5px
+}
+
+
+
+.delete-btn ion-icon {
+    font-size: 17px;
+    color: #fba7c9;
+}
+
 
 </style>
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/home.blade.php ENDPATH**/ ?>
