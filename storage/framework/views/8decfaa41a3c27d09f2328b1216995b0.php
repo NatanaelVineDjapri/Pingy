@@ -20,8 +20,8 @@
         <a href="#" class ="brand-text">Pinkys</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="item-icon"><ion-icon name="home-outline"></ion-icon></a>
-        <a href="#" class="item-link">Home</a>
+        <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="home-outline"></ion-icon></a>
+        <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-link">Home</a>
       </li>
       <li class="nav-item">
         <a href="#" class="item-icon"><ion-icon name="search-outline"></ion-icon></a>

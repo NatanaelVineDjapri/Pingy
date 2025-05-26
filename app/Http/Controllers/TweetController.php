@@ -41,7 +41,7 @@ class TweetController extends Controller
 
         Tweet::create($validated); //buat simpen ke database
         
-        return redirect()->route('tweets');
+        return redirect()->route('gettweet');
     }
     public function create(Tweet $tweet){//tampilan form
         return view('tweet.create',compact('tweet'));

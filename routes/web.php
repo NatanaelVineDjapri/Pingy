@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\ProfileController;
 
+
 //User-Login-Regist-Change Password
 Route::get('/auth', [AuthSessionController::class, 'formLogin'])->name('login');
 Route::post('/login', [AuthSessionController::class, 'manualLogin']);
@@ -15,7 +16,7 @@ Route::post('/forget-password',[ForgetPasswordController::class,'submitForgetPas
 Route::post('/logout', [AuthSessionController::class, 'logout'])->name('logout');
 
 //homepagae
-Route::post('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Tweet
 Route::get('/tweets', [TweetController::class, 'index'])->middleware('auth')->name('gettweet');

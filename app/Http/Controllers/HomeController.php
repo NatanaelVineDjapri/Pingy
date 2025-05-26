@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tweet;
 
 class HomeController extends Controller
 {
@@ -10,9 +11,16 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    // public function index(){
+    //     return view('home',[
+    //         'users'=>User::paginate(50)
+    //     ]);
+    // }
     public function index(){
+        $tweets = Tweet::with('user')->latest()->paginate(30);
+
         return view('home',[
-            'users'=>User::paginate(50)
+            'tweets' => $tweets
         ]);
     }
 }
