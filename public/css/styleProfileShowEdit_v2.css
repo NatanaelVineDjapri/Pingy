@@ -1,0 +1,187 @@
+ini css gw * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fba7c9;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.flexcontainer {
+    display: flex;
+    position: absolute;
+    left: 301px;
+}
+
+.middlecontainer {
+    width: 700px;
+    border-right: 2px solid white;
+    min-height: 100vh;
+}
+
+.headsec {
+    display: flex;
+    /* margin: 10px 10px; */
+}
+
+.packs-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px; 
+}
+.name{
+    font-weight: 700;
+}
+.username{
+    color: rgb(113, 106, 106);
+    margin-left: 10px;
+    font-weight: 300px;
+    font-size: 12px;
+}
+
+.headerprofileimage {
+    position: relative;
+    margin-top: 10px;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* jarak antara icon dan teks */
+}
+
+.item-icon{
+    margin: 5px 3px 0px 10px;
+}
+.back-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+#headerimage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    outline: 2px solid white;
+}
+
+#profilepic {
+    position: absolute;
+    bottom: -65px;
+    left: 20px;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+}
+
+.editprofile {
+    position: absolute;
+    right: 15px;
+    top: 230px;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 6px 15px;
+    font-weight: bold;
+    cursor: pointer;    
+    background-color: transparent;
+}
+
+.bio {
+    position: relative;
+    margin-top: 80px;
+    margin-left: 20px;
+    line-height: 25px;
+    font-size: 15px;
+}
+
+.handle {
+    margin-bottom: 10px;
+}
+
+span {
+    color: rgb(113, 106, 106);
+}
+
+.nawa {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.heading {
+    display: flex;   
+    justify-content: space-around;
+    border-bottom: 1px solid white;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.heading p {
+    cursor: pointer;    
+    padding: 10px 0;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 2px transparent;
+}
+
+.heading p:hover {
+    background-color: rgba(250,211,226,0.6);
+    border-radius: 20px;
+}
+
+.mytweets {
+    flex-direction: column;
+    padding: 20px;
+}
+
+.tweet {
+    display: flex;
+    margin-bottom: 30px;
+
+}
+
+.avi {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.tweetbody {
+    flex: 1;
+}
+
+.retweeticons {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.delete-btn ion-icon {
+    font-size: 17px;
+    color: white;
+   
+}
+

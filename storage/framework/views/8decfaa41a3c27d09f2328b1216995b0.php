@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pingy</title>
-  <link rel="stylesheet" href="{{ asset('css/styleLayout.css') }}">
+  <link rel="stylesheet" href="<?php echo e(asset('css/styleLayout.css')); ?>">
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  @yield('head') 
+  <?php echo $__env->yieldContent('head'); ?> 
 </head>
 <body>
 <div class="layout">
@@ -36,15 +36,15 @@
         <a href="#" class="item-link">Bookmarks</a>
       </li>
       <li class="nav-item">
-        <a href="{{ route('showprofile', auth()->user()->id) }}" class="item-icon">
+        <a href="<?php echo e(route('showprofile', auth()->user()->id)); ?>" class="item-icon">
           <ion-icon name="person-outline"></ion-icon>
         </a>
-        <a href="{{ route('showprofile', auth()->user()->id) }}" class="item-link">Profile</a>
+        <a href="<?php echo e(route('showprofile', auth()->user()->id)); ?>" class="item-link">Profile</a>
       </li>
 
       <li class="nav-item">
-        <form action="{{ route('logout') }}" method="POST" ">
-        @csrf
+        <form action="<?php echo e(route('logout')); ?>" method="POST" ">
+        <?php echo csrf_field(); ?>
             <button type="submit" class="logout-btn" >
                 <span class="item-icon"><ion-icon name="log-out-outline"></ion-icon></span>
                 Logout
@@ -52,56 +52,56 @@
         </form>
       </li>
       <li>
-       <a href="{{ route('gettweet') }}" class="tweet-btn">POST</a>
+       <a href="<?php echo e(route('gettweet')); ?>" class="tweet-btn">POST</a>
       </li>
     </ul>
     <a href="#" class="profile-btn">
      <div class="profile-info">
-      @if(Auth::user()->avatar)
-        <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Profile Image" class="profile-img" width="35" height="35">
-      @else
-        <img src="{{ asset('image/person1.jpg') }}" alt="Default Profile" class="profile-img" width="35" height="35">
-      @endif
+      <?php if(Auth::user()->avatar): ?>
+        <img src="<?php echo e(asset('storage/' . Auth::user()->avatar)); ?>" alt="Profile Image" class="profile-img" width="35" height="35">
+      <?php else: ?>
+        <img src="<?php echo e(asset('image/person1.jpg')); ?>" alt="Default Profile" class="profile-img" width="35" height="35">
+      <?php endif; ?>
     <div>
-        <p class="name">{{ Auth::user()->name }}</p>
-        <p class="username">{{ Auth::user()->username }}</p> 
+        <p class="name"><?php echo e(Auth::user()->name); ?></p>
+        <p class="username"><?php echo e(Auth::user()->username); ?></p> 
     </div>
 </div>
     </a>
   </nav>
    <main class="main-content">
-      @yield('content')
+      <?php echo $__env->yieldContent('content'); ?>
   </main>
 <!-- ke3 -->
 <div class="sidebar-2">
-    {{-- Search Bar --}}
+    
 
-    {{-- You might like --}}
+    
     <div class="card">
         <h3>You might like</h3>
-        @foreach ($suggestusers as $user)
+        <?php $__currentLoopData = $suggestusers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="suggestion-card" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
             <div class="info" style="display: flex; align-items: center;">
-                <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('default-avatar.png') }}"
-                    alt="{{ $user->name }}'s profile picture"
+                <img src="<?php echo e($user->avatar ? asset('storage/' . $user->avatar) : asset('default-avatar.png')); ?>"
+                    alt="<?php echo e($user->name); ?>'s profile picture"
                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
 
                 <div>
-                    <strong>{{ $user->name }}</strong><br>
-                    <span style="color: gray;">{{'@'.$user->username }}</span>
+                    <strong><?php echo e($user->name); ?></strong><br>
+                    <span style="color: gray;"><?php echo e('@'.$user->username); ?></span>
                 </div>
             </div>
         <form action="" method="POST">
-            @csrf
+            <?php echo csrf_field(); ?>
             <button type="submit" class="btn btn-sm btn-primary">Follow</button>
         </form>
     </div>
-@endforeach
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
         <!-- <a href="#">Show more</a> -->
     </div>
 
-    {{-- What's happening --}}
+    
     <div class="card">
         <h3>What’s happening</h3>
         <div class="trend">
@@ -130,3 +130,4 @@
 </div>
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/layouts/app.blade.php ENDPATH**/ ?>

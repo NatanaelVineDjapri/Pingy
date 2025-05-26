@@ -21,7 +21,9 @@ class AuthSessionController extends Controller
         ]);
         if (Auth::attempt($userInput)) {
         $request->session()->regenerate();
-        return redirect()->intended('teamproject');
+        // return redirect()->intended(route('tweets'));
+        return redirect('/tweets');
+
         }
         return back()->withErrors([
             'email' => 'Sorry, your email/password was incorrect. Please double-check your email/password.',
@@ -35,12 +37,13 @@ class AuthSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/auth');
     }
     public function register(Request $request){
     
         $validator = Validator::make($request->all(), [
         'username' => ['required', 'string', 'max:255', 'unique:users,username'],
+        'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'email', 'unique:users,email'],
         'password' => ['required', 'min:6', 'confirmed'],
         'dob' => ['required', 'date', 'before:-13 years'],
@@ -56,6 +59,7 @@ class AuthSessionController extends Controller
 
         $user = User::create([
             'username' => $validated['username'],
+            'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'dob' => $validated['dob'],
@@ -63,7 +67,7 @@ class AuthSessionController extends Controller
 
         Auth::login($user);
 
-        return redirect('teamproject');
+        return redirect('/auth');
     }
 
 }

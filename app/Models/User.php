@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'username',
-        // 'name',
+        'name',
         'email',
         'password',
         'avatar',
@@ -38,8 +38,16 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class)->latest();
     }
 
-    public function connections(){
-        return $this->belongsToMany(User::class,'connections','user_id','following_user_id');
+    // public function connections(){
+    //     return $this->belongsToMany(User::class,'followers','user_id','following_user_id');
+    // }
+
+     public function followers(){
+        return $this->belongsToMany(User::class, 'follows', 'following_user_id', 'user_id');
+    }
+
+    public function following(){
+    return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
     }
 
     public function follow(User $user){
@@ -55,9 +63,11 @@ class User extends Authenticatable
        return $this->connections()->toggle($user);   
     }
 
-    public function following(User $user){
+    public function followingOrNo(User $user){
         return $this->connections()->where('following_user_id',$user->id)->exists();
     }
+
+  
 
     public function likes(){
         return $this->hasMany(Like::class);
