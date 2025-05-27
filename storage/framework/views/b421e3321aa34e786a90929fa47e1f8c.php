@@ -3,11 +3,7 @@
 <?php $__env->startSection('head'); ?>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleProfileEdit.css')); ?>">
     <?php echo $__env->yieldContent('head'); ?>
-
-
 <?php $__env->stopSection(); ?>
-<!-- <link rel="stylesheet" href="<?php echo e(asset('css/styleProfileEdit.css')); ?>">
-<?php echo $__env->yieldContent('head'); ?> -->
 
 <?php $__env->startSection('content'); ?>
 <div class="container">
@@ -18,7 +14,6 @@
                 <form method="POST" action="<?php echo e(route('updateprofile', $user->id)); ?>" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
                     <?php echo method_field('PATCH'); ?>
-
                     <div class="form-group">
                         <label for="name" class="label">Name</label>
                         <input id="name" type="text" class="input" name="name" value="<?php echo e(old('name', $user->name)); ?>" required>
@@ -33,7 +28,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-
                     <div class="form-group">
                         <label for="username" class="label">Username</label>
                         <input id="username" type="text" class="input" name="username" value="<?php echo e(old('username', $user->username)); ?>" required>
@@ -48,7 +42,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-
                     <div class="form-group">
                         <label for="description" class="label">Bio</label>
                         <textarea id="description" class="input" name="description" rows="3"><?php echo e(old('description', $user->description)); ?></textarea>
@@ -63,7 +56,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-
                     <div class="form-group">
                         <label for="avatar" class="label">Profile Image</label>
                         <input id="avatar" type="file" class="input" name="avatar">
@@ -78,7 +70,6 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-
                     <div class="form-group">
                         <label for="banner" class="label">Banner Image</label>
                         <input id="banner" type="file" class="input" name="banner">
@@ -93,11 +84,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-
                     <div class="form-group">
                         <button type="submit" class="btn">Update Profile</button>
                     </div>
-
                 </form>
             </div>
         </div>

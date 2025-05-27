@@ -37,7 +37,6 @@ body {
   border-right: 2px solid white;
   z-index: 100;
   flex-shrink: 0;
-
 }
 
 .sidebar img {
@@ -70,7 +69,6 @@ body {
 
 .nav-item:hover {
   background-color: rgba(250,211,226,0.6);
-  
 }
 
 .brand-text {
@@ -212,17 +210,12 @@ img.profile-img {
 
 .main-content {
   margin-left: 250px; 
-  /* padding: 60px; */
-  /* flex: 1; */
 }
 
 /* third  */
 .sidebar-2 {
- 
   width: 500px;            
-  /* flex-shrink: 0;         */
   position: sticky;
-  /* top: 0; */
   padding: 20px;
   margin-right: 10px;
 }

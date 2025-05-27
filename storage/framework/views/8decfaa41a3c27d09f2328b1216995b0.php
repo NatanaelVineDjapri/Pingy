@@ -74,34 +74,26 @@
   </main>
 <!-- ke3 -->
 <div class="sidebar-2">
-    
-
-    
     <div class="card">
         <h3>You might like</h3>
-        <?php $__currentLoopData = $suggestusers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="suggestion-card" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-            <div class="info" style="display: flex; align-items: center;">
-                <img src="<?php echo e($user->avatar ? asset('storage/' . $user->avatar) : asset('default-avatar.png')); ?>"
-                    alt="<?php echo e($user->name); ?>'s profile picture"
-                    style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
-
-                <div>
-                    <strong><?php echo e($user->name); ?></strong><br>
-                    <span style="color: gray;"><?php echo e('@'.$user->username); ?></span>
+          <?php $__currentLoopData = $suggestusers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="suggestion-card" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <div class="info" style="display: flex; align-items: center;">
+                    <img src="<?php echo e($user->avatar ? asset('storage/' . $user->avatar) : asset('default-avatar.png')); ?>"
+                        alt="<?php echo e($user->name); ?>'s profile picture"
+                        style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
+                    <div>
+                        <strong><?php echo e($user->name); ?></strong><br>
+                        <span style="color: gray;"><?php echo e('@'.$user->username); ?></span>
+                    </div>
                 </div>
+                <form action="" method="POST">
+                  <?php echo csrf_field(); ?>
+                  <button type="submit" class="btn btn-sm btn-primary">Follow</button>
+                </form>
             </div>
-        <form action="" method="POST">
-            <?php echo csrf_field(); ?>
-            <button type="submit" class="btn btn-sm btn-primary">Follow</button>
-        </form>
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-        <!-- <a href="#">Show more</a> -->
-    </div>
-
-    
     <div class="card">
         <h3>What’s happening</h3>
         <div class="trend">

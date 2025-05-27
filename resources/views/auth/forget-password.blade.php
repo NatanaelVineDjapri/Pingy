@@ -12,7 +12,6 @@
 <body>
     <video class="video-bg" autoplay muted loop>
     <source src="image/video1.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
   </video>
 
     <div class="container" id="container">
@@ -34,9 +33,9 @@
                 <input type="password" name="password" placeholder="New Password" required>
                 <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
                 <button type="submit">Confirmed</button>
-                    @if ($errors->any())
+                    @if ($errors->reset->any())
                         <div class = "error_situation">
-                             @foreach ($errors->all() as $error)
+                             @foreach ($errors->reset->all() as $error)
                                 <p>{{ $error }}</p>
                              @endforeach
                          </div>

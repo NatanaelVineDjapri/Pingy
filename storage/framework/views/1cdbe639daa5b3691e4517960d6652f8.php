@@ -37,13 +37,18 @@
                 <input type="password" name="password" placeholder="Password" required>
                 <a href="<?php echo e(url('forget-password')); ?>">Forget Your Password?</a>
                 <button>Sign In</button>
-                    <?php if($errors->any()): ?>
-                        <div class = "error_situation">
-                             <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <p><?php echo e($error); ?></p>
-                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                         </div>
-                     <?php endif; ?>
+                <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                    <div class="error_situation">
+                        <p><?php echo e($message); ?></p>
+                    </div>
+                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
             </form>
         </div>
         <div class="toggle-container">

@@ -1,7 +1,7 @@
 @extends('layouts.app') 
 
 @section('head')
-    <link rel="stylesheet" href="{{ asset('css/styleProfileShowEdit_v2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styleProfileShowEdit.css') }}">
     @yield('head')
 
 @endsection
@@ -15,7 +15,6 @@
                 <a href="#" class="item-link">{{ $user->name }}</a>
             </div>
         </section>
-
         <section class="twitterprofile">
             <div class="headerprofileimage">
                 <img src="{{ asset('storage/' . $user->banner) }}" alt="header" id="headerimage">
@@ -26,34 +25,29 @@
                     @endif
                 </div>
             </div>
-
             <div class="bio">
                 <div class="handle">
                     <h3>{{ $user->name }}</h3>
                     <p>{{ '@' .$user->username }}</p>
                 </div>
                 <p>{{ $user->description }}</p>
-
                 <span>
                     <i class="fa fa-calendar"></i> Joined {{ $user->created_at->format('F Y') }}
                 </span>
-
                 <div class="nawa">
                     <div class="followers"> {{ $user->following_count }} <span>Following</span></div>
                     <div>{{ $user->followers_count }}<span> Followers</span></div>
                 </div>
             </div>
         </section>
-
         <section class="tweets">
             <div class="heading">
-                <p>Tweets</p>
-                <p>Tweets and Replies</p>
-                <p>Media</p>
-                <p>Likes</p>
+                <a href=""><p>Tweets</p></a>
+                <a href=""><p>Tweets and Replies</p></a>
+                <a href=""><p>Media</p><a>
+                <a><p>Likes</p><a>
             </div>
         </section>
-
         <section class="mytweets">
             @foreach($tweets as $tweet)
                 <div class="tweet">
@@ -64,16 +58,15 @@
                             <p class ="username">{{'@'. $user->username }} - {{ $tweet->created_at->format('M,d Y') }}</p>
                         </div>
                         <div class="tweetcontent">{{ $tweet->body }}</div>
-                          @if($tweet->tweetImage)
+                        @if($tweet->tweetImage)
                             <div class="tweet-image">
                                 <img src="{{ asset('storage/' . $tweet->tweetImage) }}" alt="Tweet image" style="max-width: 80%; border-radius: 10px; margin-top: 10px;">
                             </div>
         
                         @endif
                         <ul class="retweeticons">
-                            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                            <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
                             <span>{{ $tweet->comments_count }}</span>
-
 
                             <ion-icon name="repeat-outline"></ion-icon>
                             <span>{{ $tweet->comments_count }}</span>
@@ -94,7 +87,6 @@
                                 @method('UPDATE')
                                 <button type="submit" class="delete-btn"><ion-icon name="create-outline"></ion-icon></ion-icon></button>
                             </form>
-                            
                         </ul>
                     </div>
                 </div>

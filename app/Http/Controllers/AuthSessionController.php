@@ -21,13 +21,13 @@ class AuthSessionController extends Controller
         ]);
         if (Auth::attempt($userInput)) {
         $request->session()->regenerate();
-        // return redirect()->intended(route('tweets'));
-        return redirect('/tweets');
+
+        return redirect('/home');
 
         }
         return back()->withErrors([
             'email' => 'Sorry, your email/password was incorrect. Please double-check your email/password.',
-        ])->onlyInput('email');
+        ]);
     }
     public function logout(Request $request)
     {

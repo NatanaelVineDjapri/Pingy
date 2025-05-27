@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User; 
+use App\Models\Tweet; 
+use App\Models\Comment; 
 use Illuminate\Support\Facades\Storage; 
 
 class ProfileController extends Controller
@@ -12,12 +14,19 @@ class ProfileController extends Controller
         $this->middleware('auth');
     }
     
-    public function index(User $user){
-        // $user = User::withCount(['followers', 'following'])->findOrFail($userId);
-        $user->loadCount(['followers', 'following']);
-          // Ambil tweet user + jumlah like & komentar
+    public function index(User $user,Request $request){
+        $user->loadCount(['followers', 'following']); //next buat follow2
+
         $tweets = $user->tweets()->withCount(['likes', 'comments'])->latest()->get();
-        return view('profiles.profile-show',compact('user','tweets')); //buat dipake diblade
+
+        $repliedTweetIds = Comment::where('user_id', $user->id)->pluck('tweet_id');
+
+        $repliedTweets = Tweet::whereIn('id', $repliedTweetIds)
+            ->with(['user', 'comments.user'])
+            ->latest()
+            ->get();
+
+        return view('profiles.profile-show', compact('user', 'tweets', 'repliedTweets'));
     }
 
     public function edit(User $user){

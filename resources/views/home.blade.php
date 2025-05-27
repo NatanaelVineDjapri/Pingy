@@ -19,23 +19,19 @@
                     <img src="{{ asset('storage/' . $tweet->tweetImage) }}" class="tweet-img" alt="Tweet image">
                 </div>
                 @endif
-                 <ul class="retweeticons">
-                            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-                            <span>{{ $tweet->comments_count }}</span>
+                <ul class="retweeticons">
+                    <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
+                    <span>{{ $tweet->comments_count }}</span>
 
-
-                            <ion-icon name="repeat-outline"></ion-icon>
-                            <span>{{ $tweet->comments_count }}</span>
+                    <ion-icon name="repeat-outline"></ion-icon>
+                    <span>{{ $tweet->comments_count }}</span>
                             
-                            <ion-icon name="heart-outline"></ion-icon>
-                             <span>{{ $tweet->likes_count }}</span>
+                    <ion-icon name="heart-outline"></ion-icon>
+                    <span>{{ $tweet->likes_count }}</span>
 
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                             <span>{{ $tweet->comments_count }}</span>
-
-                             
-                            
-                        </ul>
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                    <span>{{ $tweet->comments_count }}</span>
+                </ul>
             </div>
         </div>
         @endforeach

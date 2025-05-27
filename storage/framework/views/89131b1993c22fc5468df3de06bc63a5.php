@@ -1,7 +1,7 @@
  
 
 <?php $__env->startSection('head'); ?>
-    <link rel="stylesheet" href="<?php echo e(asset('css/styleProfileShowEdit_v2.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/styleProfileShowEdit.css')); ?>">
     <?php echo $__env->yieldContent('head'); ?>
 
 <?php $__env->stopSection(); ?>
@@ -15,7 +15,6 @@
                 <a href="#" class="item-link"><?php echo e($user->name); ?></a>
             </div>
         </section>
-
         <section class="twitterprofile">
             <div class="headerprofileimage">
                 <img src="<?php echo e(asset('storage/' . $user->banner)); ?>" alt="header" id="headerimage">
@@ -26,35 +25,30 @@
                     <?php endif; ?>
                 </div>
             </div>
-
             <div class="bio">
                 <div class="handle">
                     <h3><?php echo e($user->name); ?></h3>
                     <p><?php echo e('@' .$user->username); ?></p>
                 </div>
                 <p><?php echo e($user->description); ?></p>
-
                 <span>
                     <i class="fa fa-calendar"></i> Joined <?php echo e($user->created_at->format('F Y')); ?>
 
                 </span>
-
                 <div class="nawa">
                     <div class="followers"> <?php echo e($user->following_count); ?> <span>Following</span></div>
                     <div><?php echo e($user->followers_count); ?><span> Followers</span></div>
                 </div>
             </div>
         </section>
-
         <section class="tweets">
             <div class="heading">
-                <p>Tweets</p>
-                <p>Tweets and Replies</p>
-                <p>Media</p>
-                <p>Likes</p>
+                <a href=""><p>Tweets</p></a>
+                <a href=""><p>Tweets and Replies</p></a>
+                <a href=""><p>Media</p><a>
+                <a><p>Likes</p><a>
             </div>
         </section>
-
         <section class="mytweets">
             <?php $__currentLoopData = $tweets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tweet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="tweet">
@@ -65,16 +59,15 @@
                             <p class ="username"><?php echo e('@'. $user->username); ?> - <?php echo e($tweet->created_at->format('M,d Y')); ?></p>
                         </div>
                         <div class="tweetcontent"><?php echo e($tweet->body); ?></div>
-                          <?php if($tweet->tweetImage): ?>
+                        <?php if($tweet->tweetImage): ?>
                             <div class="tweet-image">
                                 <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>" alt="Tweet image" style="max-width: 80%; border-radius: 10px; margin-top: 10px;">
                             </div>
         
                         <?php endif; ?>
                         <ul class="retweeticons">
-                            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                            <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
                             <span><?php echo e($tweet->comments_count); ?></span>
-
 
                             <ion-icon name="repeat-outline"></ion-icon>
                             <span><?php echo e($tweet->comments_count); ?></span>
@@ -95,7 +88,6 @@
                                 <?php echo method_field('UPDATE'); ?>
                                 <button type="submit" class="delete-btn"><ion-icon name="create-outline"></ion-icon></ion-icon></button>
                             </form>
-                            
                         </ul>
                     </div>
                 </div>

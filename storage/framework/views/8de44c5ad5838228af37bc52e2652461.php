@@ -34,9 +34,9 @@
                 <input type="password" name="password" placeholder="New Password" required>
                 <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
                 <button type="submit">Confirmed</button>
-                    <?php if($errors->any()): ?>
+                    <?php if($errors->reset->any()): ?>
                         <div class = "error_situation">
-                             <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                             <?php $__currentLoopData = $errors->reset->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <p><?php echo e($error); ?></p>
                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                          </div>

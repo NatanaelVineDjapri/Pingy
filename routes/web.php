@@ -5,6 +5,7 @@ use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommentController;
 
 
 //User-Login-Regist-Change Password
@@ -31,6 +32,10 @@ Route::patch('/profile/{user}', [ProfileController::class, 'update'])->middlewar
 //explore buat disamping layout
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
 
+//comment
+Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('deletecomment');
+Route::post('//tweet/{tweet}/comment', [CommentController::class, 'store'])->middleware('auth')->name('postcomment');
+Route::get('/tweet/{tweet}/comment', [CommentController::class, 'index'])->middleware('auth')->name('showcomment');
 
 Route::get('/layout-preview', function () { return view('tweets');});
 

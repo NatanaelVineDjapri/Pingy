@@ -72,36 +72,27 @@
    <main class="main-content">
       @yield('content')
   </main>
-<!-- ke3 -->
 <div class="sidebar-2">
-    {{-- Search Bar --}}
-
-    {{-- You might like --}}
     <div class="card">
         <h3>You might like</h3>
-        @foreach ($suggestusers as $user)
-        <div class="suggestion-card" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-            <div class="info" style="display: flex; align-items: center;">
-                <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('default-avatar.png') }}"
-                    alt="{{ $user->name }}'s profile picture"
-                    style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
-
-                <div>
-                    <strong>{{ $user->name }}</strong><br>
-                    <span style="color: gray;">{{'@'.$user->username }}</span>
+          @foreach ($suggestusers as $user)
+            <div class="suggestion-card" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <div class="info" style="display: flex; align-items: center;">
+                    <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('default-avatar.png') }}"
+                        alt="{{ $user->name }}'s profile picture"
+                        style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
+                    <div>
+                        <strong>{{ $user->name }}</strong><br>
+                        <span style="color: gray;">{{'@'.$user->username }}</span>
+                    </div>
                 </div>
+                <form action="" method="POST">
+                  @csrf
+                  <button type="submit" class="btn btn-sm btn-primary">Follow</button>
+                </form>
             </div>
-        <form action="" method="POST">
-            @csrf
-            <button type="submit" class="btn btn-sm btn-primary">Follow</button>
-        </form>
+          @endforeach
     </div>
-@endforeach
-
-        <!-- <a href="#">Show more</a> -->
-    </div>
-
-    {{-- What's happening --}}
     <div class="card">
         <h3>What’s happening</h3>
         <div class="trend">

@@ -12,7 +12,6 @@
 <body>
     <video class="video-bg" autoplay muted loop>
     <source src="image/video1.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
   </video>
 
     <div class="container" id="container">
@@ -37,13 +36,11 @@
                 <input type="password" name="password" placeholder="Password" required>
                 <a href="{{ url('forget-password') }}">Forget Your Password?</a>
                 <button>Sign In</button>
-                    @if ($errors->any())
-                        <div class = "error_situation">
-                             @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                             @endforeach
-                         </div>
-                     @endif
+                @error('email')
+                    <div class="error_situation">
+                        <p>{{ $message }}</p>
+                    </div>
+                @enderror
             </form>
         </div>
         <div class="toggle-container">

@@ -25,23 +25,19 @@ class AppServiceProvider extends ServiceProvider
     // }
 
     public function boot()
-{
+    {
     View::composer('*', function ($view) {
         $user = Auth::user();
-        $suggestusers = collect();
+
 
         if ($user) {
             $suggestusers = User::where('id', '!=', $user->id)
                 ->whereDoesntHave('followers', function ($query) use ($user) {
-                    // Cari yang followers-nya bukan kamu, tapi karena relasi followers itu orang yang follow user itu
-                    // Ini kebalik untuk cari yang belum kamu follow, jadi pakai relasi 'followers' salah
                 })
                 ->inRandomOrder()
                 ->take(5)
                 ->get();
-
         }
-
         $view->with('suggestusers', $suggestusers);
     });
 }

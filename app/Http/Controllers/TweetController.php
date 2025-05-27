@@ -23,13 +23,9 @@ class TweetController extends Controller
     }
 
     public function store(Request $request){
-        //  if ($request->hasFile('tweetImage') && !$request->filled('body')) {
-        //     return redirect()->back()->withErrors(['error' => 'Teks atau gambar harus diisi.']);
-        // }
-       
         $validated = $request->validate([
             'body' => 'nullable|max:255',
-            'tweetImage' => 'nullable|image|max:2048' //maksimal 2mb
+            'tweetImage' => 'nullable|image|max:2048' 
         ]);
 
         if (!$request->filled('body') && !$request->hasFile('tweetImage')) {
@@ -40,28 +36,17 @@ class TweetController extends Controller
 
         if($request->hasFile('tweetImage')){
             $validated['tweetImage'] = $request->file('tweetImage')//ngambil file itu
-            ->store('tweetImages','public');//masukin ke db
+            ->store('tweetImages','public');
         }
 
-        Tweet::create($validated); //buat simpen ke database
+        Tweet::create($validated); 
         
         return redirect()->route('gettweet');
     }
-    public function create(Tweet $tweet){//tampilan form
-        return view('tweet.create',compact('tweet'));
-    }
+   
 
-    public function show(Tweet $tweet){
-        return view('tweet.show',compact('tweet'));
-    }
-
-     public function edit(Tweet $tweet){
-        return view('tweet.edit',compact('tweet'));
-    }
     public function update(Request $request, Tweet $tweet)
-    {
-        // Check if the authenticated user is the same as the post user
-        
+    {   
         $data = $request->validate([
             'body' => 'required',
         ]);
@@ -71,17 +56,10 @@ class TweetController extends Controller
         return redirect('/posts/' . $tweet->id);
     }
     public function destroy(Tweet $tweet){
-    //     $filePath = storage_path('tweetImages/' . $tweet->image_path);
-
-    //     if (file_exists($filePath)) {
-    //     unlink($filePath); 
-    // }
-
          if ($tweet->tweetImage) {
         Storage::disk('public')->delete($tweet->tweetImage);
-    }
+        }
 
-        // Tweet::where('id', $tweet->id)->delete();
         $tweet->delete();
         return redirect()->back();
     }

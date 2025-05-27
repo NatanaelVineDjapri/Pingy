@@ -34,7 +34,7 @@ class ForgetPasswordController extends Controller
 
         if(!$user){
             return redirect()->back()
-            ->withErrors(['reset'=>'The provided credentials are incorrect or the user does not exist.'])
+            ->withErrors(['reset'=>'The provided credentials are incorrect or the user does not exist.'],'reset')
             ->onlyInput('username');
         }
 

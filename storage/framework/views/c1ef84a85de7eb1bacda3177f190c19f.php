@@ -19,23 +19,19 @@
                     <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>" class="tweet-img" alt="Tweet image">
                 </div>
                 <?php endif; ?>
-                 <ul class="retweeticons">
-                            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-                            <span><?php echo e($tweet->comments_count); ?></span>
+                <ul class="retweeticons">
+                    <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
+                    <span><?php echo e($tweet->comments_count); ?></span>
 
-
-                            <ion-icon name="repeat-outline"></ion-icon>
-                            <span><?php echo e($tweet->comments_count); ?></span>
+                    <ion-icon name="repeat-outline"></ion-icon>
+                    <span><?php echo e($tweet->comments_count); ?></span>
                             
-                            <ion-icon name="heart-outline"></ion-icon>
-                             <span><?php echo e($tweet->likes_count); ?></span>
+                    <ion-icon name="heart-outline"></ion-icon>
+                    <span><?php echo e($tweet->likes_count); ?></span>
 
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                             <span><?php echo e($tweet->comments_count); ?></span>
-
-                             
-                            
-                        </ul>
+                    <ion-icon name="bookmark-outline"></ion-icon>
+                    <span><?php echo e($tweet->comments_count); ?></span>
+                </ul>
             </div>
         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
