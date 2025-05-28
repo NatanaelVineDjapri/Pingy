@@ -56,11 +56,11 @@ class TweetController extends Controller
         return redirect('/posts/' . $tweet->id);
     }
     public function destroy(Tweet $tweet){
-         if ($tweet->tweetImage) {
+        if ($tweet->tweetImage) {
         Storage::disk('public')->delete($tweet->tweetImage);
         }
 
         $tweet->delete();
-        return redirect()->back();
+        return back();
     }
 }

@@ -17,8 +17,17 @@
         </section>
         <section class="twitterprofile">
             <div class="headerprofileimage">
+                @if($user->banner)
                 <img src="{{ asset('storage/' . $user->banner) }}" alt="header" id="headerimage">
+                @else
+                <img src="{{ asset('image/banner.jpg') }}" alt="header default" id="headerimage">
+                @endif
+
+                @if($user->avatar)
                 <img src="{{ asset('storage/' . $user->avatar) }}" alt="profile pic" id="profilepic">
+                @else
+                <img src="{{ asset('image/profilepicture.jpg') }}" alt="profile pic" id="profilepic">
+                @endif
                 <div class="editprofile">
                     @if(Auth::id() == $user->id)
                         <a href="{{ route('editprofile', $user->id) }}">Edit Profile</a>
@@ -51,7 +60,13 @@
         <section class="mytweets">
             @foreach($tweets as $tweet)
                 <div class="tweet">
-                    <div><img src="{{ asset('storage/' . $user->avatar) }}" class="avi"></div>
+                    <div>
+                    @if($user->avatar)
+                        <img src="{{ asset('storage/' . $user->avatar) }}" class="avi">
+                    @else
+                        <img src="{{ asset('image/profilepicture.jpg') }}" class="avi">
+                    @endif
+                    </div>
                     <div class="tweetbody">
                         <div class="packs-name">
                             <p class="name">{{ $user->name }}</p> 

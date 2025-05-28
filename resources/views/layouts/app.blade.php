@@ -60,11 +60,11 @@
       @if(Auth::user()->avatar)
         <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Profile Image" class="profile-img" width="35" height="35">
       @else
-        <img src="{{ asset('image/person1.jpg') }}" alt="Default Profile" class="profile-img" width="35" height="35">
+        <img src="{{ asset('image/profilepicture.jpg') }}" alt="Default Profile" class="profile-img" width="35" height="35">
       @endif
     <div>
         <p class="name">{{ Auth::user()->name }}</p>
-        <p class="username">{{ Auth::user()->username }}</p> 
+        <p class="username">{{ '@'.Auth::user()->username }}</p> 
     </div>
 </div>
     </a>
@@ -76,11 +76,13 @@
     <div class="card">
         <h3>You might like</h3>
           @foreach ($suggestusers as $user)
-            <div class="suggestion-card" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-                <div class="info" style="display: flex; align-items: center;">
-                    <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('default-avatar.png') }}"
-                        alt="{{ $user->name }}'s profile picture"
-                        style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
+            <div class="suggestion-card">
+                <div class="info">
+                    @if($user->avatar)
+                      <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile Image" class="profile-img" width="35" height="35">
+                    @else
+                      <img src="{{ asset('image/profilepicture.jpg') }}" alt="Default Profile" class="profile-img" width="35" height="35">
+                    @endif
                     <div>
                         <strong>{{ $user->name }}</strong><br>
                         <span style="color: gray;">{{'@'.$user->username }}</span>
@@ -115,7 +117,6 @@
             <span>Ini X</span>
             <small>63K posts</small>
         </div>
-        <a href="#">Show more</a>
     </div>
 </div>
 </div>

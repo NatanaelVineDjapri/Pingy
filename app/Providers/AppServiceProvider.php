@@ -28,14 +28,14 @@ class AppServiceProvider extends ServiceProvider
     {
     View::composer('*', function ($view) {
         $user = Auth::user();
-
+        $suggestusers = collect();
 
         if ($user) {
             $suggestusers = User::where('id', '!=', $user->id)
                 ->whereDoesntHave('followers', function ($query) use ($user) {
                 })
                 ->inRandomOrder()
-                ->take(5)
+                ->take(7)
                 ->get();
         }
         $view->with('suggestusers', $suggestusers);

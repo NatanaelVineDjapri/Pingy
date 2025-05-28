@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->text('banner')->nullable();
             $table->string('description')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->date('dob')->nullable(); //nullable => boleh kosong
+            $table->date('dob')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
         });

@@ -9,16 +9,18 @@
 @section('content')
 <div class="tweet-container">
     <div class="tweet-list">
-        {{-- Gak perlu foreach kalau cuma 1 tweet --}}
         <div class="tweet-item">
             <div class="tweet-header">
-                <img src="{{ asset('storage/' . $tweet->user->avatar) }}" class="avatar" alt="User Avatar">
+                @if($tweet->user->avatar)
+                    <img src="{{ asset('storage/' . $tweet->user->avatar) }}" class="avatar">
+                @else
+                    <img src="{{ asset('image/profilepicture.jpg') }}" class="avatar">
+                @endif
                 <div class="packs-name">
                     <p class="name">{{ $tweet->user->name }}</p> 
                     <p class="username">{{ '@' . $tweet->user->username }} - {{ $tweet->created_at->format('M,d Y') }}</p>
                 </div>
             </div>
-
             <div class="tweet-body">
                 <p class="tweet-text">{{ $tweet->body }}</p>
                 @if($tweet->tweetImage)
@@ -49,12 +51,26 @@
                     <ul class="comment-list">
                        @foreach ($comments as $comment)
                         <div class="comment-item">
-                            <img src="{{ asset('storage/' . ($comment->user->avatar ?? 'default-avatar.png')) }}" class="avatar2" alt="User Avatar">
-                            <div class="packs-name">
-                                <p class="name">{{ $comment->user->name }}</p> 
-                                <p class="username">{{ '@' . $comment->user->username }} - {{ $comment->created_at->format('M,d Y') }}</p>
+                            <div class="user-info">
+                                @if($comment->user->avatar)
+                                    <img src="{{ asset('storage/' . $comment->user->avatar) }}" class="avatar2">
+                                @else
+                                    <img src="{{ asset('image/profilepicture.jpg') }}" class="avatar2">
+                                @endif
+                                <div class="packs-name">
+                                    <p class="name">{{ $comment->user->name }}</p> 
+                                    <p class="username">{{ '@' . $comment->user->username }} - {{ $comment->created_at->format('M,d Y') }}</p>
+                                </div>
                             </div>
-                            <p class="comment-body">{{ $comment->body }}</p>
+                            <p class="comment-body">{{
+                            $comment->body }}</p>
+                            @if (auth()->id() === $comment->user_id)
+                                <form action="{{ route('deletecomment', [$comment->tweet, $comment]) }}" method="POST" onsubmit="return confirm('Are you sure to delete this comment?');" class="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"   class="delete-btn">Delete</button>
+                                </form>
+                            @endif
                         </div>
                          @endforeach
                     </ul>

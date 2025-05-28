@@ -23,6 +23,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/tweets', [TweetController::class, 'index'])->middleware('auth')->name('gettweet');
 Route::post('/tweets', [TweetController::class, 'store'])->middleware('auth')->name('posttweet');
 Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy'])->middleware('auth')->name('deletetweet');
+Route::patch('/tweets/{tweet}', [TweetController::class, 'update'])->middleware('auth')->name('updatetweet');
+
 
 //profile
 Route::get('/profile/{user}', [ProfileController::class, 'index'])->middleware('auth')->name('showprofile');
@@ -33,7 +35,7 @@ Route::patch('/profile/{user}', [ProfileController::class, 'update'])->middlewar
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
 
 //comment
-Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('deletecomment');
+Route::delete('/tweet/{tweet}/comment/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('deletecomment');
 Route::post('//tweet/{tweet}/comment', [CommentController::class, 'store'])->middleware('auth')->name('postcomment');
 Route::get('/tweet/{tweet}/comment', [CommentController::class, 'index'])->middleware('auth')->name('showcomment');
 

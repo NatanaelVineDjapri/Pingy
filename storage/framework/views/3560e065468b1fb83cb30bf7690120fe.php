@@ -9,16 +9,18 @@
 <?php $__env->startSection('content'); ?>
 <div class="tweet-container">
     <div class="tweet-list">
-        
         <div class="tweet-item">
             <div class="tweet-header">
-                <img src="<?php echo e(asset('storage/' . $tweet->user->avatar)); ?>" class="avatar" alt="User Avatar">
+                <?php if($tweet->user->avatar): ?>
+                    <img src="<?php echo e(asset('storage/' . $tweet->user->avatar)); ?>" class="avatar">
+                <?php else: ?>
+                    <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" class="avatar">
+                <?php endif; ?>
                 <div class="packs-name">
                     <p class="name"><?php echo e($tweet->user->name); ?></p> 
                     <p class="username"><?php echo e('@' . $tweet->user->username); ?> - <?php echo e($tweet->created_at->format('M,d Y')); ?></p>
                 </div>
             </div>
-
             <div class="tweet-body">
                 <p class="tweet-text"><?php echo e($tweet->body); ?></p>
                 <?php if($tweet->tweetImage): ?>
@@ -49,12 +51,25 @@
                     <ul class="comment-list">
                        <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="comment-item">
-                            <img src="<?php echo e(asset('storage/' . ($comment->user->avatar ?? 'default-avatar.png'))); ?>" class="avatar2" alt="User Avatar">
-                            <div class="packs-name">
-                                <p class="name"><?php echo e($comment->user->name); ?></p> 
-                                <p class="username"><?php echo e('@' . $comment->user->username); ?> - <?php echo e($comment->created_at->format('M,d Y')); ?></p>
+                            <div class="user-info">
+                                <?php if($comment->user->avatar): ?>
+                                    <img src="<?php echo e(asset('storage/' . $comment->user->avatar)); ?>" class="avatar2">
+                                <?php else: ?>
+                                    <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" class="avatar2">
+                                <?php endif; ?>
+                                <div class="packs-name">
+                                    <p class="name"><?php echo e($comment->user->name); ?></p> 
+                                    <p class="username"><?php echo e('@' . $comment->user->username); ?> - <?php echo e($comment->created_at->format('M,d Y')); ?></p>
+                                </div>
                             </div>
                             <p class="comment-body"><?php echo e($comment->body); ?></p>
+                            <?php if(auth()->id() === $comment->user_id): ?>
+                                <form action="<?php echo e(route('deletecomment', [$comment->tweet, $comment])); ?>" method="POST" onsubmit="return confirm('Are you sure to delete this comment?');" class="delete-form">
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
+                                <button type="submit"   class="delete-btn">Delete</button>
+                                </form>
+                            <?php endif; ?>
                         </div>
                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>

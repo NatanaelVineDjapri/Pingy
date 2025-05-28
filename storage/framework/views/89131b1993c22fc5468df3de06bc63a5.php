@@ -17,8 +17,17 @@
         </section>
         <section class="twitterprofile">
             <div class="headerprofileimage">
+                <?php if($user->banner): ?>
                 <img src="<?php echo e(asset('storage/' . $user->banner)); ?>" alt="header" id="headerimage">
+                <?php else: ?>
+                <img src="<?php echo e(asset('image/banner.jpg')); ?>" alt="header default" id="headerimage">
+                <?php endif; ?>
+
+                <?php if($user->avatar): ?>
                 <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" alt="profile pic" id="profilepic">
+                <?php else: ?>
+                <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="profile pic" id="profilepic">
+                <?php endif; ?>
                 <div class="editprofile">
                     <?php if(Auth::id() == $user->id): ?>
                         <a href="<?php echo e(route('editprofile', $user->id)); ?>">Edit Profile</a>
@@ -52,7 +61,13 @@
         <section class="mytweets">
             <?php $__currentLoopData = $tweets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tweet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="tweet">
-                    <div><img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" class="avi"></div>
+                    <div>
+                    <?php if($user->avatar): ?>
+                        <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" class="avi">
+                    <?php else: ?>
+                        <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" class="avi">
+                    <?php endif; ?>
+                    </div>
                     <div class="tweetbody">
                         <div class="packs-name">
                             <p class="name"><?php echo e($user->name); ?></p> 

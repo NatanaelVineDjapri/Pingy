@@ -60,11 +60,11 @@
       <?php if(Auth::user()->avatar): ?>
         <img src="<?php echo e(asset('storage/' . Auth::user()->avatar)); ?>" alt="Profile Image" class="profile-img" width="35" height="35">
       <?php else: ?>
-        <img src="<?php echo e(asset('image/person1.jpg')); ?>" alt="Default Profile" class="profile-img" width="35" height="35">
+        <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="Default Profile" class="profile-img" width="35" height="35">
       <?php endif; ?>
     <div>
         <p class="name"><?php echo e(Auth::user()->name); ?></p>
-        <p class="username"><?php echo e(Auth::user()->username); ?></p> 
+        <p class="username"><?php echo e('@'.Auth::user()->username); ?></p> 
     </div>
 </div>
     </a>
@@ -72,16 +72,17 @@
    <main class="main-content">
       <?php echo $__env->yieldContent('content'); ?>
   </main>
-<!-- ke3 -->
 <div class="sidebar-2">
     <div class="card">
         <h3>You might like</h3>
           <?php $__currentLoopData = $suggestusers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="suggestion-card" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-                <div class="info" style="display: flex; align-items: center;">
-                    <img src="<?php echo e($user->avatar ? asset('storage/' . $user->avatar) : asset('default-avatar.png')); ?>"
-                        alt="<?php echo e($user->name); ?>'s profile picture"
-                        style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
+            <div class="suggestion-card">
+                <div class="info">
+                    <?php if($user->avatar): ?>
+                      <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" alt="Profile Image" class="profile-img" width="35" height="35">
+                    <?php else: ?>
+                      <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="Default Profile" class="profile-img" width="35" height="35">
+                    <?php endif; ?>
                     <div>
                         <strong><?php echo e($user->name); ?></strong><br>
                         <span style="color: gray;"><?php echo e('@'.$user->username); ?></span>
@@ -116,7 +117,6 @@
             <span>Ini X</span>
             <small>63K posts</small>
         </div>
-        <a href="#">Show more</a>
     </div>
 </div>
 </div>

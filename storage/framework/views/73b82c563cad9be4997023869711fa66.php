@@ -12,7 +12,11 @@
         <form action="<?php echo e(route('posttweet')); ?>" method="POST" enctype="multipart/form-data" class="tweet-form">
             <?php echo csrf_field(); ?>
             <div class="tweet-input-section">
-                <img src="<?php echo e(asset('storage/' . Auth::user()->avatar)); ?>" class="avatar" alt="User Avatar">
+                 <?php if(Auth::user()->avatar): ?>
+                    <img src="<?php echo e(asset('storage/' . Auth::user()->avatar)); ?>" class="avatar">
+                <?php else: ?>
+                    <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" class="avatar">
+                <?php endif; ?>
                 <textarea name="body" rows="3" placeholder="What's happening?" maxlength="255"><?php echo e(old('body')); ?></textarea>
             </div>
             <div class="tweet-actions">
@@ -32,7 +36,11 @@
          <?php $__currentLoopData = $tweets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tweet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="tweet-item">
             <div class="tweet-header">
-                <img src="<?php echo e(asset('storage/' . $tweet->user->avatar)); ?>" class="avatar" alt="User Avatar">
+                 <?php if($tweet->user->avatar): ?>
+                        <img src="<?php echo e(asset('storage/' . $tweet->user->avatar)); ?>" class="avatar">
+                    <?php else: ?>
+                        <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" class="avatar">
+                    <?php endif; ?>
                 <div class="packs-name">
                     <p class="name"><?php echo e($tweet->user->name); ?></p> 
                     <p class="username"><?php echo e('@'. $tweet->user->username); ?> - <?php echo e($tweet->created_at->format('M,d Y')); ?></p>
@@ -42,7 +50,7 @@
                 <p><?php echo e($tweet->body); ?></p>
                 <?php if($tweet->tweetImage): ?>
                     <div class="tweet-image">
-                        <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>" alt="Tweet image" style="width: 100%; max-width: 675px; border-radius: 10px; margin-top: 10px;">
+                        <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>" alt="Tweet image" style="width: 100%; max-width: 675px;max-height:500px;border-radius: 10px; margin-top: 10px;">
                     </div>
                 <?php endif; ?>
                 <form action="<?php echo e(route('deletetweet', $tweet->id)); ?>" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class="delete-form">

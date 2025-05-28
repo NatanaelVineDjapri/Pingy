@@ -3,7 +3,6 @@
     max-width: 600px;
     margin-left: 100px;
     padding-right: 50px;
-    border-right: 2px solid white;
 }
 
 .tweet-list {
@@ -36,8 +35,8 @@
 }
 
 .avatar2{
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -57,7 +56,7 @@
 .username {
     color: #717171;
     font-size: 12px;
-    margin-top: 2px;
+    /* margin-top: 20px; */
 }
 
 .tweet-body {
@@ -112,7 +111,7 @@
 
 .comment-form button {
     padding: 8px 12px;
-    background-color: #1da1f2;
+    background-color: #fba7c9;
     color: white;
     border: none;
     border-radius: 8px;
@@ -125,17 +124,39 @@
 }
 
 .comment-item {
-    /* font-size: 0.9rem;
-    margin-bottom: 5px; */
-     display: flex;
+    /* display: flex; */
     gap: 10px;
-    align-items: flex-start;
+    /* align-items: center; */
     margin-bottom: 15px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
 }
 
+.user-info{
+    display: flex;
+    align-items: center;
+    gap: 10px; /* jarak antara avatar dan nama */
+}
 .comment-body {
-    margin: 0;
+    margin-top: 10px;
+    margin-left:40px;
+
     
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 420px;
+    background-color: #fba7c9;
+    border-radius: 8px;
+
+}
+
+ion-icon{
+    color: #fba7c9;
 }
