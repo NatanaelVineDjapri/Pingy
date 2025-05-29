@@ -1,0 +1,98 @@
+body {
+    background-color: #fba7c9;
+}
+
+.tweet-container {
+    padding: 20px;
+    max-width: 600px;
+    margin-left: 100px;
+    padding-right: 50px;
+}
+
+.tweet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tweet-item {
+    background-color: #fff;
+    border: 1px solid #e6ecf0;
+    border-radius: 16px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tweet-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.packs-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.username {
+    color: #717171;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.tweet-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.tweet-body p {
+    margin: 0 0 5px 0;
+    white-space: pre-wrap;
+    font-size: 15px;
+}
+
+
+.tweet-img {
+    max-width: 80%;
+    border-radius: 10px;
+}
+
+.retweeticons {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    padding-top:5px
+}
+
+ion-icon{
+    color:#fba7c9;
+}
+
+span {
+    color: rgb(113, 106, 106);
+}
+
+
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}

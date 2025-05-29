@@ -12,7 +12,6 @@
 <body>
     <video class="video-bg" autoplay muted loop>
     <source src="image/video1.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
   </video>
 
     <div class="container" id="container">
@@ -21,7 +20,6 @@
                 <div class="toggle-panel toggle-right">
                     <h1 class="h1-pinkys">Forgot Your Password, Pingys?</h1>
                     <p>No worries! Just fill in the form and we'll help you reset it</p>
-                    <!-- <button class="hidden" id="register">Sign Up</button> -->
                 </div>
             </div>
         </div>
@@ -35,16 +33,15 @@
                 <input type="password" name="password" placeholder="New Password" required>
                 <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
                 <button type="submit">Confirmed</button>
-                    @if ($errors->any())
+                    @if ($errors->reset->any())
                         <div class = "error_situation">
-                             @foreach ($errors->all() as $error)
+                             @foreach ($errors->reset->all() as $error)
                                 <p>{{ $error }}</p>
                              @endforeach
                          </div>
-                     @endif
+                    @endif
             </form>
         </div>
-    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 
 </html>

@@ -10,7 +10,7 @@ use App\Models\User;
 class ForgetPasswordController extends Controller
 {
     public function formForgetPassword(){
-        return view('forget-password');
+        return view('auth.forget-password');
     }
 
     public function submitForgetPassForm(Request $request){
@@ -34,12 +34,12 @@ class ForgetPasswordController extends Controller
 
         if(!$user){
             return redirect()->back()
-            ->withErrors(['reset'=>'The provided credentials are incorrect or the user does not exist.'])
+            ->withErrors(['reset'=>'The provided credentials are incorrect or the user does not exist.'],'reset')
             ->onlyInput('username');
         }
 
         $user->password = Hash::make($request->password);
         $user->save();
-        return redirect('/auth');
+        return view('/auth');
     }
 }

@@ -45,7 +45,6 @@ body{
     margin: 20px 0;
 }
 
-
 .container a{
     color:#fba7c9;
     font-size: 13px;
@@ -99,11 +98,12 @@ body{
 .container input:valid {
     border-color: #fba7c9;
     background-color: #f7eaf5;
-  }
+}
+
 .container input:focus {
     border-color: #fba7c9;
     background-color: #f7eaf5;
-  }
+}
 
 .h1-pink{
     color: #fba7c9;
@@ -139,17 +139,6 @@ body{
     opacity: 1;
     z-index: 5;
     animation: move 0.6s;
-}
-
-@keyframes move{
-    0%, 49.99%{
-        opacity: 0;
-        z-index: 1;
-    }
-    50%, 100%{
-        opacity: 1;
-        z-index: 5;
-    }
 }
 
 
@@ -228,6 +217,7 @@ body{
     color: red;
     text-align: center;
 }
+
 .error_situation p {
     font-size: 10px;
     margin: 0px;

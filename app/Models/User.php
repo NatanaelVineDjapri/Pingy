@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'username',
-        // 'name',
+        'name',
         'email',
         'password',
         'avatar',
@@ -38,29 +38,35 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class)->latest();
     }
 
-    public function connections(){
-        return $this->belongsToMany(User::class,'connections','user_id','following_user_id');
+    public function followers(){
+        return $this->belongsToMany(User::class, 'follows', 'following_user_id', 'user_id');
+    }
+
+    public function following(){
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
     }
 
     public function follow(User $user){
-        return $this->connections()->save($user);
+        return $this->following()->attach($user->id);
     }
 
     public function unfollow(User $user){
-        return $this->connections()->detach($user);
+        return $this->following()->detach($user->id);
     }
 
-    public function toggleFollow(User $user)
-    {
-       return $this->connections()->toggle($user);   
+    public function toggleFollow(User $user){
+        return $this->following()->toggle($user->id);
     }
 
-    public function following(User $user){
-        return $this->connections()->where('following_user_id',$user->id)->exists();
+    public function isFollowing(User $user){
+        return $this->following()->where('following_user_id', $user->id)->exists();
     }
-
     public function likes(){
         return $this->hasMany(Like::class);
+    }
+
+    public function likedTweets(){
+        return $this->belongsToMany(Tweet::class,'likes')->withTimestamps();
     }
     public function comments(){
         return $this->hasMany(Comment::class);
@@ -80,11 +86,11 @@ class User extends Authenticatable
         return asset('');
     }
 
-    public function getHomeTweets(){
-        $followedUserIds = $this->connections()->pluck('id');
-        $followedUserIds->push($this->id);
-         //pluck buat ambil .. dri array,push masukin id lu sendiri
+    // public function getHomeTweets(){
+    //     $followedUserIds = $this->connections()->pluck('id');
+    //     $followedUserIds->push($this->id);
+    //      //pluck buat ambil .. dri array,push masukin id lu sendiri
 
-        return Tweet::where('user_id',$followedUserIds)->withLikes()->latest()->paginate(20);
-    }
+    //     return Tweet::where('user_id',$followedUserIds)->withLikes()->latest()->paginate(20);
+    // }
 }

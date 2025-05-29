@@ -12,7 +12,6 @@
 <body>
     <video class="video-bg" autoplay muted loop>
     <source src="image/video1.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
   </video>
 
     <div class="container" id="container">
@@ -22,17 +21,11 @@
                 <h1 class="h1-pink">Create Account</h1>
                 <input type="text" name="username" placeholder="Username" value="{{ old('username') }}"required>
                 <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="name" placeholder="Full Name" required>
                 <input type="date" name="dob" placeholder="Date of Birth" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
                 <button>Sign Up</button>
-                @if ($errors->register->any())
-                    <div class="error_situation">
-                     @foreach ($errors->register->all() as $error)
-                          <p class="text-danger">{{ $error }}</p>
-                    @endforeach
-                    </div>
-                @endif
             </form>
         </div>
         <div class="form-container sign-in">
@@ -43,15 +36,11 @@
                 <input type="password" name="password" placeholder="Password" required>
                 <a href="{{ url('forget-password') }}">Forget Your Password?</a>
                 <button>Sign In</button>
-                    @if ($errors->any())
-                        <div class = "error_situation">
-                             @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                             @endforeach
-                         </div>
-                     @endif
-
-                
+                @error('email')
+                    <div class="error_situation">
+                        <p>{{ $message }}</p>
+                    </div>
+                @enderror
             </form>
         </div>
         <div class="toggle-container">
@@ -60,6 +49,13 @@
                     <h1>Welcome Back!</h1>
                     <p>Enter your details to enjoy all features available on the site</p>
                     <button class="hidden" id="login">Sign In</button>
+                    @if ($errors->register->any())
+                    <div class="error_situation">
+                     @foreach ($errors->register->all() as $error)
+                          <p class="text-danger">{{ $error }}</p>
+                    @endforeach
+                    </div>
+                @endif
                 </div>
                 <div class="toggle-panel toggle-right">
                     <h1>Hello, Pingys!</h1>
@@ -69,8 +65,6 @@
             </div>
         </div>
     </div>
-
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
-
 </html>
