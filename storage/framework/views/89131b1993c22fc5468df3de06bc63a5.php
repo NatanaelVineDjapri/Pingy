@@ -28,9 +28,19 @@
                 <?php else: ?>
                 <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="profile pic" id="profilepic">
                 <?php endif; ?>
+               
                 <div class="editprofile">
                     <?php if(Auth::id() == $user->id): ?>
                         <a href="<?php echo e(route('editprofile', $user->id)); ?>">Edit Profile</a>
+                    <?php else: ?>
+                         <form action="<?php echo e(route('follow',$user)); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
+                    <?php if(auth()->user()->isFollowing($user)): ?>
+                        <button type="submit" class="follow-btn">UnFollow</button>
+                    <?php else: ?>
+                        <button type="submit" class="follow-btn">Follow</button>
+                    <?php endif; ?>
+                    </form>
                     <?php endif; ?>
                 </div>
             </div>
@@ -87,22 +97,32 @@
                             <ion-icon name="repeat-outline"></ion-icon>
                             <span><?php echo e($tweet->comments_count); ?></span>
                             
-                            <ion-icon name="heart-outline"></ion-icon>
-                             <span><?php echo e($tweet->likes_count); ?></span>
-
+                                <?php
+                                    $liked = auth()->user()->likedTweets->contains($tweet->id);
+                                ?>
+                                    <form action="<?php echo e(route('liketweet',$tweet->id)); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <?php if($liked): ?>
+                                        <button type="submit" class="delete-btn"><ion-icon name="heart-outline" style="color:white"></ion-icon></button>
+                                    <?php else: ?>
+                                        <button type="submit" class="delete-btn"><ion-icon name="heart-outline" style="color:pink"></ion-icon></button>
+                                    <?php endif; ?>
+                                    </form>
+                                    <span><?php echo e($tweet->likes_count); ?></span>
                             <ion-icon name="bookmark-outline"></ion-icon>
-                             <span><?php echo e($tweet->comments_count); ?></span>
+                             <span><?php echo e($tweet->likes_count); ?></span>
 
                              <form action="<?php echo e(route('deletetweet', $tweet->id)); ?>" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class ="delete-form">
                                 <?php echo csrf_field(); ?>
                                 <?php echo method_field('DELETE'); ?>
                                 <button type="submit" class="delete-btn"><ion-icon name="trash-outline"></ion-icon></button>
                             </form>
-                            <form action="" method="POST"  class ="delete-form">
-                                <?php echo csrf_field(); ?>
-                                <?php echo method_field('UPDATE'); ?>
-                                <button type="submit" class="delete-btn"><ion-icon name="create-outline"></ion-icon></ion-icon></button>
-                            </form>
+                            <a href="<?php echo e(route('edittweet', $tweet->id)); ?>" class="edit-btn">
+                                <ion-icon name="create-outline"></ion-icon>
+                            </a>
+                            <?php if($tweet->updated_at != $tweet->created_at): ?>
+                                <small style="color:gray; font-style:italic;">(edited)</small>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>

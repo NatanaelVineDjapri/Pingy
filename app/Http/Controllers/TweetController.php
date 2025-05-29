@@ -44,7 +44,9 @@ class TweetController extends Controller
         return redirect()->route('gettweet');
     }
    
-
+    public function edit(Tweet $tweet){
+        return view('tweets-edit',compact('tweet'));
+    }
     public function update(Request $request, Tweet $tweet)
     {   
         $data = $request->validate([
@@ -53,7 +55,7 @@ class TweetController extends Controller
 
         $tweet->update($data);
 
-        return redirect('/posts/' . $tweet->id);
+        return redirect()->route('edittweet', $tweet->id);
     }
     public function destroy(Tweet $tweet){
         if ($tweet->tweetImage) {

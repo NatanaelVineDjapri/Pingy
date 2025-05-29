@@ -31,27 +31,8 @@ class Tweet extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
-    
-    public function setLikeStatus($user = null, $liked = true){
-        if ($user) {
-        $userId = $user->id;
-        } else {
-            $userId = auth()->id();
-        }
-        $like = $this->likes()->where('user_id', $userId)->first();
-
-        if ($like) {
-            $like->liked = $liked;
-            $like->save();
-        } else {
-            $this->likes()->create([
-                'user_id' => $userId,
-                'liked' => $liked,
-            ]);
-            }
-        }
 
     public function isLikedBy(User $user){
-        return(bool) $user ->likes  ->where('tweet_id',$this->id)->where('liked',true)->count();
+        return $this->likes()->where('user_id',$user->id)->exists();
     }
 }

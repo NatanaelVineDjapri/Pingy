@@ -47,26 +47,27 @@ class User extends Authenticatable
     }
 
     public function follow(User $user){
-        return $this->connections()->save($user);
+        return $this->following()->attach($user->id);
     }
 
     public function unfollow(User $user){
-        return $this->connections()->detach($user);
+        return $this->following()->detach($user->id);
     }
 
-    public function toggleFollow(User $user)
-    {
-       return $this->connections()->toggle($user);   
+    public function toggleFollow(User $user){
+        return $this->following()->toggle($user->id);
     }
 
-    public function followingOrNo(User $user){
-        return $this->connections()->where('following_user_id',$user->id)->exists();
+    public function isFollowing(User $user){
+        return $this->following()->where('following_user_id', $user->id)->exists();
     }
-
     public function likes(){
         return $this->hasMany(Like::class);
     }
 
+    public function likedTweets(){
+        return $this->belongsToMany(Tweet::class,'likes')->withTimestamps();
+    }
     public function comments(){
         return $this->hasMany(Comment::class);
     }

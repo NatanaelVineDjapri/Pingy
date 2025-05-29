@@ -22,7 +22,7 @@ a {
 }
 
 .middlecontainer {
-    width: 720px;
+    width: 733px;
     min-height: 100vh;
 }
 
@@ -91,6 +91,7 @@ a {
     padding: 6px 15px;
     font-weight: bold;
     cursor: pointer;    
+    color: white;
     background-color: transparent;
 }
 
@@ -182,3 +183,16 @@ span {
    
 }
 
+.follow-btn {
+    display: inline-block;
+    padding:3px 5px;     
+    font-size: 0.875rem;          
+    font-weight: 500;  
+    background-color: #fba7c9;  
+    border: 1px solid #fba7c9;
+    color: white;
+    cursor: pointer;
+    box-shadow: none;
+    outline: none;
+
+}

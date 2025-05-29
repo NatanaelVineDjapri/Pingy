@@ -88,3 +88,11 @@ ion-icon{
 span {
     color: rgb(113, 106, 106);
 }
+
+
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}

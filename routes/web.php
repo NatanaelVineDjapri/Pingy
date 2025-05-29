@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowController;
+use App\Http\Controllers\LikeController;
 
 
 //User-Login-Regist-Change Password
@@ -23,7 +25,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/tweets', [TweetController::class, 'index'])->middleware('auth')->name('gettweet');
 Route::post('/tweets', [TweetController::class, 'store'])->middleware('auth')->name('posttweet');
 Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy'])->middleware('auth')->name('deletetweet');
-Route::patch('/tweets/{tweet}', [TweetController::class, 'update'])->middleware('auth')->name('updatetweet');
+Route::patch('/tweets/{tweet}/edit', [TweetController::class, 'update'])->middleware('auth')->name('updatetweet');
+Route::get('/tweets/{tweet}/edit', [TweetController::class, 'edit'])->middleware('auth')->name('edittweet');
 
 
 //profile
@@ -32,14 +35,22 @@ Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->middlewa
 Route::patch('/profile/{user}', [ProfileController::class, 'update'])->middleware('auth')->name('updateprofile');
 
 //explore buat disamping layout
-Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+// Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
 
 //comment
 Route::delete('/tweet/{tweet}/comment/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('deletecomment');
 Route::post('//tweet/{tweet}/comment', [CommentController::class, 'store'])->middleware('auth')->name('postcomment');
 Route::get('/tweet/{tweet}/comment', [CommentController::class, 'index'])->middleware('auth')->name('showcomment');
 
-Route::get('/layout-preview', function () { return view('tweets');});
+//follow
+Route::post('/follow/{user}', [FollowController::class, 'store'])->middleware('auth')->name('follow');
+
+//like
+Route::post('/like/{tweet}', [LikeController::class, 'store'])->middleware('auth')->name('liketweet');
+
+//retweet
+
+
 
 
 

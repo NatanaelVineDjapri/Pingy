@@ -84,13 +84,17 @@
                       <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="Default Profile" class="profile-img" width="35" height="35">
                     <?php endif; ?>
                     <div>
-                        <strong><?php echo e($user->name); ?></strong><br>
-                        <span style="color: gray;"><?php echo e('@'.$user->username); ?></span>
+                        <a href="<?php echo e(route('showprofile', $user->id)); ?>"><strong><?php echo e($user->name); ?></strong><br>
+                        <span style="color: gray;"><?php echo e('@'.$user->username); ?></span></a>
                     </div>
                 </div>
-                <form action="" method="POST">
+                <form action="<?php echo e(route('follow',$user)); ?>" method="POST">
                   <?php echo csrf_field(); ?>
-                  <button type="submit" class="btn btn-sm btn-primary">Follow</button>
+                  <?php if(auth()->user()->isFollowing($user)): ?>
+                    <button type="submit" class="btn-sm-primary">UnFollow</button>
+                  <?php else: ?>
+                      <button type="submit" class="btn-sm-primary">Follow</button>
+                  <?php endif; ?>
                 </form>
             </div>
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

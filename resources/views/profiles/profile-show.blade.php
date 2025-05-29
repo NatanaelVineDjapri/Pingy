@@ -28,9 +28,19 @@
                 @else
                 <img src="{{ asset('image/profilepicture.jpg') }}" alt="profile pic" id="profilepic">
                 @endif
+               
                 <div class="editprofile">
                     @if(Auth::id() == $user->id)
                         <a href="{{ route('editprofile', $user->id) }}">Edit Profile</a>
+                    @else
+                         <form action="{{route('follow',$user)}}" method="POST">
+                    @csrf
+                    @if(auth()->user()->isFollowing($user))
+                        <button type="submit" class="follow-btn">UnFollow</button>
+                    @else
+                        <button type="submit" class="follow-btn">Follow</button>
+                    @endif
+                    </form>
                     @endif
                 </div>
             </div>
@@ -86,22 +96,32 @@
                             <ion-icon name="repeat-outline"></ion-icon>
                             <span>{{ $tweet->comments_count }}</span>
                             
-                            <ion-icon name="heart-outline"></ion-icon>
-                             <span>{{ $tweet->likes_count }}</span>
-
+                                @php
+                                    $liked = auth()->user()->likedTweets->contains($tweet->id);
+                                @endphp
+                                    <form action="{{route('liketweet',$tweet->id)}}" method="POST">
+                                    @csrf
+                                    @if($liked)
+                                        <button type="submit" class="delete-btn"><ion-icon name="heart-outline" style="color:white"></ion-icon></button>
+                                    @else
+                                        <button type="submit" class="delete-btn"><ion-icon name="heart-outline" style="color:pink"></ion-icon></button>
+                                    @endif
+                                    </form>
+                                    <span>{{ $tweet->likes_count }}</span>
                             <ion-icon name="bookmark-outline"></ion-icon>
-                             <span>{{ $tweet->comments_count }}</span>
+                             <span>{{ $tweet->likes_count }}</span>
 
                              <form action="{{ route('deletetweet', $tweet->id) }}" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class ="delete-form">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="delete-btn"><ion-icon name="trash-outline"></ion-icon></button>
                             </form>
-                            <form action="" method="POST"  class ="delete-form">
-                                @csrf
-                                @method('UPDATE')
-                                <button type="submit" class="delete-btn"><ion-icon name="create-outline"></ion-icon></ion-icon></button>
-                            </form>
+                            <a href="{{ route('edittweet', $tweet->id) }}" class="edit-btn">
+                                <ion-icon name="create-outline"></ion-icon>
+                            </a>
+                            @if($tweet->updated_at != $tweet->created_at)
+                                <small style="color:gray; font-style:italic;">(edited)</small>
+                            @endif
                         </ul>
                     </div>
                 </div>

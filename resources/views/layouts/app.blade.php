@@ -84,13 +84,17 @@
                       <img src="{{ asset('image/profilepicture.jpg') }}" alt="Default Profile" class="profile-img" width="35" height="35">
                     @endif
                     <div>
-                        <strong>{{ $user->name }}</strong><br>
-                        <span style="color: gray;">{{'@'.$user->username }}</span>
+                        <a href="{{route('showprofile', $user->id)}}"><strong>{{ $user->name }}</strong><br>
+                        <span style="color: gray;">{{'@'.$user->username }}</span></a>
                     </div>
                 </div>
-                <form action="" method="POST">
+                <form action="{{route('follow',$user)}}" method="POST">
                   @csrf
-                  <button type="submit" class="btn btn-sm btn-primary">Follow</button>
+                  @if(auth()->user()->isFollowing($user))
+                    <button type="submit" class="btn-sm-primary">UnFollow</button>
+                  @else
+                      <button type="submit" class="btn-sm-primary">Follow</button>
+                  @endif
                 </form>
             </div>
           @endforeach

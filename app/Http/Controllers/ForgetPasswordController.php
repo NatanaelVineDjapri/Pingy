@@ -40,6 +40,6 @@ class ForgetPasswordController extends Controller
 
         $user->password = Hash::make($request->password);
         $user->save();
-        return redirect('/auth');
+        return view('/auth');
     }
 }

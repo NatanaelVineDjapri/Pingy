@@ -249,6 +249,18 @@ img.profile-img {
   margin-bottom: 10px;
 }
 
+.btn-sm-primary {
+    display: inline-block;
+    padding:3px 5px;     
+    font-size: 0.875rem;          
+    font-weight: 500;  
+    background-color: #fba7c9;  
+    border-color: #fba7c9;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
 .info {
   display: flex;
   align-items: center;
@@ -292,8 +304,7 @@ img.profile-img {
 
 .card a {
   display: inline-block;
-  margin-top: 10px;
-  color: #1da1f2;
+  color: #fba7c9;
   text-decoration: none;
   font-size: 14px;
 }
