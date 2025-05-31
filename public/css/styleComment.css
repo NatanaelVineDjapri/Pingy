@@ -1,6 +1,6 @@
 .tweet-container {
     padding: 20px;
-    max-width: 600px;
+    width: 600px;
     margin-left: 100px;
     padding-right: 50px;
 }
@@ -42,15 +42,20 @@
 }
 
 .packs-name {
-    display: inline-flex;
+    /* display: inline-flex; */
     align-items: center; 
     gap: 2px; 
 }
 
+.packs-name a{
+    color: #fba7c9;
+    text-decoration: none;
+}
 .name {
     font-weight: bold;
     font-size: 1rem;
     margin: 0;
+    /* color: #fba7c9; */
 }
 
 .username {
@@ -140,8 +145,6 @@
 .comment-body {
     margin-top: 10px;
     margin-left:40px;
-
-    
 }
 
 .delete-btn {
@@ -154,9 +157,25 @@
     margin-left: 420px;
     background-color: #fba7c9;
     border-radius: 8px;
-
 }
 
 ion-icon{
     color: #fba7c9;
 }
+
+span {
+    color: rgb(113, 106, 106);
+}
+
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+textarea{
+    width: 500px;
+    height: 150px;
+}
+

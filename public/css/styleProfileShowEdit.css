@@ -84,7 +84,7 @@ a {
 
 .editprofile {
     position: absolute;
-    right: 15px;
+    right: 30px;
     top: 230px;
     border: 1px solid white;
     border-radius: 20px;
@@ -146,9 +146,24 @@ span {
 .tweet {
     display: flex;
     margin-bottom: 30px;
-
+    padding: 5px;
+    padding-bottom: 10px;
+    margin-right: 10px;
+    border-bottom: 1px solid rgba(250,211,226,0.6);
 }
 
+.tweetcontent {
+    margin: 0 0 5px 0;
+    white-space: pre-wrap;
+    font-size: 1rem;
+    text-align: justify;
+}
+.tweetbody {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .avi {
     width: 50px;
     height: 50px;
@@ -167,7 +182,16 @@ span {
     gap: 15px;
     margin-left: 10px;
     cursor: pointer;
-    
+    align-items: center;
+    height: auto; 
+    flex-wrap: wrap;
+        
+}
+
+.retweeticons li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .delete-btn {

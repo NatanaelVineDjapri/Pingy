@@ -32,6 +32,7 @@ class ProfileController extends Controller
     public function edit(User $user){
         return view('profiles.profile-edit',compact('user'));
     }
+    
     public function update(Request $request,User $user){
         $validate=$request->validate([
             'name' => 'required',

@@ -17,7 +17,7 @@
   <nav class="sidebar">
     <ul class="navbar">
       <li class="navbar-brand">
-        <a href="#" class ="brand-text">Pinkys</a>
+        <a href="#" class ="brand-text">Pingys</a>
       </li>
       <li class="nav-item">
         <a href="{{ route('home', auth()->user()->id) }}" class="item-icon"><ion-icon name="home-outline"></ion-icon></a>
@@ -62,11 +62,11 @@
       @else
         <img src="{{ asset('image/profilepicture.jpg') }}" alt="Default Profile" class="profile-img" width="35" height="35">
       @endif
-    <div>
-        <p class="name">{{ Auth::user()->name }}</p>
+    <div class="profile-name">
+        <p class="names">{{ Auth::user()->name }}</p>
         <p class="username">{{ '@'.Auth::user()->username }}</p> 
     </div>
-</div>
+  </div>
     </a>
   </nav>
    <main class="main-content">
@@ -101,26 +101,15 @@
     </div>
     <div class="card">
         <h3>What’s happening</h3>
+        @foreach($tweetstrending as $tweet)
         <div class="trend">
-            <div class="label">Going Public</div>
-            <span>LIVE</span>
+            <div class="label">Trending in Indonesia</div>
+            <div class="body-count">
+              <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}"><span>{{ Str::limit($tweet->body, 30) }}</span></a>
+              <small class ="count-trend">{{ $tweet->likes_count + $tweet->comments_count }} Interactions</small>
+            </div>  
         </div>
-        <div class="trend">
-            <span>#SFxMuvmuv</span>
-            <small>12.8K posts</small>
-        </div>
-        <div class="trend">
-            <span>ML MM WITH SF</span>
-            <small>13.9K posts</small>
-        </div>
-        <div class="trend">
-            <span>#SFxMilkLove</span>
-            <small>13.1K posts</small>
-        </div>
-        <div class="trend">
-            <span>Ini X</span>
-            <small>63K posts</small>
-        </div>
+        @endforeach
     </div>
 </div>
 </div>

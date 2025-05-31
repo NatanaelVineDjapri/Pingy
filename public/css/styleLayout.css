@@ -169,7 +169,10 @@ img.profile-img {
   object-fit: cover;
 }
 
-.profile-info .name {
+.profile-name p{
+  text-decoration: none;
+}
+.profile-info .names{
   font-weight: bold;
   line-height: 1.5;
   text-decoration: none;
@@ -177,7 +180,7 @@ img.profile-img {
 
 .profile-info .username {
   color: white;
-  text-decoration: none !important;
+  text-decoration: none ;
 }
 
 .option-icon ion-icon {
@@ -268,7 +271,8 @@ img.profile-img {
 
 .profile, .trend {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  /* align-items: center; */
   justify-content: space-between;
   margin-bottom: 15px;
 }
@@ -308,3 +312,11 @@ img.profile-img {
   text-decoration: none;
   font-size: 14px;
 }
+
+.body-count{
+  gap:20px;
+  display: flex; 
+  justify-content: space-between; 
+}
+
+

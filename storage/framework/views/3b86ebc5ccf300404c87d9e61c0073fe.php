@@ -55,12 +55,6 @@
 </div>
 <?php $__env->stopSection(); ?>
 
-<style>
-textarea{
-    padding:5px 205px 0px 5px;
-    border-radius:8px;
-}
-</style>
 
 
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/tweets-edit.blade.php ENDPATH**/ ?>

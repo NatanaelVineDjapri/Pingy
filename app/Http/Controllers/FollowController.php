@@ -17,4 +17,12 @@ class FollowController extends Controller
         $User->toggleFollow($user);
         return back();
     }
+
+    public function index(User $user){
+        return view('follow-show',[
+            'user'=> $user,
+            'followers'=>$user->followers,
+            'following'=>$user->followings,
+        ]);
+    }
 }

@@ -17,7 +17,7 @@
                     <img src="{{ asset('image/profilepicture.jpg') }}" class="avatar">
                 @endif
                 <div class="packs-name">
-                    <p class="name">{{ $tweet->user->name }}</p> 
+                    <a href="{{route('showprofile', $tweet->user->id)}}"><p class="name">{{ $tweet->user->name }}</p></a> 
                     <p class="username">{{ '@' . $tweet->user->username }} - {{ $tweet->created_at->format('M,d Y') }}</p>
                 </div>
             </div>
@@ -29,17 +29,26 @@
                 </div>
                 @endif
                 <ul class="retweeticons">
-                    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                    <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
                     <span>{{ $tweet->comments_count }}</span>
 
                     <ion-icon name="repeat-outline"></ion-icon>
                     <span>{{ $tweet->comments_count }}</span>
-                    
-                    <ion-icon name="heart-outline"></ion-icon>
+                            
+                    @php
+                        $liked = auth()->user()->likedTweets->contains($tweet->id);
+                    @endphp
+                    <form action="{{route('liketweet',$tweet->id)}}" method="POST">
+                        @csrf
+                        @if($liked)
+                            <button type="submit" class="like-btn"><ion-icon name="heart" ></ion-icon></button>
+                        @else
+                            <button type="submit" class="like-btn"><ion-icon name="heart-outline" ></ion-icon></button>
+                        @endif
+                    </form>
                     <span>{{ $tweet->likes_count }}</span>
-
                     <ion-icon name="bookmark-outline"></ion-icon>
-                    <span>{{ $tweet->comments_count }}</span>
+                    <span>{{ $tweet->comments->count() }}</span>
                 </ul>
                 <div class="comment-section">
                     <form action="{{ route('postcomment', $tweet->id) }}" method="POST" class="comment-form">
@@ -58,7 +67,7 @@
                                     <img src="{{ asset('image/profilepicture.jpg') }}" class="avatar2">
                                 @endif
                                 <div class="packs-name">
-                                    <p class="name">{{ $comment->user->name }}</p> 
+                                    <a href="{{route('showprofile', $comment->user->id)}}""><p class="name">{{ $comment->user->name }}</p></a> 
                                     <p class="username">{{ '@' . $comment->user->username }} - {{ $comment->created_at->format('M,d Y') }}</p>
                                 </div>
                             </div>

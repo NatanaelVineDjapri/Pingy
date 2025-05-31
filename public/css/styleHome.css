@@ -4,7 +4,7 @@ body {
 
 .tweet-container {
     padding: 20px;
-    max-width: 600px;
+    width: 600px;
     margin-left: 100px;
     padding-right: 50px;
 }
@@ -20,6 +20,7 @@ body {
     border: 1px solid #e6ecf0;
     border-radius: 16px;
     padding: 15px;
+    /* padding-right:200px; */
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -45,8 +46,13 @@ body {
 
 .name {
     font-weight: bold;
-    font-size: 1rem;
+    font-size:15px;
     margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #fba7c9;
 }
 
 .username {
@@ -58,6 +64,7 @@ body {
 .tweet-body {
     display: flex;
     flex-direction: column;
+   
 }
 
 .tweet-body p {
@@ -88,7 +95,6 @@ ion-icon{
 span {
     color: rgb(113, 106, 106);
 }
-
 
 .like-btn {
     background: none;

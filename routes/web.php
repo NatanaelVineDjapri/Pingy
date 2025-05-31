@@ -35,7 +35,7 @@ Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->middlewa
 Route::patch('/profile/{user}', [ProfileController::class, 'update'])->middleware('auth')->name('updateprofile');
 
 //explore buat disamping layout
-// Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
 
 //comment
 Route::delete('/tweet/{tweet}/comment/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('deletecomment');
@@ -44,6 +44,7 @@ Route::get('/tweet/{tweet}/comment', [CommentController::class, 'index'])->middl
 
 //follow
 Route::post('/follow/{user}', [FollowController::class, 'store'])->middleware('auth')->name('follow');
+Route::get('/follow/{user}/show',[FollowController::class,'index'])->middleware('auth')->name('showfollow');
 
 //like
 Route::post('/like/{tweet}', [LikeController::class, 'store'])->middleware('auth')->name('liketweet');

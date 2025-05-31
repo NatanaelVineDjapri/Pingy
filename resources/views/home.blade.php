@@ -17,7 +17,7 @@
                     <img src="{{ asset('image/profilepicture.jpg') }}" class="avatar">
                 @endif
                 <div class="packs-name">
-                    <p class="name">{{ $tweet->user->name }}</p> 
+                    <a href="{{route('showprofile', $tweet->user->id)}}"><p class="name">{{ $tweet->user->name }}</p></a>
                     <p class="username">{{ '@' . $tweet->user->username }} - {{ $tweet->created_at->format('M,d Y') }}</p>
                 </div>
             </div>
@@ -41,13 +41,12 @@
                     <form action="{{route('liketweet',$tweet->id)}}" method="POST">
                         @csrf
                         @if($liked)
-                            <button type="submit" class="like-btn"><ion-icon name="heart-outline" ></ion-icon></button>
+                            <button type="submit" class="like-btn"><ion-icon name="heart" ></ion-icon></button>
                         @else
-                            <button type="submit" class="like-btn"><ion-icon name="heart-half-outline" ></ion-icon></button>
+                            <button type="submit" class="like-btn"><ion-icon name="heart-outline" ></ion-icon></button>
                         @endif
                     </form>
                     <span>{{ $tweet->likes_count }}</span>
-
                     <ion-icon name="bookmark-outline"></ion-icon>
                     <span>{{ $tweet->comments_count }}</span>
                 </ul>

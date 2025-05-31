@@ -15,12 +15,11 @@ class ForgetPasswordController extends Controller
 
     public function submitForgetPassForm(Request $request){
         $validator = Validator::make($request->all(), [
-        'username' => 'required|exists:users,username',
-        'email' => 'required|email|exists:users,email',
+        'username' => 'required',
+        'email' => 'required|email',
         'dob' => 'required|date',
         'password' => 'required|min:6|confirmed',
-    ]);
-
+        ]);
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -40,6 +39,7 @@ class ForgetPasswordController extends Controller
 
         $user->password = Hash::make($request->password);
         $user->save();
-        return view('/auth');
+       return redirect()->route('login')->with('Password has been reset.Please login.');
+
     }
 }

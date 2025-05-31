@@ -12,7 +12,9 @@ class HomeController extends Controller
     }
 
     public function index(){
-        $tweets = Tweet::with('user')->withCount(['likes', 'comments'])->latest()->get();
+
+        $following = auth()->user()->following()->pluck('users.id')->push(auth()->id());
+        $tweets = Tweet::with('user')->withCount(['likes', 'comments'])->whereIn('user_id', $following)->latest()->get();
         return view('home',[
             'tweets' => $tweets
         ]);
