@@ -86,11 +86,4 @@ class User extends Authenticatable
         return asset('');
     }
 
-    // public function getHomeTweets(){
-    //     $followedUserIds = $this->connections()->pluck('id');
-    //     $followedUserIds->push($this->id);
-    //      //pluck buat ambil .. dri array,push masukin id lu sendiri
-
-    //     return Tweet::where('user_id',$followedUserIds)->withLikes()->latest()->paginate(20);
-    // }
 }

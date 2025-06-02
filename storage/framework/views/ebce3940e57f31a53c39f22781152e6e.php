@@ -65,44 +65,44 @@
                 <a href="<?php echo e(route('showprofile',$user->id)); ?>"><p>Tweets</p></a>
                 <a href=""><p>Tweets and Replies</p></a>
                 <a href="<?php echo e(route('mediaprofile',$user->id)); ?>"><p>Media</p></a>
-                <a href="<?php echo e(route('likeprofile',$user->id)); ?>"><p>Likes</p></a>
+                <a href="<?php echo e(route('likeprofile',$user->id)); ?>" ><p>Likes</p></a>
             </div>
         </section>
         <section class="mytweets">
-            <?php $__currentLoopData = $tweets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tweet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $likeTweets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $like): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="tweet">
                     <div>
-                    <?php if($tweet->user->avatar): ?>
-                        <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" class="avi">
+                    <?php if($like->user->avatar): ?>
+                        <img src="<?php echo e(asset('storage/' . $like->user->avatar)); ?>" class="avi">
                     <?php else: ?>
                         <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" class="avi">
                     <?php endif; ?>
                     </div>
                     <div class="tweetbody">
                         <div class="packs-name">
-                            <p class="name"><?php echo e($tweet->user->name); ?></p> 
-                            <p class ="username"><?php echo e('@'. $tweet->user->username); ?> - <?php echo e($tweet->created_at->format('M,d Y')); ?></p>
+                            <p class="name"><?php echo e($like->user->name); ?></p> 
+                            <p class ="username"><?php echo e('@'. $like->user->username); ?> - <?php echo e($like->created_at->format('M,d Y')); ?></p>
                         </div>
-                        <div class="tweetcontent"><?php echo e($tweet->body); ?></div>
-                        <?php if($tweet->tweetImage): ?>
+                        <div class="tweetcontent"><?php echo e($like->body); ?></div>
+                        <?php if($like->tweetImage): ?>
                             <div class="tweet-image">
-                                <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>" alt="Tweet image" style="max-width: 80%; border-radius: 10px; margin-top: 10px;">
+                                <img src="<?php echo e(asset('storage/' . $like->tweetImage)); ?>" alt="Tweet image" style="max-width: 80%; border-radius: 10px; margin-top: 10px;">
                             </div>
                         <?php endif; ?>
                         <ul class="retweeticons">
                         <li>
-                            <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
-                            <span><?php echo e($tweet->comments_count); ?></span>
+                            <a href="<?php echo e(route('showcomment', ['tweet' => $like->id])); ?>"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
+                            <span><?php echo e($like->comments_count); ?></span>
                         </li>
                         <li>
                             <ion-icon name="repeat-outline"></ion-icon>
-                            <span><?php echo e($tweet->comments_count); ?></span>
+                            <span><?php echo e($like->comments_count); ?></span>
                         </li>
                         <li>
                             <?php
-                                $liked = auth()->user()->likedTweets->contains($tweet->id);
+                                $liked = auth()->user()->likedTweets->contains($like->id);
                             ?>
-                                <form action="<?php echo e(route('liketweet',$tweet->id)); ?>" method="POST">
+                                <form action="<?php echo e(route('liketweet',$like->id)); ?>" method="POST">
                                 <?php echo csrf_field(); ?>
                                 <?php if($liked): ?>
                                     <button type="submit" class="delete-btn"><ion-icon name="heart"></ion-icon></button>
@@ -110,27 +110,13 @@
                                     <button type="submit" class="delete-btn"><ion-icon name="heart-outline"></ion-icon></button>
                                 <?php endif; ?>
                                 </form>
-                            <span><?php echo e($tweet->likes_count); ?></span>
+                            <span><?php echo e($like->likes_count); ?></span>
                         </li>
                         <li>
                             <ion-icon name="bookmark-outline"></ion-icon>
-                            <span><?php echo e($tweet->likes_count); ?></span>
+                            <span><?php echo e($like->likes_count); ?></span>
                         </li>
-                        <?php if(auth()->id()===$tweet->user->id): ?>      
-                        <li>
-                             <form action="<?php echo e(route('deletetweet', $tweet->id)); ?>" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class ="delete-form">
-                                <?php echo csrf_field(); ?>
-                                <?php echo method_field('DELETE'); ?>
-                                <button type="submit" class="delete-btn"><ion-icon name="trash-outline"></ion-icon></button>
-                            </form>
-                        </li>
-                        <li>
-                            <a href="<?php echo e(route('edittweet', $tweet->id)); ?>" class="edit-btn">
-                                <ion-icon name="create-outline"></ion-icon>
-                            </a>   
-                        </li>
-                        <?php endif; ?>
-                        <?php if($tweet->updated_at != $tweet->created_at): ?>
+                        <?php if($like->updated_at != $like->created_at): ?>
                             <small style="color:gray; font-style:italic;">(edited)</small>
                         <?php endif; ?>
                         </ul>
@@ -142,4 +128,4 @@
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/profiles/profile-show.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/profiles/profile-like.blade.php ENDPATH**/ ?>

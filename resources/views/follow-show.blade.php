@@ -59,7 +59,7 @@
                             </a>
                             <p class="username">{{'@'. $follower->username }}</p>
                         </div>
-                    </div>
+                        </div>
                 @empty
                     @if(@auth()->id() === $user->id)
                             <p class="tweet-text">Invite others to follow you and share your journey!</p>

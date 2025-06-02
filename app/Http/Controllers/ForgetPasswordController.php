@@ -39,7 +39,7 @@ class ForgetPasswordController extends Controller
 
         $user->password = Hash::make($request->password);
         $user->save();
-       return redirect()->route('login')->with('Password has been reset.Please login.');
+        return redirect()->route('login')->with('Password has been reset.Please login.');
 
     }
 }

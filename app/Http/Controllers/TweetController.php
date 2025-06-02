@@ -17,7 +17,7 @@ class TweetController extends Controller
     public function index(){
         $tweets = Tweet::where('user_id',auth()->id())->latest()->get();
         
-        return view('tweets',[
+        return view('tweets.tweets',[
             'tweets'=> $tweets,
         ]);
     }
@@ -45,7 +45,7 @@ class TweetController extends Controller
     }
    
     public function edit(Tweet $tweet){
-        return view('tweets-edit',compact('tweet'));
+        return view('tweets.tweets-edit',compact('tweet'));
     }
     public function update(Request $request, Tweet $tweet)
     {   

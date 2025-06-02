@@ -59,7 +59,7 @@
                             </a>
                             <p class="username"><?php echo e('@'. $follower->username); ?></p>
                         </div>
-                    </div>
+                        </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <?php if(@auth()->id() === $user->id): ?>
                             <p class="tweet-text">Invite others to follow you and share your journey!</p>

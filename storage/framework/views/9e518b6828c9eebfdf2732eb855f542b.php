@@ -9,7 +9,7 @@
 <div class="container">
     <div class="feed-toggle">
         <a href="<?php echo e(route('home', auth()->user()->id)); ?>">For You</a>
-        <a href="<?php echo e(route('home', auth()->user()->id)); ?>">Following</a>
+        <a href="<?php echo e(route('homefollowing', auth()->user()->id)); ?>">Following</a>
     </div>
 <div class="tweet-container">
     <div class="tweet-box">
@@ -54,7 +54,7 @@
                 <p><?php echo e($tweet->body); ?></p>
                 <?php if($tweet->tweetImage): ?>
                 <div class="tweet-image">
-                    <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>"  alt="Tweet image" style="width: 100%; max-width: 675px;max-height:500px;border-radius: 10px; margin-top: 10px;">
+                    <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>"  alt="Tweet image" style="width: 100%; max-width: 675px;max-height:900px;border-radius: 10px; margin-top: 10px;">
                 </div>
                 <?php endif; ?>
                 <ul class="retweeticons">
@@ -88,4 +88,4 @@
 <?php $__env->stopSection(); ?>
 
 
-<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/home.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/homes/home.blade.php ENDPATH**/ ?>

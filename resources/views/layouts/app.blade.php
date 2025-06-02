@@ -24,8 +24,8 @@
         <a href="{{ route('home', auth()->user()->id) }}" class="item-link">Home</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="item-icon"><ion-icon name="search-outline"></ion-icon></a>
-        <a href="#" class="item-link">Explore</a>
+        <a href="{{ route('explore') }}" class="item-icon"><ion-icon name="search-outline"></ion-icon></a>
+        <a href="{{ route('explore') }}" class="item-link">Explore</a>
       </li>
       <li class="nav-item">
         <a href="#" class="item-icon"><ion-icon name="mail-outline"></ion-icon></a>
