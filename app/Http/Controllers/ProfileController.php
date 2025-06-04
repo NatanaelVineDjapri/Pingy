@@ -15,7 +15,7 @@ class ProfileController extends Controller
     }
     
     public function index(User $user,Request $request){
-        $user->loadCount(['followers', 'following']); //next buat follow2
+        $user->loadCount(['followers', 'following']);
 
         $tweets = $user->tweets()->withCount(['likes', 'comments'])->latest()->get();
 
@@ -29,9 +29,23 @@ class ProfileController extends Controller
         return view('profiles.profile-show', compact('user', 'tweets', 'repliedTweets'));
     }
 
+    public function media(User $user,Request $request){
+        $user->loadCount(['followers', 'following']);
+        $tweetImage=$user->tweets()->whereNotNull('tweetImage')->latest()->get();
+
+        return view('profiles.profile-media',compact('user','tweetImage'));
+    }
+
+    public function like(User $user){
+        $user->loadCount(['followers', 'following']);
+        $likeTweets = $user->likedTweets()->with(['user'])->withCount(['comments', 'likes'])->orderBy('likes.created_at','desc')->get();
+        return view('profiles.profile-like',compact('user','likeTweets'));
+    }
+
     public function edit(User $user){
         return view('profiles.profile-edit',compact('user'));
     }
+
     public function update(Request $request,User $user){
         $validate=$request->validate([
             'name' => 'required',

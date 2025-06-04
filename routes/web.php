@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ExploreController;
 
 
 //User-Login-Regist-Change Password
@@ -19,7 +20,8 @@ Route::post('/forget-password',[ForgetPasswordController::class,'submitForgetPas
 Route::post('/logout', [AuthSessionController::class, 'logout'])->name('logout');
 
 //homepagae
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home/following', [HomeController::class, 'index'])->name('homefollowing');
+Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 //Tweet
 Route::get('/tweets', [TweetController::class, 'index'])->middleware('auth')->name('gettweet');
@@ -30,12 +32,16 @@ Route::get('/tweets/{tweet}/edit', [TweetController::class, 'edit'])->middleware
 
 
 //profile
-Route::get('/profile/{user}', [ProfileController::class, 'index'])->middleware('auth')->name('showprofile');
+Route::get('/profile/{user}/tweets', [ProfileController::class, 'index'])->middleware('auth')->name('showprofile');
+Route::get('/profile/{user}/media', [ProfileController::class, 'media'])->middleware('auth')->name('mediaprofile');
+Route::get('/profile/{user}/like', [ProfileController::class, 'like'])->middleware('auth')->name('likeprofile');
 Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('editprofile');
-Route::patch('/profile/{user}', [ProfileController::class, 'update'])->middleware('auth')->name('updateprofile');
+Route::patch('/profile/{user}/tweets', [ProfileController::class, 'update'])->middleware('auth')->name('updateprofile');
+
+
 
 //explore buat disamping layout
-// Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
 
 //comment
 Route::delete('/tweet/{tweet}/comment/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('deletecomment');
@@ -44,6 +50,7 @@ Route::get('/tweet/{tweet}/comment', [CommentController::class, 'index'])->middl
 
 //follow
 Route::post('/follow/{user}', [FollowController::class, 'store'])->middleware('auth')->name('follow');
+Route::get('/follow/{user}/show',[FollowController::class,'index'])->middleware('auth')->name('showfollow');
 
 //like
 Route::post('/like/{tweet}', [LikeController::class, 'store'])->middleware('auth')->name('liketweet');

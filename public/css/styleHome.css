@@ -4,11 +4,16 @@ body {
 
 .tweet-container {
     padding: 20px;
-    max-width: 600px;
-    margin-left: 100px;
+    width: 600px;
+    margin-left: 115px;
     padding-right: 50px;
 }
 
+.container{
+    justify-content: center;
+    margin-left: 50px;
+    
+}
 .tweet-list {
     display: flex;
     flex-direction: column;
@@ -20,6 +25,7 @@ body {
     border: 1px solid #e6ecf0;
     border-radius: 16px;
     padding: 15px;
+    /* padding-right:200px; */
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -45,8 +51,13 @@ body {
 
 .name {
     font-weight: bold;
-    font-size: 1rem;
+    font-size:15px;
     margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #fba7c9;
 }
 
 .username {
@@ -58,6 +69,7 @@ body {
 .tweet-body {
     display: flex;
     flex-direction: column;
+   
 }
 
 .tweet-body p {
@@ -89,10 +101,99 @@ span {
     color: rgb(113, 106, 106);
 }
 
-
 .like-btn {
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
+}
+
+.tweet-box {
+    background-color: #fff;
+    border: 1px solid #e6ecf0;
+    border-radius: 16px;
+    margin-top: 15px;
+    padding: 20px 30px;
+    margin-bottom: 20px;
+}
+
+.tweet-input-section {
+    display: flex;
+    /* padding: 10px; */
+    gap: 10px;
+}
+
+.tweet-input-section textarea {
+    width: 100%;
+    padding: 20px 70px ;
+    font-size: 1rem;
+    resize: none;
+    border: none;
+    border-radius: 12px;
+    background-color: #f5f8fa;
+    outline: none;
+}
+
+.tweet-submit-btn {
+    background-color:  #fba7c9;
+    border: none;
+    padding: 8px 16px;
+    color: white;
+    border-radius: 300px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    }
+
+.tweet-submit-btn:hover {
+    background-color:  #e481a8;
+}
+
+.tweet-actions {     
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.image-preview {
+     margin-top: 10px;
+}
+
+.upload-label {
+    cursor: pointer;
+    font-size: 25px;
+    color: #fba7c9;
+    margin-right: auto;
+}
+
+.feed-toggle {
+    display: flex;
+    /* background-color: white; */
+    justify-content: center;
+    gap: 40px;
+    /* margin-top: 10px; */
+    /* margin-right: -65pX; */
+    padding-right: 50px;
+    border: 1px solid white;
+    /* border-radius: 12px; */
+    background: url('/image/z2.jpg');
+    background-size: contain;
+    background-size: 100%;
+    background-repeat: repeat;    
+    background-position: center;
+}
+
+.feed-toggle a {
+    text-decoration: none;
+    color: white;
+    padding: 13px 98px 10px 150px ;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    text-shadow:2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-empty{
+    padding: 20px; 
+    color:white;
 }

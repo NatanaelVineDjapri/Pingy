@@ -35,4 +35,13 @@ class Tweet extends Model
     public function isLikedBy(User $user){
         return $this->likes()->where('user_id',$user->id)->exists();
     }
+
+    public static function trending($limit){
+    return self::with('user')
+        ->withCount(['likes', 'comments'])
+        ->orderByDesc('likes_count')
+        ->orderByDesc('comments_count')
+        ->take($limit)
+        ->get();
+}
 }
