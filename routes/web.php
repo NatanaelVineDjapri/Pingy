@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\BookmarkController;
 
 
 //User-Login-Regist-Change Password
@@ -50,7 +51,8 @@ Route::post('/like/{tweet}', [LikeController::class, 'store'])->middleware('auth
 
 //retweet
 
-
+//bookmarks
+Route::post('/tweets/{tweet}/bookmark', [BookmarkController::class, 'store'])->middleware('auth')->name('bookmark.store');
 
 
 
