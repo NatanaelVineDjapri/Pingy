@@ -5,10 +5,15 @@ body {
 .tweet-container {
     padding: 20px;
     width: 600px;
-    margin-left: 100px;
+    margin-left: 115px;
     padding-right: 50px;
 }
 
+.container{
+    justify-content: center;
+    margin-left: 50px;
+    
+}
 .tweet-list {
     display: flex;
     flex-direction: column;
@@ -167,13 +172,13 @@ span {
     /* background-color: white; */
     justify-content: center;
     gap: 40px;
-    margin-top: 10px;
-    margin-left: 120px;
-    margin-right: 45pX;
+    /* margin-top: 10px; */
+    /* margin-right: -65pX; */
+    padding-right: 50px;
     border: 1px solid white;
-    border-radius: 12px;
+    /* border-radius: 12px; */
     background: url('/image/z2.jpg');
-     background-size: contain;
+    background-size: contain;
     background-size: 100%;
     background-repeat: repeat;    
     background-position: center;
@@ -182,8 +187,7 @@ span {
 .feed-toggle a {
     text-decoration: none;
     color: white;
-    padding-top: 13px;
-    padding-bottom: 10px;
+    padding: 13px 98px 10px 150px ;
     font-weight: bold;
     border-bottom: 2px solid transparent;
     text-shadow:2px 2px 4px rgba(0, 0, 0, 0.2);

@@ -18,15 +18,15 @@
         <section class="twitterprofile">
             <div class="headerprofileimage">
                 @if($user->banner)
-                <img src="{{ asset('storage/' . $user->banner) }}" alt="header" id="headerimage">
+                <img src="{{ asset('storage/' . $user->banner) }}" alt="header" id="headerimage" style="width:720px;">
                 @else
-                <img src="{{ asset('image/banner.jpg') }}" alt="header default" id="headerimage">
+                <img src="{{ asset('image/banner.jpg') }}" alt="header default" id="headerimage" style="width:720px;">
                 @endif
 
                 @if($user->avatar)
                 <img src="{{ asset('storage/' . $user->avatar) }}" alt="profile pic" id="profilepic">
                 @else
-                <img src="{{ asset('image/profilepicture.jpg') }}" alt="profile pic" id="profilepic">
+                <img src="{{ asset('image/profilepicture.jpg') }}" alt="profile pic" id="profilepic" >
                 @endif
                
                 <div class="editprofile">

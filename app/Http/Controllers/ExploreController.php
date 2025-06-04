@@ -19,7 +19,7 @@ class ExploreController extends Controller
     }else{
         $users= []; 
     }
-    
-     return view('explore',compact('users'));
+     $tweetstrending = Tweet::trending(10);
+     return view('explore',compact('users','tweetstrending'));
    }
 }

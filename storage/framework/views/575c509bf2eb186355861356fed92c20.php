@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pingy</title>
-  <link rel="stylesheet" href="<?php echo e(asset('css/styleLayout.css')); ?>">
+  <link rel="stylesheet" href="<?php echo e(asset('css/styleLayout-2.css')); ?>">
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,21 +98,10 @@
                 </form>
             </div>
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </div>
-    <div class="card">
-        <h3>What’s happening</h3>
-        <?php $__currentLoopData = $tweetstrending; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tweet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="trend">
-            <div class="label">Trending in Indonesia</div>
-            <div class="body-count">
-              <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>"><span><?php echo e(Str::limit($tweet->body, 30)); ?></span></a>
-              <small class ="count-trend"><?php echo e($tweet->likes_count + $tweet->comments_count); ?> Interactions</small>
-            </div>  
-        </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+          <a>Show More</a>
     </div>
 </div>
 </div>
 </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/layouts/app.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/layouts/app-2.blade.php ENDPATH**/ ?>

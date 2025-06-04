@@ -17,7 +17,7 @@
             </div>
             <div class="tweet-body">
                 @forelse ($user->following as $followingUser)
-                    <div class="tweet-header">
+                    <div class="followers-header">
                         @if($followingUser->avatar)
                             <img src="{{ asset('storage/' . $followingUser->avatar) }}" class="avatar">
                         @else
@@ -29,9 +29,17 @@
                             </a>
                             <p class="username">{{'@'.$followingUser->username }}</p>
                         </div>
+                        <form action="{{route('follow',$followingUser)}}" method="POST" style="margin-left:auto;">
+                            @csrf
+                            @if(auth()->user()->isFollowing($followingUser))
+                                <button type="submit" class="btn-sm-primary">UnFollow</button>
+                            @else
+                                <button type="submit" class="btn-sm-primary">Follow</button>
+                             @endif
+                        </form>
                     </div>
                     @empty
-                        @if(@auth()->id() === $user->id)
+                        @if(auth()->id() === $user->id)
                             <p class="tweet-text">Start following people to discover amazing content!</p>
                         @else
                             <p class="tweet-text">This user hasn't followed anyone yet.</p>
@@ -47,7 +55,7 @@
             </div>
             <div class="tweet-body">
                 @forelse ($user->followers as $follower)
-                    <div class="tweet-header">
+                    <div class="followers-header">
                         @if($follower->avatar)
                             <img src="{{ asset('storage/' . $follower->avatar) }}" class="avatar">
                         @else
@@ -59,7 +67,15 @@
                             </a>
                             <p class="username">{{'@'. $follower->username }}</p>
                         </div>
-                        </div>
+                        <form action="{{route('follow',$followingUser)}}" method="POST" style="margin-left:auto;">
+                            @csrf
+                            @if(auth()->user()->isFollowing($followingUser))
+                                <button type="submit" class="btn-sm-primary">UnFollow</button>
+                            @else
+                                <button type="submit" class="btn-sm-primary">Follow</button>
+                             @endif
+                        </form>
+                    </div>
                 @empty
                     @if(@auth()->id() === $user->id)
                             <p class="tweet-text">Invite others to follow you and share your journey!</p>

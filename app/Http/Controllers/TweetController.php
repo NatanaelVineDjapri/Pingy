@@ -24,7 +24,7 @@ class TweetController extends Controller
 
     public function store(Request $request){
         $validated = $request->validate([
-            'body' => 'nullable|max:255',
+            'body' => 'nullable|max:280',
             'tweetImage' => 'nullable|image|max:2048' 
         ]);
 
@@ -41,7 +41,7 @@ class TweetController extends Controller
 
         Tweet::create($validated); 
         
-        return redirect()->route('gettweet');
+        return back();
     }
    
     public function edit(Tweet $tweet){

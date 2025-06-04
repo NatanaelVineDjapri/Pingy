@@ -18,15 +18,15 @@
         <section class="twitterprofile">
             <div class="headerprofileimage">
                 <?php if($user->banner): ?>
-                <img src="<?php echo e(asset('storage/' . $user->banner)); ?>" alt="header" id="headerimage">
+                <img src="<?php echo e(asset('storage/' . $user->banner)); ?>" alt="header" id="headerimage" style="width:720px;">
                 <?php else: ?>
-                <img src="<?php echo e(asset('image/banner.jpg')); ?>" alt="header default" id="headerimage">
+                <img src="<?php echo e(asset('image/banner.jpg')); ?>" alt="header default" id="headerimage" style="width:720px;">
                 <?php endif; ?>
 
                 <?php if($user->avatar): ?>
                 <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" alt="profile pic" id="profilepic">
                 <?php else: ?>
-                <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="profile pic" id="profilepic">
+                <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="profile pic" id="profilepic" >
                 <?php endif; ?>
                
                 <div class="editprofile">

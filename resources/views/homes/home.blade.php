@@ -11,6 +11,7 @@
         <a href="{{ route('home', auth()->user()->id) }}">For You</a>
         <a href="{{ route('homefollowing', auth()->user()->id) }}">Following</a>
     </div>
+</div>
 <div class="tweet-container">
     <div class="tweet-box">
         <form action="{{ route('posttweet') }}" method="POST" enctype="multipart/form-data" class="tweet-form">
@@ -83,7 +84,6 @@
         </div>
         @endforeach
     </div>
-</div>
 </div>
 @endsection
 

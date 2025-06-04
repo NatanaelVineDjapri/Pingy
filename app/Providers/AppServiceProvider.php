@@ -28,6 +28,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
     View::composer('*', function ($view) {
+
+        if ($view->getName() ==='explore'){
+            return; 
+        }
+        
         $user = Auth::user();
         $suggestusers = collect();
 
@@ -40,12 +45,7 @@ class AppServiceProvider extends ServiceProvider
                 ->get();
         }
 
-        $tweetstrending = Tweet::with('user')
-            ->withCount(['likes', 'comments'])
-            ->orderByDesc('likes_count')
-            ->orderByDesc('comments_count')
-            ->take(3)
-            ->get();
+        $tweetstrending = Tweet::trending(3);
         $view->with(['suggestusers' => $suggestusers,'tweetstrending'=>$tweetstrending]);
     });
 }

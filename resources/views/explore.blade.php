@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-2')
 
 @section('head')
     <link rel="stylesheet" href="{{ asset('css/styleHome.css') }}">
@@ -8,7 +8,7 @@
 @section('content')
     <div class="tweet-container">
         <div class="tweet-box">
-            <form action="{{ route('explore') }}" method="GET" class="tweet-form">
+            <form action="{{ route('explore') }}" method="GET" class="tweet-form" style="margin-left:auto;">
                 <div class="tweet-input-section">
                     @if(Auth::user()->avatar)
                         <img src="{{ asset('storage/' . Auth::user()->avatar) }}" class="avatar">
@@ -38,13 +38,35 @@
                             </a>
                             <p class="username">{{'@'.$user->username }}</p>
                         </div>
+                        <form action="{{route('follow',$user)}}" method="POST" style="margin-left:auto;">
+                        @csrf
+                        @if(auth()->user()->id!==$user->id)
+                            @if(auth()->user()->isFollowing($user))
+                                <button type="submit" class="btn-sm-primary">UnFollow</button>
+                            @else
+                                <button type="submit" class="btn-sm-primary">Follow</button>
+                            @endif
+                        @endif
+                        </form>
                     </div>
-                </div>
+                 </div>
             @empty
                 @if(request('search'))
                     <p class ="search-empty"style="padding: 20px; color:white;">No users found for <strong>"{{ request('search') }}"</strong></p>
                 @endif
             @endforelse
+            <div class="card">
+            <h3>What’s happening</h3>
+            @foreach($tweetstrending as $tweet)
+            <div class="trend">
+                <div class="label">Trending in Indonesia</div>
+                <div class="body-count">
+                <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}"><span>{{ Str::limit($tweet->body, 30) }}</span></a>
+                <small class ="count-trend">{{ $tweet->likes_count + $tweet->comments_count }} Interactions</small>
+                </div>  
+            </div>
+            @endforeach
+    </div>
         </div>
     </div>
 @endsection

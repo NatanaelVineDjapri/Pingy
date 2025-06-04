@@ -17,7 +17,7 @@
             </div>
             <div class="tweet-body">
                 <?php $__empty_1 = true; $__currentLoopData = $user->following; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $followingUser): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                    <div class="tweet-header">
+                    <div class="followers-header">
                         <?php if($followingUser->avatar): ?>
                             <img src="<?php echo e(asset('storage/' . $followingUser->avatar)); ?>" class="avatar">
                         <?php else: ?>
@@ -29,9 +29,17 @@
                             </a>
                             <p class="username"><?php echo e('@'.$followingUser->username); ?></p>
                         </div>
+                        <form action="<?php echo e(route('follow',$followingUser)); ?>" method="POST" style="margin-left:auto;">
+                            <?php echo csrf_field(); ?>
+                            <?php if(auth()->user()->isFollowing($followingUser)): ?>
+                                <button type="submit" class="btn-sm-primary">UnFollow</button>
+                            <?php else: ?>
+                                <button type="submit" class="btn-sm-primary">Follow</button>
+                             <?php endif; ?>
+                        </form>
                     </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                        <?php if(@auth()->id() === $user->id): ?>
+                        <?php if(auth()->id() === $user->id): ?>
                             <p class="tweet-text">Start following people to discover amazing content!</p>
                         <?php else: ?>
                             <p class="tweet-text">This user hasn't followed anyone yet.</p>
@@ -47,7 +55,7 @@
             </div>
             <div class="tweet-body">
                 <?php $__empty_1 = true; $__currentLoopData = $user->followers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $follower): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                    <div class="tweet-header">
+                    <div class="followers-header">
                         <?php if($follower->avatar): ?>
                             <img src="<?php echo e(asset('storage/' . $follower->avatar)); ?>" class="avatar">
                         <?php else: ?>
@@ -59,7 +67,15 @@
                             </a>
                             <p class="username"><?php echo e('@'. $follower->username); ?></p>
                         </div>
-                        </div>
+                        <form action="<?php echo e(route('follow',$followingUser)); ?>" method="POST" style="margin-left:auto;">
+                            <?php echo csrf_field(); ?>
+                            <?php if(auth()->user()->isFollowing($followingUser)): ?>
+                                <button type="submit" class="btn-sm-primary">UnFollow</button>
+                            <?php else: ?>
+                                <button type="submit" class="btn-sm-primary">Follow</button>
+                             <?php endif; ?>
+                        </form>
+                    </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                     <?php if(@auth()->id() === $user->id): ?>
                             <p class="tweet-text">Invite others to follow you and share your journey!</p>

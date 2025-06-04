@@ -21,9 +21,8 @@ class HomeController extends Controller
     }
 
      public function home(){
-
         $following = auth()->user()->following()->pluck('users.id')->push(auth()->id());
-        $tweets = Tweet::with('user')->withCount(['likes', 'comments'])->whereNotIn('user_id', $following)->latest()->paginate(20);
+        $tweets = Tweet::with('user')->withCount(['likes', 'comments'])->whereNotIn('user_id', $following)->inRandomOrder()->paginate(20);
         return view('homes.home',[
             'tweets' => $tweets
         ]);

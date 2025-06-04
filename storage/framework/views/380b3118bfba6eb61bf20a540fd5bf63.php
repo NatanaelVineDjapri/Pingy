@@ -11,6 +11,7 @@
         <a href="<?php echo e(route('home', auth()->user()->id)); ?>">For You</a>
         <a href="<?php echo e(route('home', auth()->user()->id)); ?>">Following</a>
     </div>
+</div>
 <div class="tweet-container">
     <div class="tweet-box">
         <form action="<?php echo e(route('posttweet')); ?>" method="POST" enctype="multipart/form-data" class="tweet-form">
@@ -83,7 +84,6 @@
         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
-</div>
 </div>
 <?php $__env->stopSection(); ?>
 
