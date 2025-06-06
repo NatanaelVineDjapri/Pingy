@@ -18,7 +18,7 @@
             @csrf
             <div class="tweet-input-section">
                  @if(Auth::user()->avatar)
-                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" class="avatar">
+                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" class="avatar" >
                 @else
                     <img src="{{ asset('image/profilepicture.jpg') }}" class="avatar">
                 @endif

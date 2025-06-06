@@ -28,8 +28,8 @@
         <a href="{{ route('explore') }}" class="item-link">Explore</a>
       </li>
       <li class="nav-item">
-        <a href="{{ route('inboxmessage') }}" class="item-icon"><ion-icon name="mail-outline"></ion-icon></a>
-        <a href="{{ route('inboxmessage') }}" class="item-link">Messages</a>
+        <a href="#" class="item-icon"><ion-icon name="mail-outline"></ion-icon></a>
+        <a href="#" class="item-link">Messages</a>
       </li>
       <li class="nav-item">
         <a href="#" class="item-icon"><ion-icon name="bookmark-outline"></ion-icon></a>
@@ -64,54 +64,14 @@
       @endif
     <div class="profile-name">
         <p class="names">{{ Auth::user()->name }}</p>
-        <p class="username">{{'@'.Auth::user()->username }}</p> 
+        <p class="username">{{ '@'.Auth::user()->username }}</p> 
     </div>
   </div>
     </a>
   </nav>
-   <main class="main-content">
+   <main class="main-content-3">
       @yield('content')
   </main>
-<div class="sidebar-2">
-    <div class="card">
-        <h3>Who to Follow</h3>
-          @foreach ($suggestusers as $user)
-            <div class="suggestion-card">
-                <div class="info">
-                    @if($user->avatar)
-                      <img src="{{ asset('storage/' . $user->avatar) }}" alt="Profile Image" class="profile-img" width="35" height="35">
-                    @else
-                      <img src="{{ asset('image/profilepicture.jpg') }}" alt="Default Profile" class="profile-img" width="35" height="35">
-                    @endif
-                    <div>
-                        <a href="{{route('showprofile', $user->id)}}"><strong>{{ $user->name }}</strong><br>
-                        <span style="color: gray;">{{'@'.$user->username }}</span></a>
-                    </div>
-                </div>
-                <form action="{{route('follow',$user)}}" method="POST">
-                  @csrf
-                  @if(auth()->user()->isFollowing($user))
-                    <button type="submit" class="btn-sm-primary">UnFollow</button>
-                  @else
-                      <button type="submit" class="btn-sm-primary">Follow</button>
-                  @endif
-                </form>
-            </div>
-          @endforeach
-    </div>
-    <div class="card">
-        <h3>What’s happening</h3>
-        @foreach($tweetstrending as $tweet)
-        <div class="trend">
-            <div class="label">Trending in Indonesia</div>
-            <div class="body-count">
-              <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}"><span>{{ Str::limit($tweet->body, 30) }}</span></a>
-              <small class ="count-trend">{{ $tweet->likes_count + $tweet->comments_count }} Interactions</small>
-            </div>  
-        </div>
-        @endforeach
-    </div>
-</div>
 </div>
 </body>
 </html>

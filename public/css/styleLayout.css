@@ -136,9 +136,8 @@ body {
 
 a.profile-btn {
   margin-top: auto;
-  width: 250px;
-  display: flex;
-  justify-content: space-between;
+  width: 225px;
+ justify-content: space-between;
   align-items: center;
   padding: 10px;
   border-radius: 50px;
@@ -164,7 +163,7 @@ a.profile-btn {
 img.profile-img {
   border-radius: 50%;
   margin-right: 10px;
-   width: 40px;  
+  width: 40px;  
   height: 40px;  
   object-fit: cover;
 }
@@ -176,6 +175,7 @@ img.profile-img {
   font-weight: bold;
   line-height: 1.5;
   text-decoration: none;
+  margin-right: 65px;
 }
 
 .profile-info .username {
@@ -214,6 +214,14 @@ img.profile-img {
 .main-content {
   margin-left: 250px; 
   /* border-right: 2px solid white; */
+}
+
+.main-content-3 {
+  margin-left: 280px; 
+  width: 1258px;
+  border-right: 2px solid white;
+   display: flex;          /* bikin anaknya sejajar horizontal */
+  gap: 20px; 
 }
 
 /* third  */

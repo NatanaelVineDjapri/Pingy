@@ -18,9 +18,9 @@
         <section class="twitterprofile">
             <div class="headerprofileimage">
                 @if($user->banner)
-                <img src="{{ asset('storage/' . $user->banner) }}" alt="header" id="headerimage" style="width:720px;">
+                <img src="{{ asset('storage/' . $user->banner) }}" alt="header" id="headerimage">
                 @else
-                <img src="{{ asset('image/banner.jpg') }}" alt="header default" id="headerimage" style="width:720px;">
+                <img src="{{ asset('image/banner.jpg') }}" alt="header default" id="headerimage">
                 @endif
 
                 @if($user->avatar)

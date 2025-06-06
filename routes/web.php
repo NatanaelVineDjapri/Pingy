@@ -9,6 +9,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\MessageController;
 
 
 //User-Login-Regist-Change Password
@@ -57,7 +58,12 @@ Route::post('/like/{tweet}', [LikeController::class, 'store'])->middleware('auth
 
 //retweet
 
+//message
+Route::get('/messages',[MessageController::class,'inbox'])->middleware('auth')->name('inboxmessage');
 
+Route::get('/messages/{user}',[MessageController::class,'index'])->middleware('auth')->name('showmessage');
+
+Route::post('/messages/{user}',[MessageController::class,'store'])->middleware('auth')->name('postmessage');
 
 
 

@@ -19,6 +19,7 @@ a {
     display: flex;
     position: absolute;
     left: 301px;
+    width: 1236px;
 }
 
 .middlecontainer {
@@ -48,6 +49,7 @@ a {
 .headerprofileimage {
     position: relative;
     margin-top: 10px;
+    
 }
 
 .header-title {
@@ -86,6 +88,8 @@ a {
     position: absolute;
     right: 30px;
     top: 230px;
+    /* width: 130px; 
+    height: 40px;   */
     border: 1px solid white;
     border-radius: 20px;
     padding: 6px 15px;

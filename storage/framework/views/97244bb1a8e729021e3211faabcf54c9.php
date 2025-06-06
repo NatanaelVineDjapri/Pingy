@@ -28,8 +28,8 @@
         <a href="<?php echo e(route('explore')); ?>" class="item-link">Explore</a>
       </li>
       <li class="nav-item">
-        <a href="<?php echo e(route('inboxmessage')); ?>" class="item-icon"><ion-icon name="mail-outline"></ion-icon></a>
-        <a href="<?php echo e(route('inboxmessage')); ?>" class="item-link">Messages</a>
+        <a href="#" class="item-icon"><ion-icon name="mail-outline"></ion-icon></a>
+        <a href="#" class="item-link">Messages</a>
       </li>
       <li class="nav-item">
         <a href="#" class="item-icon"><ion-icon name="bookmark-outline"></ion-icon></a>
@@ -69,50 +69,10 @@
   </div>
     </a>
   </nav>
-   <main class="main-content">
+   <main class="main-content-3">
       <?php echo $__env->yieldContent('content'); ?>
   </main>
-<div class="sidebar-2">
-    <div class="card">
-        <h3>Who to Follow</h3>
-          <?php $__currentLoopData = $suggestusers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="suggestion-card">
-                <div class="info">
-                    <?php if($user->avatar): ?>
-                      <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" alt="Profile Image" class="profile-img" width="35" height="35">
-                    <?php else: ?>
-                      <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="Default Profile" class="profile-img" width="35" height="35">
-                    <?php endif; ?>
-                    <div>
-                        <a href="<?php echo e(route('showprofile', $user->id)); ?>"><strong><?php echo e($user->name); ?></strong><br>
-                        <span style="color: gray;"><?php echo e('@'.$user->username); ?></span></a>
-                    </div>
-                </div>
-                <form action="<?php echo e(route('follow',$user)); ?>" method="POST">
-                  <?php echo csrf_field(); ?>
-                  <?php if(auth()->user()->isFollowing($user)): ?>
-                    <button type="submit" class="btn-sm-primary">UnFollow</button>
-                  <?php else: ?>
-                      <button type="submit" class="btn-sm-primary">Follow</button>
-                  <?php endif; ?>
-                </form>
-            </div>
-          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </div>
-    <div class="card">
-        <h3>What’s happening</h3>
-        <?php $__currentLoopData = $tweetstrending; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tweet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="trend">
-            <div class="label">Trending in Indonesia</div>
-            <div class="body-count">
-              <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>"><span><?php echo e(Str::limit($tweet->body, 30)); ?></span></a>
-              <small class ="count-trend"><?php echo e($tweet->likes_count + $tweet->comments_count); ?> Interactions</small>
-            </div>  
-        </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </div>
-</div>
 </div>
 </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/layouts/app.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/layouts/app-3.blade.php ENDPATH**/ ?>

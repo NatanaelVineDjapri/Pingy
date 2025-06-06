@@ -61,7 +61,13 @@
             <div class="trend">
                 <div class="label">Trending in Indonesia</div>
                 <div class="body-count">
-                <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}"><span>{{ Str::limit($tweet->body, 30) }}</span></a>
+                <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}">
+                    @if(!empty($tweet->body))
+                        <span>{{ Str::limit($tweet->body, 30) }}</span>
+                    @else
+                        <span style ="color:#e74c3c; font-style:italic;">No caption provided</span>
+                    @endif
+                </a>
                 <small class ="count-trend">{{ $tweet->likes_count + $tweet->comments_count }} Interactions</small>
                 </div>  
             </div>

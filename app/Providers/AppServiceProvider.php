@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         if ($user) {
             $suggestusers = User::where('id', '!=', $user->id)
                 ->whereDoesntHave('followers', function ($query) use ($user) {
+                    $query->where('following_user_id', $user->id);
                 })
                 ->inRandomOrder()
                 ->take(7)

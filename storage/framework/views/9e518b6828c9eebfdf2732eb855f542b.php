@@ -18,7 +18,7 @@
             <?php echo csrf_field(); ?>
             <div class="tweet-input-section">
                  <?php if(Auth::user()->avatar): ?>
-                    <img src="<?php echo e(asset('storage/' . Auth::user()->avatar)); ?>" class="avatar">
+                    <img src="<?php echo e(asset('storage/' . Auth::user()->avatar)); ?>" class="avatar" >
                 <?php else: ?>
                     <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" class="avatar">
                 <?php endif; ?>

@@ -61,7 +61,13 @@
             <div class="trend">
                 <div class="label">Trending in Indonesia</div>
                 <div class="body-count">
-                <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>"><span><?php echo e(Str::limit($tweet->body, 30)); ?></span></a>
+                <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>">
+                    <?php if(!empty($tweet->body)): ?>
+                        <span><?php echo e(Str::limit($tweet->body, 30)); ?></span>
+                    <?php else: ?>
+                        <span style ="color:#e74c3c; font-style:italic;">No caption provided</span>
+                    <?php endif; ?>
+                </a>
                 <small class ="count-trend"><?php echo e($tweet->likes_count + $tweet->comments_count); ?> Interactions</small>
                 </div>  
             </div>
