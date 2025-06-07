@@ -39,8 +39,6 @@ Route::get('/profile/{user}/like', [ProfileController::class, 'like'])->middlewa
 Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('editprofile');
 Route::patch('/profile/{user}/tweets', [ProfileController::class, 'update'])->middleware('auth')->name('updateprofile');
 
-
-
 //explore buat disamping layout
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
 
@@ -60,10 +58,9 @@ Route::post('/like/{tweet}', [LikeController::class, 'store'])->middleware('auth
 
 //message
 Route::get('/messages',[MessageController::class,'inbox'])->middleware('auth')->name('inboxmessage');
-
 Route::get('/messages/{user}',[MessageController::class,'index'])->middleware('auth')->name('showmessage');
-
 Route::post('/messages/{user}',[MessageController::class,'store'])->middleware('auth')->name('postmessage');
+Route::delete('/messages/{user}/{message}',[MessageController::class,'destroy'])->middleware('auth')->name('deletemessage');
 
 
 

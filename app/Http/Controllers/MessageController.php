@@ -24,7 +24,7 @@ class MessageController extends Controller
         return User::where('name', 'like', $search . '%')->orWhere('username', 'like', $search . '%')->get();
     }
 
-    public function inbox(Request $request){
+    public function inbox(Request $request,User $user = null){
         $search = $request->input('search');
         
         $users =[];
@@ -67,7 +67,21 @@ class MessageController extends Controller
             'receiver_id'=>$user->id,
             'message'=>$request->message,
         ]);
-         return redirect()->route('showmessage',$user->id);
 
+        return redirect()->route('showmessage',$user->id);
+    }
+
+    public function destroy(USer $user,Message $message){
+
+        if(Auth::id() !== $user->id){
+            abort(403,'Unauthorized Action');
+        }
+
+        if((int)Auth::id() !== (int)$message->sender_id){
+            abort(403,'Unauthorized Actionm');
+        }
+
+        $message->delete();
+        return redirect()->back();
     }
 }

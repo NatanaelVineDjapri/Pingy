@@ -171,6 +171,7 @@ img.profile-img {
 .profile-name p{
   text-decoration: none;
 }
+
 .profile-info .names{
   font-weight: bold;
   line-height: 1.5;
@@ -212,15 +213,15 @@ img.profile-img {
 }
 
 .main-content {
-  margin-left: 250px; 
-  /* border-right: 2px solid white; */
+   margin-left: 301px; 
+
 }
 
 .main-content-3 {
   margin-left: 280px; 
   width: 1258px;
   border-right: 2px solid white;
-   display: flex;          /* bikin anaknya sejajar horizontal */
+  display: flex;         
   gap: 20px; 
 }
 
@@ -261,15 +262,15 @@ img.profile-img {
 }
 
 .btn-sm-primary {
-    display: inline-block;
-    padding:3px 5px;     
-    font-size: 0.875rem;          
-    font-weight: 500;  
-    background-color: #fba7c9;  
-    border-color: #fba7c9;
-    color: white;
-    cursor: pointer;
-    border-radius: 8px;
+  display: inline-block;
+  padding:3px 5px;     
+  font-size: 0.875rem;          
+  font-weight: 500;  
+  background-color: #fba7c9;  
+  border-color: #fba7c9;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
 }
 
 .info {

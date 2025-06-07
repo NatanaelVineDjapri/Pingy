@@ -61,7 +61,9 @@
                 </div>
                 </div>
                 @empty
-                    <p style="color: gray;">Belum ada yang chat.</p>
+                    <div class="message-item">
+                        <p>No messages yet. Sorry!</p>
+                    </div>
                 @endforelse
              </div>
             </div>
@@ -80,7 +82,10 @@
                         <p class="name">{{ $user->name }}</p>
                     </a>
                     <p class="username">{{ '@' . $user->username }}</p>
-                    </div>
+                </div>
+                <div class="icon">
+                    <ion-icon name="sunny-outline"></ion-icon>
+                </div>
             </div>
         </div>
 
@@ -90,20 +95,34 @@
                 <div class="message-item">
                     <div class="message-header-right">
                         <div class="header-profile">
+                            <form action = "{{route('deletemessage',['user' => auth()->user()->id,'message' => $message->id])}}" method="POST" onsubmit="return confirm('Are you sure to delete this message?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="Submit" class="delete-btn">
+                                    <ion-icon name="trash-outline"></ion-icon>
+                                </button>
+                            </form>
                             <div class="packs-name">
                                 <p class="name">{{ auth()->user()->name }}</p>
                                 <p class="username">{{ '@' . auth()->user()->username }}</p>
+                                <p class="username">{{ $message->created_at->format('d M Y H:i')  }}</p>
                             </div>
                             @if(auth()->user()->avatar)
                                 <img src="{{ asset('storage/' . auth()->user()->avatar) }}" class="avatar">
                             @else
                                 <img src="{{ asset('image/profilepicture.jpg') }}" class="avatar">
                             @endif
+
+                            
                          </div> 
                     </div>
+                   
                    <div class="message-body-right">
                         <p>{{ $message->message }}</p>
-                    </div>
+                       
+                    
+                     
+                     </div>
                 </div>
             @else
             <div class="message-item">
@@ -116,6 +135,7 @@
                     <div class="packs-name">
                         <p class="name">{{ $user->name }}</p>
                         <p class="username">{{ '@' . $user->username }}</p>
+                        <p class="username">{{ $message->created_at->format('d M Y H:i')  }}</p>
                     </div>
                 </div>
                 <div class="message-body-left">

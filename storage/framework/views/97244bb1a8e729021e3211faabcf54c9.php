@@ -28,8 +28,8 @@
         <a href="<?php echo e(route('explore')); ?>" class="item-link">Explore</a>
       </li>
       <li class="nav-item">
-        <a href="#" class="item-icon"><ion-icon name="mail-outline"></ion-icon></a>
-        <a href="#" class="item-link">Messages</a>
+        <a href="<?php echo e(route('inboxmessage')); ?>" class="item-icon"><ion-icon name="mail-outline"></ion-icon></a>
+        <a href="<?php echo e(route('inboxmessage')); ?>" class="item-link">Messages</a>
       </li>
       <li class="nav-item">
         <a href="#" class="item-icon"><ion-icon name="bookmark-outline"></ion-icon></a>

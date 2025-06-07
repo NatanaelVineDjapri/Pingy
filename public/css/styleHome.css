@@ -5,15 +5,13 @@ body {
 .tweet-container {
     padding: 20px;
     width: 600px;
-    margin-left: 115px;
-    padding-right: 50px;
+    margin-left: 60px;
 }
 
 .container{
-    justify-content: center;
-    margin-left: 50px;
-    
+    justify-content: center; 
 }
+
 .tweet-list {
     display: flex;
     flex-direction: column;
@@ -174,14 +172,8 @@ span {
 
 .feed-toggle {
     display: flex;
-    /* background-color: white; */
     justify-content: center;
-    gap: 40px;
-    /* margin-top: 10px; */
-    /* margin-right: -65pX; */
-    padding-right: 50px;
     border: 1px solid white;
-    /* border-radius: 12px; */
     background: url('/image/z2.jpg');
     background-size: contain;
     background-size: 100%;
@@ -192,7 +184,7 @@ span {
 .feed-toggle a {
     text-decoration: none;
     color: white;
-    padding: 13px 98px 10px 150px ;
+    padding: 13px 142px 10px 150px ;
     font-weight: bold;
     border-bottom: 2px solid transparent;
     text-shadow:2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -368,7 +360,8 @@ span {
 }
 
 textarea{
-    padding:5px 450px 0px 5px;
+    width: 625px;   
+    padding:5px 0px 0px 5px;
     border-radius:8px;
     border-color: #fba7c9;
 }
@@ -380,4 +373,14 @@ textarea:focus {
 .pembatas{
     margin-top: 75px;
     color: #fba7c9;
+}
+
+.delete-btn{
+    padding: 8px 10px;
+    margin-left: 180px;
+    margin-top: 10px;
+    background-color: #fff; 
+    color: white;
+    border: none;
+    cursor: pointer;
 }

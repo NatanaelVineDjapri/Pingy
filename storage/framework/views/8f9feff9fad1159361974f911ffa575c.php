@@ -61,7 +61,9 @@
                 </div>
                 </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                    <p style="color: gray;">Belum ada yang chat.</p>
+                    <div class="message-item">
+                        <p>No messages yet. Sorry!</p>
+                    </div>
                 <?php endif; ?>
              </div>
             </div>
@@ -80,7 +82,10 @@
                         <p class="name"><?php echo e($user->name); ?></p>
                     </a>
                     <p class="username"><?php echo e('@' . $user->username); ?></p>
-                    </div>
+                </div>
+                <div class="icon">
+                    <ion-icon name="sunny-outline"></ion-icon>
+                </div>
             </div>
         </div>
 
@@ -90,20 +95,34 @@
                 <div class="message-item">
                     <div class="message-header-right">
                         <div class="header-profile">
+                            <form action = "<?php echo e(route('deletemessage',['user' => auth()->user()->id,'message' => $message->id])); ?>" method="POST" onsubmit="return confirm('Are you sure to delete this message?');">
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
+                                <button type="Submit" class="delete-btn">
+                                    <ion-icon name="trash-outline"></ion-icon>
+                                </button>
+                            </form>
                             <div class="packs-name">
                                 <p class="name"><?php echo e(auth()->user()->name); ?></p>
                                 <p class="username"><?php echo e('@' . auth()->user()->username); ?></p>
+                                <p class="username"><?php echo e($message->created_at->format('d M Y H:i')); ?></p>
                             </div>
                             <?php if(auth()->user()->avatar): ?>
                                 <img src="<?php echo e(asset('storage/' . auth()->user()->avatar)); ?>" class="avatar">
                             <?php else: ?>
                                 <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" class="avatar">
                             <?php endif; ?>
+
+                            
                          </div> 
                     </div>
+                   
                    <div class="message-body-right">
                         <p><?php echo e($message->message); ?></p>
-                    </div>
+                       
+                    
+                     
+                     </div>
                 </div>
             <?php else: ?>
             <div class="message-item">
@@ -116,6 +135,7 @@
                     <div class="packs-name">
                         <p class="name"><?php echo e($user->name); ?></p>
                         <p class="username"><?php echo e('@' . $user->username); ?></p>
+                        <p class="username"><?php echo e($message->created_at->format('d M Y H:i')); ?></p>
                     </div>
                 </div>
                 <div class="message-body-left">

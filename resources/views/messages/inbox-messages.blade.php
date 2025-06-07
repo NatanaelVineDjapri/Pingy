@@ -60,7 +60,7 @@
                 </div>
                 </div>
                 @empty
-                <div class="packs-name">
+                <div class="message-item">
                     <p>No messages yet. Sorry!</p>
                 </div>
                 @endforelse

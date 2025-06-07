@@ -21,7 +21,6 @@
             <?php $__empty_1 = true; $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="tweet-item">
                     <div class="tweet-header">
-                        
                         <?php if($user->avatar): ?>
                             <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" class="avatar">
                         <?php else: ?>
@@ -61,13 +60,14 @@
                 </div>
                 </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                    <p style="color: gray;">Belum ada yang chat.</p>
+                <div class="message-item">
+                    <p>No messages yet. Sorry!</p>
+                </div>
                 <?php endif; ?>
              </div>
             </div>
         </div>
     </div>
-
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app-3', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/messages/inbox-messages.blade.php ENDPATH**/ ?>
