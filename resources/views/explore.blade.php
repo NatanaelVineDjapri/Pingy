@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <div class="tweet-container">
+    <div class="comment-container">
         <div class="tweet-box">
             <form action="{{ route('explore') }}" method="GET" class="tweet-form" style="margin-left:auto;">
                 <div class="tweet-input-section">
@@ -52,7 +52,9 @@
                  </div>
             @empty
                 @if(request('search'))
-                    <p class ="search-empty"style="padding: 20px; color:white;">No users found for <strong>"{{ request('search') }}"</strong></p>
+                <div class="message-item">
+                    <p class ="search-empty"style="padding: 20px; color: #fba7c9;">No users found for <strong>"{{ request('search') }}"</strong></p>
+                </div>    
                 @endif
             @endforelse
             <div class="card">
@@ -61,7 +63,13 @@
             <div class="trend">
                 <div class="label">Trending in Indonesia</div>
                 <div class="body-count">
-                <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}"><span>{{ Str::limit($tweet->body, 30) }}</span></a>
+                <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}">
+                    @if(!empty($tweet->body))
+                        <span>{{ Str::limit($tweet->body, 30) }}</span>
+                    @else
+                        <span style ="color:#e74c3c; font-style:italic;">No caption provided</span>
+                    @endif
+                </a>
                 <small class ="count-trend">{{ $tweet->likes_count + $tweet->comments_count }} Interactions</small>
                 </div>  
             </div>

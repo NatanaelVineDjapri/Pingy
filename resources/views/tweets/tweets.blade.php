@@ -43,7 +43,13 @@
                     @endif
                 <div class="packs-name">
                     <p class="name">{{ $tweet->user->name }}</p> 
-                    <p class="username">{{'@'. $tweet->user->username }} - {{ $tweet->created_at->format('M,d Y') }}</p>
+                    <p class="username">{{'@'. $tweet->user->username }} - 
+                     @if ($tweet->created_at->diffInHours() < 24)
+                        {{ $tweet->created_at->diffForHumans() }}
+                     @else
+                        {{ $tweet->created_at->format('M, d Y') }}
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="tweet-body">
@@ -53,11 +59,16 @@
                         <img src="{{ asset('storage/' . $tweet->tweetImage) }}" alt="Tweet image" style="width: 100%; max-width: 675px;max-height:500px;border-radius: 10px; margin-top: 10px;">
                     </div>
                 @endif
-                <form action="{{ route('deletetweet', $tweet->id) }}" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class="delete-form">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="delete-btn">Delete</button>
-                </form>
+                <div class="delete-update">
+                    <form action="{{ route('deletetweet', $tweet->id) }}" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class="delete-form">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="delete-btn">Delete</button>
+                    </form>
+                    <a href="{{ route('edittweet', $tweet->id) }}" class="edit-btn">
+                        <p type="submit" class="delete-btn">Update</p>
+                    </a>  
+                </div> 
             </div>
         </div>
         @endforeach

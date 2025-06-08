@@ -19,28 +19,65 @@
       <li class="navbar-brand">
         <a href="#" class ="brand-text">Pingys</a>
       </li>
+      <?php if(request()->routeIs('home') ||request()->routeIs('homefollowing')): ?>
+        <li class="nav-item">
+          <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="home"></ion-icon></a>
+          <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-link">Home</a>
+        </li>
+      <?php else: ?>
+        <li class="nav-item">
+          <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="home-outline"></ion-icon></a>
+          <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-link">Home</a>
+        </li>
+       <?php endif; ?>
+      <?php if(request()->routeIs('explore')): ?>
+        <li class="nav-item">
+          <a href="<?php echo e(route('explore')); ?>" class="item-icon"><ion-icon name="search"></ion-icon></a>
+          <a href="<?php echo e(route('explore')); ?>" class="item-link">Explore</a>
+        </li>
+      <?php else: ?>
       <li class="nav-item">
-        <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="home-outline"></ion-icon></a>
-        <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-link">Home</a>
+          <a href="<?php echo e(route('explore')); ?>" class="item-icon"><ion-icon name="search-outline"></ion-icon></a>
+          <a href="<?php echo e(route('explore')); ?>" class="item-link">Explore</a>
       </li>
+      <?php endif; ?>
+      <?php if(request()->routeIs('inboxmessage') || request()->routeIs('showmessage')): ?>
       <li class="nav-item">
-        <a href="<?php echo e(route('explore')); ?>" class="item-icon"><ion-icon name="search-outline"></ion-icon></a>
-        <a href="<?php echo e(route('explore')); ?>" class="item-link">Explore</a>
+        <a href="<?php echo e(route('inboxmessage')); ?>" class="item-icon"><ion-icon name="mail"></ion-icon></a>
+        <a href="<?php echo e(route('inboxmessage')); ?>" class="item-link">Messages</a>
       </li>
+      <?php else: ?>
       <li class="nav-item">
-        <a href="#" class="item-icon"><ion-icon name="mail-outline"></ion-icon></a>
-        <a href="#" class="item-link">Messages</a>
+        <a href="<?php echo e(route('inboxmessage')); ?>" class="item-icon"><ion-icon name="mail-outline"></ion-icon></a>
+        <a href="<?php echo e(route('inboxmessage')); ?>" class="item-link">Messages</a>
       </li>
+      <?php endif; ?>
+      <?php if(request()->routeIs('bookmarks')): ?>
+      <li class="nav-item">
+        <a href="#" class="item-icon"><ion-icon name="bookmark"></ion-icon></a>
+        <a href="#" class="item-link">Bookmarks</a>
+      </li>
+      <?php else: ?>
       <li class="nav-item">
         <a href="#" class="item-icon"><ion-icon name="bookmark-outline"></ion-icon></a>
         <a href="#" class="item-link">Bookmarks</a>
       </li>
+      <?php endif; ?>
+      <?php if(request()->routeIs('showprofile') || request()->routeIs('mediaprofile') || request()->routeIs('showprofile') || request()->routeIs('likeprofile') || request()->routeIs('updateprofile')): ?>
+      <li class="nav-item">
+        <a href="<?php echo e(route('showprofile', auth()->user()->id)); ?>" class="item-icon">
+          <ion-icon name="person"></ion-icon>
+        </a>
+        <a href="<?php echo e(route('showprofile', auth()->user()->id)); ?>" class="item-link">Profile</a>
+      </li>
+      <?php else: ?>
       <li class="nav-item">
         <a href="<?php echo e(route('showprofile', auth()->user()->id)); ?>" class="item-icon">
           <ion-icon name="person-outline"></ion-icon>
         </a>
         <a href="<?php echo e(route('showprofile', auth()->user()->id)); ?>" class="item-link">Profile</a>
       </li>
+      <?php endif; ?>
 
       <li class="nav-item">
         <form action="<?php echo e(route('logout')); ?>" method="POST" ">

@@ -11,16 +11,16 @@
     <div class="middlecontainer">
         <section class="headsec">
             <div class="header-title">
-                <a href="{{ route('home', auth()->user()->id) }}" class="item-icon"><ion-icon name="arrow-back-outline"></ion-icon></a>
-                <a href="{{ route('home', auth()->user()->id) }}" class="item-link">{{ $user->name }}</a>
+                <a href="{{ url()->previous() }}" class="item-icon"><ion-icon name="arrow-back-outline"></ion-icon></a>
+                <a href="{{ url()->previous() }}" class="item-link">{{ $user->name }}</a>
             </div>
         </section>
         <section class="twitterprofile">
             <div class="headerprofileimage">
                 @if($user->banner)
-                <img src="{{ asset('storage/' . $user->banner) }}" alt="header" id="headerimage" style="width:720px;">
+                <img src="{{ asset('storage/' . $user->banner) }}" alt="header" id="headerimage" class = "header-a">
                 @else
-                <img src="{{ asset('image/banner.jpg') }}" alt="header default" id="headerimage" style="width:720px;">
+                <img src="{{ asset('image/banner.jpg') }}" alt="header default" id="headerimage" class ="header-b">
                 @endif
 
                 @if($user->avatar)
@@ -31,7 +31,7 @@
                
                 <div class="editprofile">
                     @if(Auth::id() == $user->id)
-                        <a href="{{ route('editprofile', $user->id) }}">Edit Profile</a>
+                        <a href="{{ route('editprofile', $user->id) }}" class ="follow-btn">Edit Profile</a>
                     @else
                          <form action="{{route('follow',$user)}}" method="POST">
                     @csrf
@@ -80,7 +80,13 @@
                     <div class="tweetbody">
                         <div class="packs-name">
                             <p class="name">{{ $tweet->user->name }}</p> 
-                            <p class ="username">{{'@'. $tweet->user->username }} - {{ $tweet->created_at->format('M,d Y') }}</p>
+                            <p class ="username">{{'@'. $tweet->user->username }} - 
+                            @if ($tweet->created_at->diffInHours() < 24)
+                                {{ $tweet->created_at->diffForHumans() }}
+                            @else
+                                {{ $tweet->created_at->format('M, d Y') }}
+                            @endif
+                            </p>
                         </div>
                         <div class="tweetcontent">{{ $tweet->body }}</div>
                         @if($tweet->tweetImage)

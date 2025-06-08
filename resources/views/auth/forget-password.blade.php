@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="form-container sign-up">
-            <form method="POST" action="{{ url('/forget-password') }}">
+            <form method="POST" action="{{ route('submitforgetpassword') }}">
                 @csrf
                 <h1 class ="h1-pink">Reset Password</h1>
                 <input type="text" name="username" placeholder="Username" value="{{ old('username') }}" required>

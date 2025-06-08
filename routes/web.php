@@ -9,55 +9,59 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\MessageController;
+
+Route::prefix('pingy')->group(function(){
+
+    //User-Login-Regist-Change Password
+    Route::get('/auth', [AuthSessionController::class, 'formLogin'])->name('login');
+    Route::post('/login', [AuthSessionController::class, 'manualLogin'])->name('manuallogin');
+    Route::post('/register', [AuthSessionController::class, 'register'])->name('register');
+    Route::get('/forget-password',[ForgetPasswordController::class,'formForgetPassword'])->name('forgetpassword');
+    Route::post('/forget-password',[ForgetPasswordController::class,'submitForgetPassForm'])->name('submitforgetpassword');
+    Route::post('/logout', [AuthSessionController::class, 'logout'])->name('logout');
+
+    //homepagae
+    Route::get('/home/following', [HomeController::class, 'index'])->name('homefollowing');
+    Route::get('/home', [HomeController::class, 'home'])->name('home');
+
+    //Tweet
+    Route::get('/tweets', [TweetController::class, 'index'])->middleware('auth')->name('gettweet');
+    Route::post('/tweets', [TweetController::class, 'store'])->middleware('auth')->name('posttweet');
+    Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy'])->middleware('auth')->name('deletetweet');
+    Route::patch('/tweets/{tweet}/edit', [TweetController::class, 'update'])->middleware('auth')->name('updatetweet');
+    Route::get('/tweets/{tweet}/edit', [TweetController::class, 'edit'])->middleware('auth')->name('edittweet');
 
 
-//User-Login-Regist-Change Password
-Route::get('/auth', [AuthSessionController::class, 'formLogin'])->name('login');
-Route::post('/login', [AuthSessionController::class, 'manualLogin']);
-Route::post('/register', [AuthSessionController::class, 'register']);
-Route::get('/forget-password',[ForgetPasswordController::class,'formForgetPassword']);
-Route::post('/forget-password',[ForgetPasswordController::class,'submitForgetPassForm']);
-Route::post('/logout', [AuthSessionController::class, 'logout'])->name('logout');
+    //profile
+    Route::get('/profile/{user}/tweets', [ProfileController::class, 'index'])->middleware('auth')->name('showprofile');
+    Route::get('/profile/{user}/media', [ProfileController::class, 'media'])->middleware('auth')->name('mediaprofile');
+    Route::get('/profile/{user}/like', [ProfileController::class, 'like'])->middleware('auth')->name('likeprofile');
+    Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('editprofile');
+    Route::patch('/profile/{user}/tweets', [ProfileController::class, 'update'])->middleware('auth')->name('updateprofile');
 
-//homepagae
-Route::get('/home/following', [HomeController::class, 'index'])->name('homefollowing');
-Route::get('/home', [HomeController::class, 'home'])->name('home');
+    //explore buat disamping layout
+    Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
 
-//Tweet
-Route::get('/tweets', [TweetController::class, 'index'])->middleware('auth')->name('gettweet');
-Route::post('/tweets', [TweetController::class, 'store'])->middleware('auth')->name('posttweet');
-Route::delete('/tweets/{tweet}', [TweetController::class, 'destroy'])->middleware('auth')->name('deletetweet');
-Route::patch('/tweets/{tweet}/edit', [TweetController::class, 'update'])->middleware('auth')->name('updatetweet');
-Route::get('/tweets/{tweet}/edit', [TweetController::class, 'edit'])->middleware('auth')->name('edittweet');
+    //comment
+    Route::delete('/tweet/{tweet}/comment/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('deletecomment');
+    Route::post('//tweet/{tweet}/comment', [CommentController::class, 'store'])->middleware('auth')->name('postcomment');
+    Route::get('/tweet/{tweet}/comment', [CommentController::class, 'index'])->middleware('auth')->name('showcomment');
 
+    //follow
+    Route::post('/follow/{user}', [FollowController::class, 'store'])->middleware('auth')->name('follow');
+    Route::get('/follow/{user}/show',[FollowController::class,'index'])->middleware('auth')->name('showfollow');
 
-//profile
-Route::get('/profile/{user}/tweets', [ProfileController::class, 'index'])->middleware('auth')->name('showprofile');
-Route::get('/profile/{user}/media', [ProfileController::class, 'media'])->middleware('auth')->name('mediaprofile');
-Route::get('/profile/{user}/like', [ProfileController::class, 'like'])->middleware('auth')->name('likeprofile');
-Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('editprofile');
-Route::patch('/profile/{user}/tweets', [ProfileController::class, 'update'])->middleware('auth')->name('updateprofile');
+    //like
+    Route::post('/like/{tweet}', [LikeController::class, 'store'])->middleware('auth')->name('liketweet');
 
+    //retweet
 
+    //message
+    Route::get('/messages',[MessageController::class,'inbox'])->middleware('auth')->name('inboxmessage');
+    Route::get('/messages/{user}',[MessageController::class,'index'])->middleware('auth')->name('showmessage');
+    Route::post('/messages/{user}',[MessageController::class,'store'])->middleware('auth')->name('postmessage');
+    Route::delete('/messages/{user}/{message}',[MessageController::class,'destroy'])->middleware('auth')->name('deletemessage');
 
-//explore buat disamping layout
-Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
-
-//comment
-Route::delete('/tweet/{tweet}/comment/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('deletecomment');
-Route::post('//tweet/{tweet}/comment', [CommentController::class, 'store'])->middleware('auth')->name('postcomment');
-Route::get('/tweet/{tweet}/comment', [CommentController::class, 'index'])->middleware('auth')->name('showcomment');
-
-//follow
-Route::post('/follow/{user}', [FollowController::class, 'store'])->middleware('auth')->name('follow');
-Route::get('/follow/{user}/show',[FollowController::class,'index'])->middleware('auth')->name('showfollow');
-
-//like
-Route::post('/like/{tweet}', [LikeController::class, 'store'])->middleware('auth')->name('liketweet');
-
-//retweet
-
-
-
-
+});
 

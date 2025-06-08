@@ -18,7 +18,7 @@
             @csrf
             <div class="tweet-input-section">
                  @if(Auth::user()->avatar)
-                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" class="avatar">
+                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" class="avatar" >
                 @else
                     <img src="{{ asset('image/profilepicture.jpg') }}" class="avatar">
                 @endif
@@ -48,7 +48,13 @@
                 @endif
                 <div class="packs-name">
                     <a href="{{route('showprofile', $tweet->user->id)}}"><p class="name">{{ $tweet->user->name }}</p></a>
-                    <p class="username">{{ '@' . $tweet->user->username }} - {{ $tweet->created_at->format('M,d Y') }}</p>
+                    <p class="username">{{ '@' . $tweet->user->username }} - 
+                    @if ($tweet->created_at->diffInHours() < 24)
+                        {{ $tweet->created_at->diffForHumans() }}
+                    @else
+                        {{ $tweet->created_at->format('M, d Y') }}
+                    @endif 
+                    </p>
                 </div>
             </div>
             <div class="tweet-body">

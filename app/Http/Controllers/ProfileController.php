@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-   public function __construct(){
+    public function __construct(){
         $this->middleware('auth');
     }
     
@@ -49,7 +49,7 @@ class ProfileController extends Controller
     public function update(Request $request,User $user){
         $validate=$request->validate([
             'name' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:users,username,'.$user->id,
             'description' => 'nullable',
             'avatar' => 'image|nullable|mimes:jpeg,png,jpg,gif|max:2048',
             'banner' => 'image|nullable|mimes:jpeg,png,jpg,gif|max:2048'

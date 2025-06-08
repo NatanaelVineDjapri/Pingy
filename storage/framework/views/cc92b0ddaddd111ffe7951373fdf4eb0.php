@@ -1,12 +1,10 @@
-
-
 <?php $__env->startSection('head'); ?>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleHome.css')); ?>">
     <?php echo $__env->yieldContent('head'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <div class="tweet-container">
+    <div class="comment-container">
         <div class="tweet-box">
             <form action="<?php echo e(route('explore')); ?>" method="GET" class="tweet-form" style="margin-left:auto;">
                 <div class="tweet-input-section">
@@ -52,7 +50,9 @@
                  </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                 <?php if(request('search')): ?>
-                    <p class ="search-empty"style="padding: 20px; color:white;">No users found for <strong>"<?php echo e(request('search')); ?>"</strong></p>
+                <div class="message-item">
+                    <p class ="search-empty"style="padding: 20px; color: #fba7c9;">No users found for <strong>"<?php echo e(request('search')); ?>"</strong></p>
+                </div>    
                 <?php endif; ?>
             <?php endif; ?>
             <div class="card">
@@ -61,7 +61,13 @@
             <div class="trend">
                 <div class="label">Trending in Indonesia</div>
                 <div class="body-count">
-                <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>"><span><?php echo e(Str::limit($tweet->body, 30)); ?></span></a>
+                <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>">
+                    <?php if(!empty($tweet->body)): ?>
+                        <span><?php echo e(Str::limit($tweet->body, 30)); ?></span>
+                    <?php else: ?>
+                        <span style ="color:#e74c3c; font-style:italic;">No caption provided</span>
+                    <?php endif; ?>
+                </a>
                 <small class ="count-trend"><?php echo e($tweet->likes_count + $tweet->comments_count); ?> Interactions</small>
                 </div>  
             </div>

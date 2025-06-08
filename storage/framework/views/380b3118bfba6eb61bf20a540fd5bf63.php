@@ -33,7 +33,7 @@
 
         <?php if(session('previewPath')): ?>
             <div class="image-preview">
-                <img src="<?php echo e(asset('storage/' . session('previewPath'))); ?>" alt="Preview" class="tweet-image"/>
+                <img src="<?php echo e(asset('storage/' . session('previewPath'))); ?>" alt="Preview" class="tweet-img"/>
             </div>
         <?php endif; ?>
     </div>
@@ -48,23 +48,29 @@
                 <?php endif; ?>
                 <div class="packs-name">
                     <a href="<?php echo e(route('showprofile', $tweet->user->id)); ?>"><p class="name"><?php echo e($tweet->user->name); ?></p></a>
-                    <p class="username"><?php echo e('@' . $tweet->user->username); ?> - <?php echo e($tweet->created_at->format('M,d Y')); ?></p>
+                    <p class="username"><?php echo e('@' . $tweet->user->username); ?> - 
+                    <?php if($tweet->created_at->diffInHours() < 24): ?>
+                        <?php echo e($tweet->created_at->diffForHumans()); ?>
+
+                    <?php else: ?>
+                        <?php echo e($tweet->created_at->format('M, d Y')); ?>
+
+                    <?php endif; ?>    
+                    </p>
                 </div>
             </div>
             <div class="tweet-body">
                 <p><?php echo e($tweet->body); ?></p>
                 <?php if($tweet->tweetImage): ?>
                 <div class="tweet-image">
-                    <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>"  alt="Tweet image" style="width: 100%; max-width: 675px;max-height:500px;border-radius: 10px; margin-top: 10px;">
+                    <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>"  alt="Tweet image" style="width: 100%; max-width: 675px;max-height:600px;border-radius: 10px; margin-top: 10px;">
                 </div>
                 <?php endif; ?>
                 <ul class="retweeticons">
                     <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
                     <span><?php echo e($tweet->comments_count); ?></span>
-
                     <ion-icon name="repeat-outline"></ion-icon>
-                    <span><?php echo e($tweet->comments_count); ?></span>
-                            
+                    <span><?php echo e($tweet->comments_count); ?></span>    
                     <?php
                         $liked = auth()->user()->likedTweets->contains($tweet->id);
                     ?>

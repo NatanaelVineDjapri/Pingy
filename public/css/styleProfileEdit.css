@@ -1,7 +1,7 @@
 .edit-profile-wrapper {
-  max-width: 720px;
-  margin: 30px auto;
-  padding: 20px 120px;
+  padding: 50px 30px 20px 20px;
+  max-width: 600px;
+  margin-left: 100px;
 }
 
 .edit-profile-card {
@@ -22,12 +22,6 @@
 
 .edit-profile-body {
   width: 100%;
-}
-
-.header-title {
-    /* display: flex;
-    align-items: center; */
- 
 }
 
 .item-icon {
@@ -94,4 +88,7 @@
   color: #fba7c9;
 }
 
+a{
+  text-decoration: none;
+}
 

@@ -49,6 +49,9 @@ class TweetController extends Controller
     }
     public function update(Request $request, Tweet $tweet)
     {   
+        if(Auth::user()->id !== $tweet->user_id){
+            abort(403,'Unauthorized acttion');
+        }
         $data = $request->validate([
             'body' => 'required',
         ]);
@@ -58,6 +61,9 @@ class TweetController extends Controller
         return redirect()->route('edittweet', $tweet->id);
     }
     public function destroy(Tweet $tweet){
+        if(Auth::user()->id !== $tweet->user_id){
+            abort(403,'Unauthorized action');
+        }
         if ($tweet->tweetImage) {
         Storage::disk('public')->delete($tweet->tweetImage);
         }
