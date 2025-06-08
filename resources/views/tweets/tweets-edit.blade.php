@@ -18,7 +18,13 @@
                 @endif
                 <div class="packs-name">
                     <p class="name">{{ $tweet->user->name }}</p> 
-                    <p class="username">{{ '@' . $tweet->user->username }} - {{ $tweet->created_at->format('M,d Y') }}</p>
+                    <p class="username">{{ '@' . $tweet->user->username }} - 
+                        @if ($tweet->created_at->diffInHours() < 24)
+                            {{ $tweet->created_at->diffForHumans() }}
+                        @else
+                            {{ $tweet->created_at->format('M, d Y') }}
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="tweet-body">

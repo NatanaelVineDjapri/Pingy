@@ -128,7 +128,6 @@ span {
 
 .tweet-input-section {
     display: flex;
-    /* padding: 10px; */
     gap: 10px;
 }
 
@@ -224,8 +223,6 @@ span {
      position: fixed;
 }
 
-
-
 .message-box {
     background-color: #fff;
     border: 1px solid #e6ecf0;
@@ -274,7 +271,6 @@ span {
     width: 60%;
     margin-left:480px;
     gap: 20px;         
-
 }
 
 .profil{
@@ -286,9 +282,6 @@ span {
     border-radius: 16px;
     padding: 15px;  
     padding-right: 100px;
-    /* padding-right:200px; */
-    /* display: flex; */
-    /* flex-direction: column; */
     gap: 10px;
     margin-bottom: 10px;
     z-index: 1000;
@@ -310,11 +303,8 @@ span {
 }
 
 .message-header-right{
-    /* display: flex; */
-    /* flex-direction: column; */
     gap: 10px;;
     align-items: center;
-    /* justify-content: flex-end; */
     margin-left: auto; 
     align-items: flex-end;
 
@@ -345,8 +335,6 @@ span {
 .input {
     padding: 15px 16px ;
     margin-top: 30px;
-    /* margin-right: 23px; */
-    /* border-top: 1px solid #e6ecf0; */
     background-color: #fff;
     position: fixed;
     bottom: 0;
