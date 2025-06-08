@@ -11,8 +11,8 @@
     <div class="middlecontainer">
         <section class="headsec">
             <div class="header-title">
-                <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="arrow-back-outline"></ion-icon></a>
-                <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-link"><?php echo e($user->name); ?></a>
+                <a href="<?php echo e(url()->previous()); ?>" class="item-icon"><ion-icon name="arrow-back-outline"></ion-icon></a>
+                <a href="<?php echo e(url()->previous()); ?>" class="item-link"><?php echo e($user->name); ?></a>
             </div>
         </section>
         <section class="twitterprofile">
@@ -31,7 +31,7 @@
                
                 <div class="editprofile">
                     <?php if(Auth::id() == $user->id): ?>
-                        <a href="<?php echo e(route('editprofile', $user->id)); ?>">Edit Profile</a>
+                        <a href="<?php echo e(route('editprofile', $user->id)); ?>" class ="follow-btn">Edit Profile</a>
                     <?php else: ?>
                          <form action="<?php echo e(route('follow',$user)); ?>" method="POST">
                     <?php echo csrf_field(); ?>
@@ -81,7 +81,15 @@
                     <div class="tweetbody">
                         <div class="packs-name">
                             <p class="name"><?php echo e($tweet->user->name); ?></p> 
-                            <p class ="username"><?php echo e('@'. $tweet->user->username); ?> - <?php echo e($tweet->created_at->format('M,d Y')); ?></p>
+                            <p class ="username"><?php echo e('@'. $tweet->user->username); ?> - 
+                            <?php if($tweet->created_at->diffInHours() < 24): ?>
+                                <?php echo e($tweet->created_at->diffForHumans()); ?>
+
+                            <?php else: ?>
+                                <?php echo e($tweet->created_at->format('M, d Y')); ?>
+
+                            <?php endif; ?>
+                            </p>
                         </div>
                         <div class="tweetcontent"><?php echo e($tweet->body); ?></div>
                         <?php if($tweet->tweetImage): ?>

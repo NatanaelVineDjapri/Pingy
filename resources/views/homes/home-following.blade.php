@@ -33,7 +33,7 @@
 
         @if(session('previewPath'))
             <div class="image-preview">
-                <img src="{{ asset('storage/' . session('previewPath')) }}" alt="Preview" class="tweet-image"/>
+                <img src="{{ asset('storage/' . session('previewPath')) }}" alt="Preview" class="tweet-img"/>
             </div>
         @endif
     </div>
@@ -48,23 +48,27 @@
                 @endif
                 <div class="packs-name">
                     <a href="{{route('showprofile', $tweet->user->id)}}"><p class="name">{{ $tweet->user->name }}</p></a>
-                    <p class="username">{{ '@' . $tweet->user->username }} - {{ $tweet->created_at->format('M,d Y') }}</p>
+                    <p class="username">{{ '@' . $tweet->user->username }} - 
+                    @if ($tweet->created_at->diffInHours() < 24)
+                        {{ $tweet->created_at->diffForHumans() }}
+                    @else
+                        {{ $tweet->created_at->format('M, d Y') }}
+                    @endif    
+                    </p>
                 </div>
             </div>
             <div class="tweet-body">
                 <p>{{ $tweet->body }}</p>
                 @if($tweet->tweetImage)
                 <div class="tweet-image">
-                    <img src="{{ asset('storage/' . $tweet->tweetImage) }}"  alt="Tweet image" style="width: 100%; max-width: 675px;max-height:500px;border-radius: 10px; margin-top: 10px;">
+                    <img src="{{ asset('storage/' . $tweet->tweetImage) }}"  alt="Tweet image" style="width: 100%; max-width: 675px;max-height:600px;border-radius: 10px; margin-top: 10px;">
                 </div>
                 @endif
                 <ul class="retweeticons">
                     <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
                     <span>{{ $tweet->comments_count }}</span>
-
                     <ion-icon name="repeat-outline"></ion-icon>
-                    <span>{{ $tweet->comments_count }}</span>
-                            
+                    <span>{{ $tweet->comments_count }}</span>    
                     @php
                         $liked = auth()->user()->likedTweets->contains($tweet->id);
                     @endphp

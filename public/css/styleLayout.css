@@ -168,6 +168,10 @@ img.profile-img {
   object-fit: cover;
 }
 
+.profile-name{
+  margin-right: 20px;
+}
+
 .profile-name p{
   text-decoration: none;
 }
@@ -182,7 +186,9 @@ img.profile-img {
 .profile-info .username {
   color: white;
   text-decoration: none ;
+  margin: 2px 0px 0px ;
 }
+
 
 .option-icon ion-icon {
   font-size: 16px;

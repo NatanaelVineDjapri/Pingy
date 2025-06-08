@@ -9,7 +9,10 @@ use App\Models\User;
 
 class MessageController extends Controller
 {   
-
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     private function getContacts(){
         $userId = Auth::id();
 

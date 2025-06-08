@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('head'); ?>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleHome.css')); ?>">
 <?php $__env->stopSection(); ?>

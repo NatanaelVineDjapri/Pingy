@@ -8,6 +8,12 @@ body {
     margin-left: 60px;
 }
 
+.comment-container{
+    padding: 20px;
+    width: 600px;
+    margin-left: 100px;
+}
+
 .container{
     justify-content: center; 
 }
@@ -135,6 +141,18 @@ span {
     border-radius: 12px;
     background-color: #f5f8fa;
     outline: none;
+}
+
+.search-input{
+    width: 100%; 
+    padding: 10px;
+    border-radius: 10px; 
+    border: 1px solid #ccc;
+}
+
+.tweet-input-section input:focus{
+    border-color: #e974a3 ;
+    outline: none ;
 }
 
 .tweet-submit-btn {

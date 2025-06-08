@@ -43,7 +43,15 @@
                     <?php endif; ?>
                 <div class="packs-name">
                     <p class="name"><?php echo e($tweet->user->name); ?></p> 
-                    <p class="username"><?php echo e('@'. $tweet->user->username); ?> - <?php echo e($tweet->created_at->format('M,d Y')); ?></p>
+                    <p class="username"><?php echo e('@'. $tweet->user->username); ?> - 
+                     <?php if($tweet->created_at->diffInHours() < 24): ?>
+                        <?php echo e($tweet->created_at->diffForHumans()); ?>
+
+                     <?php else: ?>
+                        <?php echo e($tweet->created_at->format('M, d Y')); ?>
+
+                    <?php endif; ?>
+                    </p>
                 </div>
             </div>
             <div class="tweet-body">
@@ -53,11 +61,16 @@
                         <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>" alt="Tweet image" style="width: 100%; max-width: 675px;max-height:500px;border-radius: 10px; margin-top: 10px;">
                     </div>
                 <?php endif; ?>
-                <form action="<?php echo e(route('deletetweet', $tweet->id)); ?>" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class="delete-form">
-                    <?php echo csrf_field(); ?>
-                    <?php echo method_field('DELETE'); ?>
-                    <button type="submit" class="delete-btn">Delete</button>
-                </form>
+                <div class="delete-update">
+                    <form action="<?php echo e(route('deletetweet', $tweet->id)); ?>" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class="delete-form">
+                        <?php echo csrf_field(); ?>
+                        <?php echo method_field('DELETE'); ?>
+                        <button type="submit" class="delete-btn">Delete</button>
+                    </form>
+                    <a href="<?php echo e(route('edittweet', $tweet->id)); ?>" class="edit-btn">
+                        <p type="submit" class="delete-btn">Update</p>
+                    </a>  
+                </div> 
             </div>
         </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

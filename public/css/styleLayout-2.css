@@ -169,6 +169,10 @@ img.profile-img {
   object-fit: cover;
 }
 
+.profile-name{
+  margin-right: 20px;
+}
+
 .profile-name p{
   text-decoration: none;
 }
@@ -223,7 +227,6 @@ img.profile-img {
   position: fixed;
   padding: 10px 30px 285px 30px;
   background: url('/image/z2.jpg');
-  background-size: contain;
   background-size: 200%;
   background-repeat: repeat;    
   background-position: center;

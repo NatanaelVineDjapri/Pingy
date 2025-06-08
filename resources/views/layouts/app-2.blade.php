@@ -19,28 +19,65 @@
       <li class="navbar-brand">
         <a href="#" class ="brand-text">Pingys</a>
       </li>
+      @if (request()->routeIs('home') ||request()->routeIs('homefollowing'))
+        <li class="nav-item">
+          <a href="{{ route('home', auth()->user()->id) }}" class="item-icon"><ion-icon name="home"></ion-icon></a>
+          <a href="{{ route('home', auth()->user()->id) }}" class="item-link">Home</a>
+        </li>
+      @else
+        <li class="nav-item">
+          <a href="{{ route('home', auth()->user()->id) }}" class="item-icon"><ion-icon name="home-outline"></ion-icon></a>
+          <a href="{{ route('home', auth()->user()->id) }}" class="item-link">Home</a>
+        </li>
+       @endif
+      @if (request()->routeIs('explore'))
+        <li class="nav-item">
+          <a href="{{ route('explore') }}" class="item-icon"><ion-icon name="search"></ion-icon></a>
+          <a href="{{ route('explore') }}" class="item-link">Explore</a>
+        </li>
+      @else
       <li class="nav-item">
-        <a href="{{ route('home', auth()->user()->id) }}" class="item-icon"><ion-icon name="home-outline"></ion-icon></a>
-        <a href="{{ route('home', auth()->user()->id) }}" class="item-link">Home</a>
+          <a href="{{ route('explore') }}" class="item-icon"><ion-icon name="search-outline"></ion-icon></a>
+          <a href="{{ route('explore') }}" class="item-link">Explore</a>
       </li>
+      @endif
+      @if (request()->routeIs('inboxmessage') || request()->routeIs('showmessage'))
       <li class="nav-item">
-        <a href="{{ route('explore') }}" class="item-icon"><ion-icon name="search-outline"></ion-icon></a>
-        <a href="{{ route('explore') }}" class="item-link">Explore</a>
+        <a href="{{ route('inboxmessage') }}" class="item-icon"><ion-icon name="mail"></ion-icon></a>
+        <a href="{{ route('inboxmessage') }}" class="item-link">Messages</a>
       </li>
+      @else
       <li class="nav-item">
         <a href="{{ route('inboxmessage') }}" class="item-icon"><ion-icon name="mail-outline"></ion-icon></a>
         <a href="{{ route('inboxmessage') }}" class="item-link">Messages</a>
       </li>
+      @endif
+      @if (request()->routeIs('bookmarks'))
+      <li class="nav-item">
+        <a href="#" class="item-icon"><ion-icon name="bookmark"></ion-icon></a>
+        <a href="#" class="item-link">Bookmarks</a>
+      </li>
+      @else
       <li class="nav-item">
         <a href="#" class="item-icon"><ion-icon name="bookmark-outline"></ion-icon></a>
         <a href="#" class="item-link">Bookmarks</a>
       </li>
+      @endif
+      @if (request()->routeIs('showprofile') || request()->routeIs('mediaprofile') || request()->routeIs('showprofile') || request()->routeIs('likeprofile') || request()->routeIs('updateprofile'))
+      <li class="nav-item">
+        <a href="{{ route('showprofile', auth()->user()->id) }}" class="item-icon">
+          <ion-icon name="person"></ion-icon>
+        </a>
+        <a href="{{ route('showprofile', auth()->user()->id) }}" class="item-link">Profile</a>
+      </li>
+      @else
       <li class="nav-item">
         <a href="{{ route('showprofile', auth()->user()->id) }}" class="item-icon">
           <ion-icon name="person-outline"></ion-icon>
         </a>
         <a href="{{ route('showprofile', auth()->user()->id) }}" class="item-link">Profile</a>
       </li>
+      @endif
 
       <li class="nav-item">
         <form action="{{ route('logout') }}" method="POST" ">

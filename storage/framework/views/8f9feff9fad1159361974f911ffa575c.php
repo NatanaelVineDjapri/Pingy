@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('head'); ?>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleHome.css')); ?>">
 <?php $__env->stopSection(); ?>
@@ -9,7 +7,7 @@
         <div class="message-box">
             <form action="<?php echo e(route('inboxmessage')); ?>" method="GET" class="tweet-form" style="margin-left:auto;">
                 <div class="tweet-input-section">
-                    <input type="text" name="search" value="<?php echo e(request('search')); ?>" placeholder="Search users..." style="width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc;">
+                    <input type="text" name="search" value="<?php echo e(request('search')); ?>" placeholder="Search Direct Messages"class="search-input">
                 </div>
                 <div class="message-actions" style="justify-content: flex-end;">
                     <button type="submit" class="message-submit-btn">Search</button>
@@ -112,16 +110,10 @@
                             <?php else: ?>
                                 <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" class="avatar">
                             <?php endif; ?>
-
-                            
                          </div> 
                     </div>
-                   
                    <div class="message-body-right">
                         <p><?php echo e($message->message); ?></p>
-                       
-                    
-                     
                      </div>
                 </div>
             <?php else: ?>

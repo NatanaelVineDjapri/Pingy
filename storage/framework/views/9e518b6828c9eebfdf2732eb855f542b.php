@@ -48,7 +48,15 @@
                 <?php endif; ?>
                 <div class="packs-name">
                     <a href="<?php echo e(route('showprofile', $tweet->user->id)); ?>"><p class="name"><?php echo e($tweet->user->name); ?></p></a>
-                    <p class="username"><?php echo e('@' . $tweet->user->username); ?> - <?php echo e($tweet->created_at->format('M,d Y')); ?></p>
+                    <p class="username"><?php echo e('@' . $tweet->user->username); ?> - 
+                    <?php if($tweet->created_at->diffInHours() < 24): ?>
+                        <?php echo e($tweet->created_at->diffForHumans()); ?>
+
+                    <?php else: ?>
+                        <?php echo e($tweet->created_at->format('M, d Y')); ?>
+
+                    <?php endif; ?> 
+                    </p>
                 </div>
             </div>
             <div class="tweet-body">

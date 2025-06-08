@@ -11,12 +11,12 @@
 
 <body>
     <video class="video-bg" autoplay muted loop>
-    <source src="image/video1.mp4" type="video/mp4">
+    <source src="{{ asset('image/video1.mp4') }}" type="video/mp4">
   </video>
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form method="POST" action="{{ url('/register') }}">
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <h1 class="h1-pink">Create Account</h1>
                 <input type="text" name="username" placeholder="Username" value="{{ old('username') }}"required>
@@ -29,12 +29,12 @@
             </form>
         </div>
         <div class="form-container sign-in">
-            <form method="POST" action="{{ url('/login') }}">
+            <form method="POST" action="{{ route('manuallogin') }}">
                 @csrf
                 <h1 class ="h1-pink">Sign In</h1>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
-                <a href="{{ url('forget-password') }}">Forget Your Password?</a>
+                <a href="{{ route('forgetpassword') }}">Forget Your Password?</a>
                 <button>Sign In</button>
                 @error('email')
                     <div class="error_situation">

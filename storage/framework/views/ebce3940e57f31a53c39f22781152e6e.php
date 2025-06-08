@@ -18,9 +18,9 @@
         <section class="twitterprofile">
             <div class="headerprofileimage">
                 <?php if($user->banner): ?>
-                <img src="<?php echo e(asset('storage/' . $user->banner)); ?>" alt="header" id="headerimage">
+                <img src="<?php echo e(asset('storage/' . $user->banner)); ?>" alt="header" id="headerimage" class = "header-a">
                 <?php else: ?>
-                <img src="<?php echo e(asset('image/banner.jpg')); ?>" alt="header default" id="headerimage">
+                <img src="<?php echo e(asset('image/banner.jpg')); ?>" alt="header default" id="headerimage" class = "header-b">
                 <?php endif; ?>
 
                 <?php if($user->avatar): ?>

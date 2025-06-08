@@ -13,10 +13,12 @@ class FollowController extends Controller
     }
 
     public function store(User $user){
-        $User = auth()->user();
-        if($User->id !== $user->id){
-            $User->toggleFollow($user);
+        $authUser = auth()->user();
+
+        if ($authUser->id === $user->id){
+            abort(403, 'You cannot follow yourself.');
         }
+        $authUser->toggleFollow($user);
         return back();
     }
 

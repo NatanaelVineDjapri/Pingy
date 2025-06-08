@@ -8,7 +8,11 @@ use App\Models\Tweet;
 use Illuminate\Support\Facades\Auth;
 
 class ExploreController extends Controller
-{
+{  
+   public function __construct(){
+        $this->middleware('auth');
+   }
+
    public function index(request $request){
 
     $search = $request->input('search');
