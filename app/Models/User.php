@@ -86,16 +86,15 @@ class User extends Authenticatable
         return asset('');
     }
 
-    public function bookmarkedTweets()
-    {
+    public function bookmarkedTweets(){
     return $this->belongsToMany(Tweet::class, 'bookmarks')->withTimestamps();
     }
 
-    // public function getHomeTweets(){
-    //     $followedUserIds = $this->connections()->pluck('id');
-    //     $followedUserIds->push($this->id);
-    //      //pluck buat ambil .. dri array,push masukin id lu sendiri
+    public function sentMessages(){
+        return $this->hasMany(Message::class,'sender_id');
+    }
 
-    //     return Tweet::where('user_id',$followedUserIds)->withLikes()->latest()->paginate(20);
-    // }
+    public function receivedMessages(){
+        return $this->hasMany(Message::class,'receiver_id');
+    }
 }

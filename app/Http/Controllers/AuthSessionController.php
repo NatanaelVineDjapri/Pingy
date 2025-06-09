@@ -22,7 +22,7 @@ class AuthSessionController extends Controller
         if (Auth::attempt($userInput)) {
         $request->session()->regenerate();
 
-        return redirect('/home');
+        return redirect()->route('home');
 
         }
         return back()->withErrors([
@@ -37,7 +37,7 @@ class AuthSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/auth');
+        return redirect()->route('login');
     }
     public function register(Request $request){
     
@@ -67,7 +67,8 @@ class AuthSessionController extends Controller
 
         Auth::login($user);
 
-        return redirect('/auth');
+        return redirect()->route('login');
+
     }
 
 }

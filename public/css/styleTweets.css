@@ -1,11 +1,8 @@
 .tweet-container {
     padding: 20px;
-    margin-left: 200px;
-    padding-right: 50px;
-    max-width: 600px;
-    margin-left: 100px;
-    /* border-right:2px solid white; */
-    }
+    width: 600px;
+    margin-left: 60px;
+}
 
 .tweet-box {
     background-color: #fff;
@@ -18,7 +15,6 @@
 
 .tweet-input-section {
     display: flex;
-    /* padding: 10px; */
     gap: 10px;
 }
 
@@ -41,13 +37,18 @@
 }
 
 .packs-name {
-    display: inline-flex;
     padding-top: 0;
+    color: #fba7c9;
+    
+}
+
+.packs-name .name{
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .username{
     color: rgb(113, 106, 106);
-    margin-left: 10px;
     font-weight: 300px;
     font-size: 12px;
     margin-top:2.5px;
@@ -61,18 +62,18 @@
 }
 
 .tweet-submit-btn {
-    background-color:  #fba7c9;
+    background-color:#fba7c9;
     border: none;
     padding: 8px 16px;
     color: white;
-    border-radius: 300px;
+    border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s ease;
-    }
+}
 
 .tweet-submit-btn:hover {
-    background-color:  #e481a8;
+    background-color:#e481a8;
 }
     
 .tweet-actions {     
@@ -83,7 +84,7 @@
 }
 
 .image-preview {
-     margin-top: 10px;
+    margin-top: 10px;
 }
 
 .tweet-list {
@@ -104,8 +105,7 @@
 .tweet-body {
     flex-grow: 1;
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column; 
 }
 
 textarea{
@@ -114,9 +114,10 @@ textarea{
 }
 
 .tweet-body p {
-    margin: 0 0 5px 0;
+    margin: 0 ;
+    margin-top: 6px;
     white-space: pre-wrap;
-    font-size: 1rem;
+    font-size: 13px;
 }
 
 .delete-form {
@@ -130,11 +131,10 @@ textarea{
     font-size: 13px;
     cursor: pointer;
     padding: 8px 12px;
-    margin-left:  420px;
+    margin-left:  370px;
     background-color: #fba7c9;
-    border-radius: 300px;
+    border-radius: 8px;
     margin-top: 3px
-   
 }
 
 .delete-btn:hover {
@@ -157,4 +157,18 @@ textarea{
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.delete-update{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-btn p{
+   padding-top: 100px;
 }

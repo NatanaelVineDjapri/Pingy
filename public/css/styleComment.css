@@ -1,8 +1,8 @@
 .tweet-container {
     padding: 20px;
-    max-width: 600px;
-    margin-left: 100px;
-    padding-right: 50px;
+    width: 600px;
+    margin-left: 60px;
+    /* padding-right: 50px; */
 }
 
 .tweet-list {
@@ -27,6 +27,13 @@
     gap: 10px;
 }
 
+.followers-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
 .avatar {
     width: 48px;
     height: 48px;
@@ -42,21 +49,24 @@
 }
 
 .packs-name {
-    display: inline-flex;
     align-items: center; 
     gap: 2px; 
 }
 
+.packs-name a{
+    color: #fba7c9;
+    text-decoration: none;
+}
 .name {
     font-weight: bold;
     font-size: 1rem;
     margin: 0;
+    color: #fba7c9;
 }
 
 .username {
     color: #717171;
     font-size: 12px;
-    /* margin-top: 20px; */
 }
 
 .tweet-body {
@@ -124,9 +134,7 @@
 }
 
 .comment-item {
-    /* display: flex; */
     gap: 10px;
-    /* align-items: center; */
     margin-bottom: 15px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 10px;
@@ -135,13 +143,11 @@
 .user-info{
     display: flex;
     align-items: center;
-    gap: 10px; /* jarak antara avatar dan nama */
+    gap: 10px; 
 }
 .comment-body {
     margin-top: 10px;
     margin-left:40px;
-
-    
 }
 
 .delete-btn {
@@ -154,9 +160,25 @@
     margin-left: 420px;
     background-color: #fba7c9;
     border-radius: 8px;
-
 }
 
 ion-icon{
     color: #fba7c9;
 }
+
+span {
+    color: rgb(113, 106, 106);
+}
+
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+textarea{
+    width: 500px;
+    height: 150px;
+}
+

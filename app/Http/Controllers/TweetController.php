@@ -17,14 +17,14 @@ class TweetController extends Controller
     public function index(){
         $tweets = Tweet::where('user_id',auth()->id())->latest()->get();
         
-        return view('tweets',[
+        return view('tweets.tweets',[
             'tweets'=> $tweets,
         ]);
     }
 
     public function store(Request $request){
         $validated = $request->validate([
-            'body' => 'nullable|max:255',
+            'body' => 'nullable|max:280',
             'tweetImage' => 'nullable|image|max:2048' 
         ]);
 
@@ -41,14 +41,17 @@ class TweetController extends Controller
 
         Tweet::create($validated); 
         
-        return redirect()->route('gettweet');
+        return back();
     }
    
     public function edit(Tweet $tweet){
-        return view('tweets-edit',compact('tweet'));
+        return view('tweets.tweets-edit',compact('tweet'));
     }
     public function update(Request $request, Tweet $tweet)
     {   
+        if(Auth::user()->id !== $tweet->user_id){
+            abort(403,'Unauthorized acttion');
+        }
         $data = $request->validate([
             'body' => 'required',
         ]);
@@ -58,6 +61,9 @@ class TweetController extends Controller
         return redirect()->route('edittweet', $tweet->id);
     }
     public function destroy(Tweet $tweet){
+        if(Auth::user()->id !== $tweet->user_id){
+            abort(403,'Unauthorized action');
+        }
         if ($tweet->tweetImage) {
         Storage::disk('public')->delete($tweet->tweetImage);
         }

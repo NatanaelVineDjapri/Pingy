@@ -36,16 +36,20 @@ class Tweet extends Model
         return $this->likes()->where('user_id',$user->id)->exists();
     }
 
-   public function bookmarks()
-    {
+    public function bookmarks(){
     return $this->hasMany(Bookmark::class);
     }
 
-    public function isBookmarkedBy(User $user)
-    {
+    public function isBookmarkedBy(User $user){
     return $this->bookmarks()->where('user_id', $user->id)->exists();
     }
 
-
-
+    public static function trending($limit){
+    return self::with('user')
+        ->withCount(['likes', 'comments'])
+        ->orderByDesc('likes_count')
+        ->orderByDesc('comments_count')
+        ->take($limit)
+        ->get();
+}
 }
