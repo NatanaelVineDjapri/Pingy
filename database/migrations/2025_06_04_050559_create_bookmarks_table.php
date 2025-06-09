@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        {
-        Schema::create('likes', function (Blueprint $table) {
+        Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
@@ -20,7 +19,7 @@ return new class extends Migration
             $table->unique(['user_id','tweet_id']);
         });
     }
-    }
+    
 
     /**
      * Reverse the migrations.

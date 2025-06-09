@@ -52,7 +52,8 @@ Route::post('/like/{tweet}', [LikeController::class, 'store'])->middleware('auth
 //retweet
 
 //bookmarks
-Route::post('/tweets/{tweet}/bookmark', [BookmarkController::class, 'store'])->middleware('auth')->name('bookmark.store');
+Route::get('/bookmark/{user}/', [BookmarkController::class, 'index'])->middleware('auth')->name('showbookmarks');
+Route::post('/bookmark/{tweet}', [BookmarkController::class, 'store'])->middleware('auth')->name('postbookmarks');
 
 
 

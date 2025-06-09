@@ -95,21 +95,34 @@
 
                             <ion-icon name="repeat-outline"></ion-icon>
                             <span>{{ $tweet->comments_count }}</span>
-                            
-                                @php
-                                    $liked = auth()->user()->likedTweets->contains($tweet->id);
-                                @endphp
-                                    <form action="{{route('liketweet',$tweet->id)}}" method="POST">
+                            @php
+                                $liked = auth()->user()->likedTweets->contains($tweet->id);
+                             @endphp
+                                <form action="{{route('liketweet',$tweet->id)}}" method="POST">
                                     @csrf
                                     @if($liked)
                                         <button type="submit" class="delete-btn"><ion-icon name="heart-outline" style="color:white"></ion-icon></button>
                                     @else
                                         <button type="submit" class="delete-btn"><ion-icon name="heart-outline" style="color:pink"></ion-icon></button>
                                     @endif
-                                    </form>
-                                    <span>{{ $tweet->likes_count }}</span>
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                             <span>{{ $tweet->likes_count }}</span>
+                                </form>
+                                <span>{{ $tweet->likes_count }}</span>
+                             @php
+                                $bookmarked = auth()->user()->bookmarkedTweets->contains($tweet->id);
+                            @endphp
+
+                            <form action="{{ route('postbookmarks', $tweet->id) }}" method="POST">
+                                @csrf
+                                @if($bookmarked)
+                                    <button type="submit" class="delete-btn">
+                                        <ion-icon name="bookmark" style="color:pink"></ion-icon>
+                                    </button>
+                                @else
+                                    <button type="submit" class="delete-btn">
+                                        <ion-icon name="bookmark-outline" style="color:white"></ion-icon>
+                                    </button>
+                                @endif
+                            </form>
 
                              <form action="{{ route('deletetweet', $tweet->id) }}" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class ="delete-form">
                                 @csrf
