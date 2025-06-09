@@ -59,7 +59,7 @@
       </li>
       @else
       <li class="nav-item">
-        <a href="#" class="item-icon"><ion-icon name="bookmark-outline"></ion-icon></a>
+        <a href="{{ route('showbookmarks', auth()->user()->id) }}" class="item-icon"><ion-icon name="bookmark-outline"></ion-icon></a>
         <a href="#" class="item-link">Bookmarks</a>
       </li>
       @endif

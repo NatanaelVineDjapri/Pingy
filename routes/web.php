@@ -10,6 +10,8 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\BookmarkController;
+
 
 Route::prefix('pingy')->group(function(){
 
@@ -45,13 +47,17 @@ Route::prefix('pingy')->group(function(){
 
     //comment
     Route::delete('/tweet/{tweet}/comment/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('deletecomment');
-    Route::post('//tweet/{tweet}/comment', [CommentController::class, 'store'])->middleware('auth')->name('postcomment');
+    Route::post('/tweet/{tweet}/comment', [CommentController::class, 'store'])->middleware('auth')->name('postcomment');
     Route::get('/tweet/{tweet}/comment', [CommentController::class, 'index'])->middleware('auth')->name('showcomment');
 
     //follow
     Route::post('/follow/{user}', [FollowController::class, 'store'])->middleware('auth')->name('follow');
     Route::get('/follow/{user}/show',[FollowController::class,'index'])->middleware('auth')->name('showfollow');
 
+
+    //bookmarks
+    Route::get('/bookmark/{user}/', [BookmarkController::class, 'index'])->middleware('auth')->name('showbookmarks');
+    Route::post('/bookmark/{tweet}', [BookmarkController::class, 'store'])->middleware('auth')->name('postbookmarks');
     //like
     Route::post('/like/{tweet}', [LikeController::class, 'store'])->middleware('auth')->name('liketweet');
 

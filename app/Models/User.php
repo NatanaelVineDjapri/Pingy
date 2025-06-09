@@ -86,6 +86,10 @@ class User extends Authenticatable
         return asset('');
     }
 
+    public function bookmarkedTweets(){
+    return $this->belongsToMany(Tweet::class, 'bookmarks')->withTimestamps();
+    }
+
     public function sentMessages(){
         return $this->hasMany(Message::class,'sender_id');
     }
