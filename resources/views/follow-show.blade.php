@@ -67,9 +67,9 @@
                             </a>
                             <p class="username">{{'@'. $follower->username }}</p>
                         </div>
-                        <form action="{{route('follow',$followingUser)}}" method="POST" style="margin-left:auto;">
+                        <form action="{{route('follow',$follower)}}" method="POST" style="margin-left:auto;">
                             @csrf
-                            @if(auth()->user()->isFollowing($followingUser))
+                            @if(auth()->user()->isFollowing($follower))
                                 <button type="submit" class="btn-sm-primary">UnFollow</button>
                             @else
                                 <button type="submit" class="btn-sm-primary">Follow</button>

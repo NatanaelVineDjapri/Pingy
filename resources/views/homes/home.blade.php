@@ -18,7 +18,7 @@
             @csrf
             <div class="tweet-input-section">
                  @if(Auth::user()->avatar)
-                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" class="avatar" >
+                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" class="avatar">
                 @else
                     <img src="{{ asset('image/profilepicture.jpg') }}" class="avatar">
                 @endif
@@ -83,8 +83,17 @@
                         @endif
                     </form>
                     <span>{{ $tweet->likes_count }}</span>
-                    <ion-icon name="bookmark-outline"></ion-icon>
-                    <span>{{ $tweet->comments_count }}</span>
+                    @php
+                         $bookmarked = auth()->user()->bookmarkedTweets->contains($tweet->id);
+                    @endphp
+                    <form action="{{ route('postbookmarks', $tweet->id) }}" method="POST">
+                        @csrf
+                        @if($bookmarked)
+                            <button type="submit" class="like-btn"><ion-icon name="bookmark"></ion-icon></button>
+                        @else
+                            <button type="submit" class="like-btn" ><ion-icon name="bookmark-outline"></ion-icon></button>
+                        @endif
+                    </form>
                 </ul>
             </div>
         </div>

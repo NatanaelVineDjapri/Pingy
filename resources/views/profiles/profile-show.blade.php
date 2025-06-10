@@ -102,22 +102,37 @@
                         <li>
                             <ion-icon name="repeat-outline"></ion-icon>
                             <span>{{ $tweet->comments_count }}</span>
-                                @php
-                                    $liked = auth()->user()->likedTweets->contains($tweet->id);
-                                @endphp
-                                    <form action="{{route('liketweet',$tweet->id)}}" method="POST">
-                                    @csrf
-                                    @if($liked)
-                                        <button type="submit" class="delete-btn"><ion-icon name="heart-outline" style="color:white"></ion-icon></button>
-                                    @else
-                                        <button type="submit" class="delete-btn"><ion-icon name="heart-outline" style="color:pink"></ion-icon></button>
-                                    @endif
-                                    </form>
-                                    <span>{{ $tweet->likes_count }}</span>
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                             <span>{{ $tweet->likes_count }}</span>
-
-                             <form action="{{ route('deletetweet', $tweet->id) }}" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class ="delete-form">
+                        </li>
+                        <li>
+                            @php
+                                $liked = auth()->user()->likedTweets->contains($tweet->id);
+                            @endphp
+                                 <form action="{{route('liketweet',$tweet->id)}}" method="POST">
+                                @csrf
+                                @if($liked)
+                                    <button type="submit" class="delete-btn"><ion-icon name="heart"></ion-icon></button>
+                                @else
+                                    <button type="submit" class="delete-btn"><ion-icon name="heart-outline"></ion-icon></button>
+                                @endif
+                                </form>
+        
+                            <span>{{ $tweet->likes_count }}</span>
+                        <li> 
+                            @php
+                                $bookmarked = auth()->user()->bookmarkedTweets->contains($tweet->id);
+                            @endphp
+                            <form action="{{ route('postbookmarks', $tweet->id) }}" method="POST">
+                                @csrf
+                                @if($bookmarked)
+                                    <button type="submit" class="delete-btn"><ion-icon name="bookmark"></ion-icon></button>
+                                @else
+                                    <button type="submit" class="delete-btn"><ion-icon name="bookmark-outline"></ion-icon></button>
+                                @endif
+                            </form>
+                        </li>
+                         @if(auth()->id()===$tweet->user->id)      
+                        <li>
+                            <form action="{{ route('deletetweet', $tweet->id) }}" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class ="delete-form">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="delete-btn"><ion-icon name="trash-outline"></ion-icon></button>

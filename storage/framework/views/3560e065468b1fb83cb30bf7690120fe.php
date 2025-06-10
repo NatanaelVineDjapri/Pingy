@@ -47,8 +47,17 @@
                         <?php endif; ?>
                     </form>
                     <span><?php echo e($tweet->likes_count); ?></span>
-                    <ion-icon name="bookmark-outline"></ion-icon>
-                    <span><?php echo e($tweet->comments->count()); ?></span>
+                    <?php
+                         $bookmarked = auth()->user()->bookmarkedTweets->contains($tweet->id);
+                    ?>
+                    <form action="<?php echo e(route('postbookmarks', $tweet->id)); ?>" method="POST">
+                        <?php echo csrf_field(); ?>
+                        <?php if($bookmarked): ?>
+                            <button type="submit" class="like-btn"><ion-icon name="bookmark"></ion-icon></button>
+                        <?php else: ?>
+                            <button type="submit" class="like-btn" ><ion-icon name="bookmark-outline"></ion-icon></button>
+                        <?php endif; ?>
+                    </form>
                 </ul>
                 <div class="comment-section">
                     <form action="<?php echo e(route('postcomment', $tweet->id)); ?>" method="POST" class="comment-form">

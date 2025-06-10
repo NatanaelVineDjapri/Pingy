@@ -47,8 +47,8 @@ class Tweet extends Model
     public static function trending($limit){
     return self::with('user')
         ->withCount(['likes', 'comments'])
-        ->orderByDesc('likes_count')
         ->orderByDesc('comments_count')
+        ->orderByDesc('likes_count')
         ->take($limit)
         ->get();
 }

@@ -47,6 +47,7 @@ class TweetController extends Controller
     public function edit(Tweet $tweet){
         return view('tweets.tweets-edit',compact('tweet'));
     }
+
     public function update(Request $request, Tweet $tweet)
     {   
         if(Auth::user()->id !== $tweet->user_id){
@@ -60,6 +61,7 @@ class TweetController extends Controller
 
         return redirect()->route('edittweet', $tweet->id);
     }
+    
     public function destroy(Tweet $tweet){
         if(Auth::user()->id !== $tweet->user_id){
             abort(403,'Unauthorized action');

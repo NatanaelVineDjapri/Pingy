@@ -18,7 +18,7 @@
             <?php echo csrf_field(); ?>
             <div class="tweet-input-section">
                  <?php if(Auth::user()->avatar): ?>
-                    <img src="<?php echo e(asset('storage/' . Auth::user()->avatar)); ?>" class="avatar" >
+                    <img src="<?php echo e(asset('storage/' . Auth::user()->avatar)); ?>" class="avatar">
                 <?php else: ?>
                     <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" class="avatar">
                 <?php endif; ?>
@@ -85,8 +85,17 @@
                         <?php endif; ?>
                     </form>
                     <span><?php echo e($tweet->likes_count); ?></span>
-                    <ion-icon name="bookmark-outline"></ion-icon>
-                    <span><?php echo e($tweet->comments_count); ?></span>
+                    <?php
+                         $bookmarked = auth()->user()->bookmarkedTweets->contains($tweet->id);
+                    ?>
+                    <form action="<?php echo e(route('postbookmarks', $tweet->id)); ?>" method="POST">
+                        <?php echo csrf_field(); ?>
+                        <?php if($bookmarked): ?>
+                            <button type="submit" class="like-btn"><ion-icon name="bookmark"></ion-icon></button>
+                        <?php else: ?>
+                            <button type="submit" class="like-btn" ><ion-icon name="bookmark-outline"></ion-icon></button>
+                        <?php endif; ?>
+                    </form>
                 </ul>
             </div>
         </div>

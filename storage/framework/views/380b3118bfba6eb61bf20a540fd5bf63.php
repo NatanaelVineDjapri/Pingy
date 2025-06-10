@@ -9,7 +9,7 @@
 <div class="container">
     <div class="feed-toggle">
         <a href="<?php echo e(route('home', auth()->user()->id)); ?>">For You</a>
-        <a href="<?php echo e(route('home', auth()->user()->id)); ?>">Following</a>
+        <a href="<?php echo e(route('homefollowing', auth()->user()->id)); ?>">Following</a>
     </div>
 </div>
 <div class="tweet-container">
@@ -33,7 +33,7 @@
 
         <?php if(session('previewPath')): ?>
             <div class="image-preview">
-                <img src="<?php echo e(asset('storage/' . session('previewPath'))); ?>" alt="Preview" class="tweet-img"/>
+                <img src="<?php echo e(asset('storage/' . session('previewPath'))); ?>" alt="Preview" class="tweet-image"/>
             </div>
         <?php endif; ?>
     </div>
@@ -55,7 +55,7 @@
                     <?php else: ?>
                         <?php echo e($tweet->created_at->format('M, d Y')); ?>
 
-                    <?php endif; ?>    
+                    <?php endif; ?> 
                     </p>
                 </div>
             </div>
@@ -63,14 +63,16 @@
                 <p><?php echo e($tweet->body); ?></p>
                 <?php if($tweet->tweetImage): ?>
                 <div class="tweet-image">
-                    <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>"  alt="Tweet image" style="width: 100%; max-width: 675px;max-height:600px;border-radius: 10px; margin-top: 10px;">
+                    <img src="<?php echo e(asset('storage/' . $tweet->tweetImage)); ?>"  alt="Tweet image" style="width: 100%; max-width: 675px;max-height:900px;border-radius: 10px; margin-top: 10px;">
                 </div>
                 <?php endif; ?>
                 <ul class="retweeticons">
                     <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
                     <span><?php echo e($tweet->comments_count); ?></span>
+
                     <ion-icon name="repeat-outline"></ion-icon>
-                    <span><?php echo e($tweet->comments_count); ?></span>    
+                    <span><?php echo e($tweet->comments_count); ?></span>
+                            
                     <?php
                         $liked = auth()->user()->likedTweets->contains($tweet->id);
                     ?>
@@ -83,8 +85,17 @@
                         <?php endif; ?>
                     </form>
                     <span><?php echo e($tweet->likes_count); ?></span>
-                    <ion-icon name="bookmark-outline"></ion-icon>
-                    <span><?php echo e($tweet->comments_count); ?></span>
+                    <?php
+                         $bookmarked = auth()->user()->bookmarkedTweets->contains($tweet->id);
+                    ?>
+                    <form action="<?php echo e(route('postbookmarks', $tweet->id)); ?>" method="POST">
+                        <?php echo csrf_field(); ?>
+                        <?php if($bookmarked): ?>
+                            <button type="submit" class="like-btn"><ion-icon name="bookmark"></ion-icon></button>
+                        <?php else: ?>
+                            <button type="submit" class="like-btn" ><ion-icon name="bookmark-outline"></ion-icon></button>
+                        <?php endif; ?>
+                    </form>
                 </ul>
             </div>
         </div>

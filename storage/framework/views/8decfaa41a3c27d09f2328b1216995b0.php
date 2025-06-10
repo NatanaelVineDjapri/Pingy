@@ -52,15 +52,15 @@
         <a href="<?php echo e(route('inboxmessage')); ?>" class="item-link">Messages</a>
       </li>
       <?php endif; ?>
-      <?php if(request()->routeIs('bookmarks')): ?>
+      <?php if(request()->routeIs('showbookmarks')): ?>
       <li class="nav-item">
-        <a href="#" class="item-icon"><ion-icon name="bookmark"></ion-icon></a>
-        <a href="#" class="item-link">Bookmarks</a>
+        <a href="<?php echo e(route('showbookmarks', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="bookmark"></ion-icon></a>
+        <a href="<?php echo e(route('showbookmarks', auth()->user()->id)); ?>" class="item-link">Bookmarks</a>
       </li>
       <?php else: ?>
       <li class="nav-item">
         <a href="<?php echo e(route('showbookmarks', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="bookmark-outline"></ion-icon></a>
-        <a href="#" class="item-link">Bookmarks</a>
+        <a href="<?php echo e(route('showbookmarks', auth()->user()->id)); ?>" class="item-link">Bookmarks</a>
       </li>
       <?php endif; ?>
       <?php if(request()->routeIs('showprofile') || request()->routeIs('mediaprofile') || request()->routeIs('showprofile') || request()->routeIs('likeprofile') || request()->routeIs('updateprofile')): ?>

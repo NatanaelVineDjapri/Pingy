@@ -105,43 +105,12 @@
                         <li>
                             <ion-icon name="repeat-outline"></ion-icon>
                             <span><?php echo e($tweet->comments_count); ?></span>
-<<<<<<< HEAD
-                            <?php
-                                $liked = auth()->user()->likedTweets->contains($tweet->id);
-                             ?>
-                                <form action="<?php echo e(route('liketweet',$tweet->id)); ?>" method="POST">
-                                    <?php echo csrf_field(); ?>
-                                    <?php if($liked): ?>
-                                        <button type="submit" class="delete-btn"><ion-icon name="heart-outline" style="color:white"></ion-icon></button>
-                                    <?php else: ?>
-                                        <button type="submit" class="delete-btn"><ion-icon name="heart-outline" style="color:pink"></ion-icon></button>
-                                    <?php endif; ?>
-                                </form>
-                                <span><?php echo e($tweet->likes_count); ?></span>
-                             <?php
-                                $bookmarked = auth()->user()->bookmarkedTweets->contains($tweet->id);
-                            ?>
-
-                            <form action="<?php echo e(route('postbookmarks', $tweet->id)); ?>" method="POST">
-                                <?php echo csrf_field(); ?>
-                                <?php if($bookmarked): ?>
-                                    <button type="submit" class="delete-btn">
-                                        <ion-icon name="bookmark" style="color:pink"></ion-icon>
-                                    </button>
-                                <?php else: ?>
-                                    <button type="submit" class="delete-btn">
-                                        <ion-icon name="bookmark-outline" style="color:white"></ion-icon>
-                                    </button>
-                                <?php endif; ?>
-                            </form>
-
-=======
                         </li>
                         <li>
                             <?php
                                 $liked = auth()->user()->likedTweets->contains($tweet->id);
                             ?>
-                                <form action="<?php echo e(route('liketweet',$tweet->id)); ?>" method="POST">
+                                 <form action="<?php echo e(route('liketweet',$tweet->id)); ?>" method="POST">
                                 <?php echo csrf_field(); ?>
                                 <?php if($liked): ?>
                                     <button type="submit" class="delete-btn"><ion-icon name="heart"></ion-icon></button>
@@ -149,16 +118,24 @@
                                     <button type="submit" class="delete-btn"><ion-icon name="heart-outline"></ion-icon></button>
                                 <?php endif; ?>
                                 </form>
+        
                             <span><?php echo e($tweet->likes_count); ?></span>
+                        <li> 
+                            <?php
+                                $bookmarked = auth()->user()->bookmarkedTweets->contains($tweet->id);
+                            ?>
+                            <form action="<?php echo e(route('postbookmarks', $tweet->id)); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
+                                <?php if($bookmarked): ?>
+                                    <button type="submit" class="delete-btn"><ion-icon name="bookmark"></ion-icon></button>
+                                <?php else: ?>
+                                    <button type="submit" class="delete-btn"><ion-icon name="bookmark-outline"></ion-icon></button>
+                                <?php endif; ?>
+                            </form>
                         </li>
+                         <?php if(auth()->id()===$tweet->user->id): ?>      
                         <li>
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                            <span><?php echo e($tweet->likes_count); ?></span>
-                        </li>
-                        <?php if(auth()->id()===$tweet->user->id): ?>      
-                        <li>
->>>>>>> 43fc669c328eedca9a3fc0ea4072b74126eff3fd
-                             <form action="<?php echo e(route('deletetweet', $tweet->id)); ?>" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class ="delete-form">
+                            <form action="<?php echo e(route('deletetweet', $tweet->id)); ?>" method="POST" onsubmit="return confirm('Are you sure to delete this tweet?');" class ="delete-form">
                                 <?php echo csrf_field(); ?>
                                 <?php echo method_field('DELETE'); ?>
                                 <button type="submit" class="delete-btn"><ion-icon name="trash-outline"></ion-icon></button>

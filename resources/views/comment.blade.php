@@ -47,8 +47,17 @@
                         @endif
                     </form>
                     <span>{{ $tweet->likes_count }}</span>
-                    <ion-icon name="bookmark-outline"></ion-icon>
-                    <span>{{ $tweet->comments->count() }}</span>
+                    @php
+                         $bookmarked = auth()->user()->bookmarkedTweets->contains($tweet->id);
+                    @endphp
+                    <form action="{{ route('postbookmarks', $tweet->id) }}" method="POST">
+                        @csrf
+                        @if($bookmarked)
+                            <button type="submit" class="like-btn"><ion-icon name="bookmark"></ion-icon></button>
+                        @else
+                            <button type="submit" class="like-btn" ><ion-icon name="bookmark-outline"></ion-icon></button>
+                        @endif
+                    </form>
                 </ul>
                 <div class="comment-section">
                     <form action="{{ route('postcomment', $tweet->id) }}" method="POST" class="comment-form">

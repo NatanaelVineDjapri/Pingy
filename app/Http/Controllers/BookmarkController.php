@@ -15,11 +15,12 @@ class BookmarkController extends Controller
     }
 
     public function index(User $user){
+
         if (Auth::id() !== $user->id){
         abort(403, 'Unauthorized');
         }
 
-        $bookmarked = $user->bookmarkedTweets()->get();
+        $bookmarked = $user->bookmarkedTweets()->with(['user'])->withCount(['comments', 'likes'])->orderBy('bookmarks.created_at','desc')->get();
 
         return view('bookmark', compact('bookmarked'));
 
