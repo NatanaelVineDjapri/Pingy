@@ -12,6 +12,7 @@ use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\RetweetController;
+use App\Http\Controllers\NotificationController;
 
 
 Route::prefix('pingy')->group(function(){
@@ -72,5 +73,7 @@ Route::prefix('pingy')->group(function(){
     Route::post('/messages/{user}',[MessageController::class,'store'])->middleware('auth')->name('postmessage');
     Route::delete('/messages/{user}/{message}',[MessageController::class,'destroy'])->middleware('auth')->name('deletemessage');
 
+    //notifications
+    Route::get('/notification',[NotificationController::class,'index'])->middleware('auth')->name('shownotification');
 });
 

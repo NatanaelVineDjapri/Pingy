@@ -19,7 +19,7 @@
       <li class="navbar-brand">
         <a href="#" class ="brand-text">Pingys</a>
       </li>
-      <?php if(request()->routeIs('home') ||request()->routeIs('homefollowing')): ?>
+       <?php if(request()->routeIs('home') ||request()->routeIs('homefollowing')): ?>
         <li class="nav-item">
           <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="home"></ion-icon></a>
           <a href="<?php echo e(route('home', auth()->user()->id)); ?>" class="item-link">Home</a>
@@ -61,17 +61,6 @@
       <li class="nav-item">
         <a href="<?php echo e(route('showbookmarks', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="bookmark-outline"></ion-icon></a>
         <a href="<?php echo e(route('showbookmarks', auth()->user()->id)); ?>" class="item-link">Bookmarks</a>
-      </li>
-      <?php endif; ?>
-      <?php if(request()->routeIs('shownotification')): ?>
-      <li class="nav-item">
-        <a href="<?php echo e(route('shownotification', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="notifications"></ion-icon></a>
-        <a href="<?php echo e(route('shownotification', auth()->user()->id)); ?>" class="item-link">Notifications</a>
-      </li>
-      <?php else: ?>
-      <li class="nav-item">
-        <a href="<?php echo e(route('shownotification', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="notifications-outline"></ion-icon></a>
-        <a href="<?php echo e(route('shownotification', auth()->user()->id)); ?>" class="item-link">Notifications</a>
       </li>
       <?php endif; ?>
       <?php if(request()->routeIs('showprofile') || request()->routeIs('mediaprofile') || request()->routeIs('showprofile') || request()->routeIs('likeprofile') || request()->routeIs('updateprofile')): ?>
@@ -117,50 +106,10 @@
   </div>
     </a>
   </nav>
-   <main class="main-content">
+   <main class="main-content-3">
       <?php echo $__env->yieldContent('content'); ?>
   </main>
-<div class="sidebar-2">
-    <div class="card">
-        <h3>Who to Follow</h3>
-          <?php $__currentLoopData = $suggestusers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="suggestion-card">
-                <div class="info">
-                    <?php if($user->avatar): ?>
-                      <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" alt="Profile Image" class="profile-img" width="35" height="35">
-                    <?php else: ?>
-                      <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="Default Profile" class="profile-img" width="35" height="35">
-                    <?php endif; ?>
-                    <div>
-                        <a href="<?php echo e(route('showprofile', $user->id)); ?>"><strong><?php echo e($user->name); ?></strong><br>
-                        <span style="color: gray;"><?php echo e('@'.$user->username); ?></span></a>
-                    </div>
-                </div>
-                <form action="<?php echo e(route('follow',$user)); ?>" method="POST">
-                  <?php echo csrf_field(); ?>
-                  <?php if(auth()->user()->isFollowing($user)): ?>
-                    <button type="submit" class="btn-sm-primary">UnFollow</button>
-                  <?php else: ?>
-                      <button type="submit" class="btn-sm-primary">Follow</button>
-                  <?php endif; ?>
-                </form>
-            </div>
-          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </div>
-    <div class="card">
-        <h3>What’s happening</h3>
-        <?php $__currentLoopData = $tweetstrending; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tweet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <div class="trend">
-            <div class="label">Trending in Indonesia</div>
-            <div class="body-count">
-              <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>" style ="color:#716a6a"><span><?php echo e(Str::limit($tweet->body, 30)); ?></span></a>
-              <small class ="count-trend"><?php echo e($tweet->likes_count + $tweet->comments_count); ?> Interactions</small>
-            </div>  
-        </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </div>
-</div>
 </div>
 </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/layouts/app.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\UAS GIT\New\Pingy\resources\views/layouts/app-3.blade.php ENDPATH**/ ?>
