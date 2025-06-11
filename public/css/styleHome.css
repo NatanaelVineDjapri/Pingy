@@ -2,10 +2,17 @@ body {
     background-color: #fba7c9;
 }
 
+.content{
+    width: 720px;
+}
+
 .tweet-container {
     padding: 20px;
-    width: 600px;
-    margin-left: 60px;
+    /* width: 600px; */
+    width: 90%;
+    /* margin-left: 60px; */
+    justify-content: center;
+     margin: 0 auto;    
 }
 
 .comment-container{
@@ -15,7 +22,12 @@ body {
 }
 
 .container{
-    justify-content: center; 
+    width: 100%;
+    background: url('/image/z2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-bottom: 1px solid white;
 }
 
 .tweet-list {
@@ -183,19 +195,32 @@ span {
 .upload-label {
     cursor: pointer;
     font-size: 25px;
-    color: #fba7c9;
+    color: #817579;
     margin-right: auto;
 }
 
+.container {
+     width: 100%;
+    max-width: 720px;     /* Lebar konten utama */
+  /* margin: 0 auto;   */
+  /* padding: 0 1rem; */
+  /* box-sizing: border-box; */
+}
+
 .feed-toggle {
+    width: 100%;
+    max-width: 11050%;
     display: flex;
     justify-content: center;
-    border: 1px solid white;
+    /* gap: 1rem; */
+    /* padding: 1rem; */
     background: url('/image/z2.jpg');
-    background-size: contain;
-    background-size: 100%;
-    background-repeat: repeat;    
+    background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    /* border: 1px solid white; */
+    /* border-radius: 10px; */
+    /* box-sizing: border-box; */
 }
 
 .feed-toggle a {
@@ -219,8 +244,8 @@ span {
     margin-left: 40px;
     padding-right: 50px;
     border-right: 2px solid white;
-     overflow-y: auto;
-     position: fixed;
+    overflow-y: auto;
+    position: fixed;
 }
 
 .message-box {
@@ -390,3 +415,4 @@ textarea:focus {
     border: none;
     cursor: pointer;
 }
+

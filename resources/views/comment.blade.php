@@ -62,7 +62,7 @@
                 <div class="comment-section">
                     <form action="{{ route('postcomment', $tweet->id) }}" method="POST" class="comment-form">
                         @csrf
-                        <input type="text" name="comment" placeholder="Tulis komentar..." required>
+                        <input  type="text" name="comment" placeholder="Tulis komentar..." required>
                         <button type="submit">Kirim</button>
                     </form>
                     @if($tweet->comments->count())

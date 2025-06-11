@@ -11,9 +11,12 @@ a {
 
 .flexcontainer {
     display: flex;
+    /* margin-right: 1000px; */
+   /* margin: 0 auto; */
     justify-content: center; 
     padding: 10px 0;
     width: 100%; 
+    /* width: auto; */
     box-sizing: border-box;
 }
 

@@ -62,7 +62,7 @@
                 <div class="comment-section">
                     <form action="<?php echo e(route('postcomment', $tweet->id)); ?>" method="POST" class="comment-form">
                         <?php echo csrf_field(); ?>
-                        <input type="text" name="comment" placeholder="Tulis komentar..." required>
+                        <input  type="text" name="comment" placeholder="Tulis komentar..." required>
                         <button type="submit">Kirim</button>
                     </form>
                     <?php if($tweet->comments->count()): ?>

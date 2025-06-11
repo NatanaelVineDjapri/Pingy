@@ -147,7 +147,10 @@
 }
 .comment-body {
     margin-top: 10px;
-    margin-left:40px;
+    /* margin-left:40px; */
+    width: 100%;
+    white-space: pre-wrap; 
+    word-break: break-word;
 }
 
 .delete-btn {
@@ -157,7 +160,7 @@
     font-size: 13px;
     cursor: pointer;
     padding: 10px;
-    margin-left: 420px;
+    margin-left: 453px;
     background-color: #fba7c9;
     border-radius: 8px;
 }
