@@ -51,5 +51,24 @@ class Tweet extends Model
         ->orderByDesc('likes_count')
         ->take($limit)
         ->get();
-}
+    }
+
+    public function retweets(){
+    return $this->hasMany(Retweet::class);
+    }
+
+    public function isRetweeted(User $user){
+    return $this->retweets()->where('user_id', $user->id)->exists();
+    }
+
+    //public function retweetCount(){
+    //   return $this->retweetedBy()->count();
+    //}
+
+    // App\Models\Tweet.php
+    public function originalTweet()
+    {
+        return $this->belongsTo(Tweet::class, 'retweet_from');
+    }
+
 }

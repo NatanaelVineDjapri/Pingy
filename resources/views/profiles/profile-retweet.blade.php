@@ -68,7 +68,7 @@
             </div>
         </section>
         <section class="mytweets">
-            @foreach($tweets as $tweet)
+            @foreach($retweetTweets as $tweet)
                 <div class="tweet">
                     <div>
                     @if($tweet->user->avatar)

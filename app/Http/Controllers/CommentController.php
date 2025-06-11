@@ -15,7 +15,7 @@ class CommentController extends Controller
 
     public function index(Tweet $tweet)
     {
-        $tweet->loadCount(['comments', 'likes']);
+        $tweet->loadCount(['comments', 'likes','retweets']);
 
         $comments = $tweet->comments()->with('user')->get();
         

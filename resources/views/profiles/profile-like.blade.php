@@ -62,7 +62,7 @@
         <section class="tweets">
             <div class="heading">
                 <a href="{{route('showprofile',$user->id)}}"><p>Tweets</p></a>
-                <a href=""><p>Tweets and Replies</p></a>
+                <a href="{{route('retweetprofile',$user->id)}}"><p>Tweets and Replies</p></a>
                 <a href="{{route('mediaprofile',$user->id)}}"><p>Media</p></a>
                 <a href="{{route('likeprofile',$user->id)}}" ><p>Likes</p></a>
             </div>
@@ -94,8 +94,18 @@
                             <span>{{ $like->comments_count }}</span>
                         </li>
                         <li>
-                            <ion-icon name="repeat-outline"></ion-icon>
-                            <span>{{ $like->comments_count }}</span>
+                            @php
+                                $retweet = auth()->user()->retweetTweets->contains($like->id);
+                            @endphp
+                                <form action="{{route('postretweet',$like->id)}}" method="POST">
+                                    @csrf
+                                    @if($retweet)
+                                        <button type="submit" class="delete-btn"><ion-icon name="repeat-sharp" ></ion-icon></button>
+                                    @else
+                                        <button type="submit" class="delete-btn"><ion-icon name="repeat" ></ion-icon></button>
+                                    @endif
+                                </form>
+                            <span>{{ $like->retweets_count }}</span>
                         </li>
                         <li>
                             @php
