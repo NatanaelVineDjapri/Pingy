@@ -62,7 +62,7 @@
         <section class="tweets">
             <div class="heading">
                 <a href="{{route('showprofile',$user->id)}}"><p>Tweets</p></a>
-                <a href=""><p>Tweets and Replies</p></a>
+                <a href="{{route('retweetprofile',$user->id)}}"><p>Tweets and Replies</p></a>
                 <a href="{{route('mediaprofile',$user->id)}}"><p>Media</p></a>
                 <a href="{{route('likeprofile',$user->id)}}"><p>Likes</p></a>
             </div>

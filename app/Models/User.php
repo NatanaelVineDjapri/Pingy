@@ -97,4 +97,13 @@ class User extends Authenticatable
     public function receivedMessages(){
         return $this->hasMany(Message::class,'receiver_id');
     }
+
+    public function retweetTweets(){
+    return $this->belongsToMany(Tweet::class, 'retweets')->withTimestamps();
+    }
+
+    //public function hasRetweeted(Tweet $tweet){
+    //    return $this->retweets()->where('tweet_id', $tweet->id)->exists();
+    //}
+
 }

@@ -17,7 +17,7 @@ class ProfileController extends Controller
     public function index(User $user,Request $request){
         $user->loadCount(['followers', 'following']);
 
-        $tweets = $user->tweets()->withCount(['likes', 'comments'])->latest()->get();
+        $tweets = $user->tweets()->withCount(['likes', 'comments', 'retweets'])->latest()->get();
 
         $repliedTweetIds = Comment::where('user_id', $user->id)->pluck('tweet_id');
 
@@ -38,8 +38,14 @@ class ProfileController extends Controller
 
     public function like(User $user){
         $user->loadCount(['followers', 'following']);
-        $likeTweets = $user->likedTweets()->with(['user'])->withCount(['comments', 'likes'])->orderBy('likes.created_at','desc')->get();
+        $likeTweets = $user->likedTweets()->with(['user'])->withCount(['comments', 'likes', 'retweets'])->orderBy('likes.created_at','desc')->get();
         return view('profiles.profile-like',compact('user','likeTweets'));
+    }
+
+    public function retweet(User $user){
+        $user->loadCount(['followers', 'following']);
+        $retweetTweets = $user->retweetTweets()->with(['user'])->withCount(['comments', 'likes', 'retweets'])->orderBy('retweets.created_at','desc')->get();
+        return view('profiles.profile-retweet',compact('user','retweetTweets'));
     }
 
     public function edit(User $user){

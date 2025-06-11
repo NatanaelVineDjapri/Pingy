@@ -11,6 +11,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\RetweetController;
 use App\Http\Controllers\NotificationController;
 
 
@@ -38,6 +39,7 @@ Route::prefix('pingy')->group(function(){
 
     //profile
     Route::get('/profile/{user}/tweets', [ProfileController::class, 'index'])->middleware('auth')->name('showprofile');
+    Route::get('/profile/{user}/retweets', [ProfileController::class, 'retweet'])->middleware('auth')->name('retweetprofile');
     Route::get('/profile/{user}/media', [ProfileController::class, 'media'])->middleware('auth')->name('mediaprofile');
     Route::get('/profile/{user}/like', [ProfileController::class, 'like'])->middleware('auth')->name('likeprofile');
     Route::get('/profile/{user}/edit', [ProfileController::class, 'edit'])->middleware('auth')->name('editprofile');
@@ -63,6 +65,7 @@ Route::prefix('pingy')->group(function(){
     Route::post('/like/{tweet}', [LikeController::class, 'store'])->middleware('auth')->name('liketweet');
 
     //retweet
+    Route::post('/tweets/{tweet}/retweet', [RetweetController::class, 'toggleRetweet'])->name('postretweet');
 
     //message
     Route::get('/messages',[MessageController::class,'inbox'])->middleware('auth')->name('inboxmessage');
@@ -71,6 +74,6 @@ Route::prefix('pingy')->group(function(){
     Route::delete('/messages/{user}/{message}',[MessageController::class,'destroy'])->middleware('auth')->name('deletemessage');
 
     //notifications
-    Route::get('/notification/',[NotificationController::class,'index'])->middleware('auth')->name('shownotification');
+    Route::get('/notification',[NotificationController::class,'index'])->middleware('auth')->name('shownotification');
 });
 
