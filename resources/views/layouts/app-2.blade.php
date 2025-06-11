@@ -63,6 +63,17 @@
         <a href="{{ route('showbookmarks', auth()->user()->id) }}" class="item-link">Bookmarks</a>
       </li>
       @endif
+      @if (request()->routeIs('shownotification'))
+      <li class="nav-item">
+        <a href="{{ route('shownotification', auth()->user()->id) }}" class="item-icon"><ion-icon name="notifications"></ion-icon></a>
+        <a href="{{ route('shownotification', auth()->user()->id) }}" class="item-link">Notifications</a>
+      </li>
+      @else
+      <li class="nav-item">
+        <a href="{{ route('shownotification', auth()->user()->id) }}" class="item-icon"><ion-icon name="notifications-outline"></ion-icon></a>
+        <a href="{{ route('shownotification', auth()->user()->id) }}" class="item-link">Notifications</a>
+      </li>
+      @endif
       @if (request()->routeIs('showprofile') || request()->routeIs('mediaprofile') || request()->routeIs('showprofile') || request()->routeIs('likeprofile') || request()->routeIs('updateprofile'))
       <li class="nav-item">
         <a href="{{ route('showprofile', auth()->user()->id) }}" class="item-icon">

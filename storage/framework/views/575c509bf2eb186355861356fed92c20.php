@@ -63,6 +63,17 @@
         <a href="<?php echo e(route('showbookmarks', auth()->user()->id)); ?>" class="item-link">Bookmarks</a>
       </li>
       <?php endif; ?>
+      <?php if(request()->routeIs('shownotification')): ?>
+      <li class="nav-item">
+        <a href="<?php echo e(route('shownotification', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="notifications"></ion-icon></a>
+        <a href="<?php echo e(route('shownotification', auth()->user()->id)); ?>" class="item-link">Notifications</a>
+      </li>
+      <?php else: ?>
+      <li class="nav-item">
+        <a href="<?php echo e(route('shownotification', auth()->user()->id)); ?>" class="item-icon"><ion-icon name="notifications-outline"></ion-icon></a>
+        <a href="<?php echo e(route('shownotification', auth()->user()->id)); ?>" class="item-link">Notifications</a>
+      </li>
+      <?php endif; ?>
       <?php if(request()->routeIs('showprofile') || request()->routeIs('mediaprofile') || request()->routeIs('showprofile') || request()->routeIs('likeprofile') || request()->routeIs('updateprofile')): ?>
       <li class="nav-item">
         <a href="<?php echo e(route('showprofile', auth()->user()->id)); ?>" class="item-icon">

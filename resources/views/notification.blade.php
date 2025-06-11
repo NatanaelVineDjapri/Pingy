@@ -41,7 +41,7 @@
             </div>
         @empty
             <div class="message-item">
-                <p>Tidak ada aktivitas dari {{ $user->name }}</p>
+                <p>No notifications to display at this time!</p>
             </div>
         @endforelse
     </div>
