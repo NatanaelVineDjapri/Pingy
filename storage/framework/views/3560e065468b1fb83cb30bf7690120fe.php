@@ -32,8 +32,18 @@
                     <a href="<?php echo e(route('showcomment', ['tweet' => $tweet->id])); ?>"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
                     <span><?php echo e($tweet->comments_count); ?></span>
 
-                    <ion-icon name="repeat-outline"></ion-icon>
-                    <span><?php echo e($tweet->comments_count); ?></span>
+                     <?php
+                        $retweet = auth()->user()->retweetTweets->contains($tweet->id);
+                     ?>
+                    <form action="<?php echo e(route('postretweet',$tweet->id)); ?>" method="POST">
+                        <?php echo csrf_field(); ?>
+                        <?php if($retweet): ?>
+                            <button type="submit" class="like-btn"><ion-icon name="repeat-sharp" ></ion-icon></button>
+                        <?php else: ?>
+                            <button type="submit" class="like-btn"><ion-icon name="repeat" ></ion-icon></button>
+                        <?php endif; ?>
+                    </form>
+                    <span><?php echo e($tweet->retweets_count); ?></span>
                             
                     <?php
                         $liked = auth()->user()->likedTweets->contains($tweet->id);

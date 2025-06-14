@@ -220,7 +220,6 @@ img.profile-img {
 
 .main-content {
    margin-left: 301px; 
-
 }
 
 .main-content-3 {
@@ -233,7 +232,8 @@ img.profile-img {
 
 /* third  */
 .sidebar-2 {
-  width: 500px;            
+  width: 500px;  
+  height: 100vh;          
   position: fixed;
   padding: 10px 30px 50px 30px;
   background: url('/image/z2.jpg');

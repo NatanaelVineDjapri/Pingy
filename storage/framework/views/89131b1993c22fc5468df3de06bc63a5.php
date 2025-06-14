@@ -63,7 +63,7 @@
         <section class="tweets">
             <div class="heading">
                 <a href="<?php echo e(route('showprofile',$user->id)); ?>"><p>Tweets</p></a>
-                <a href=""><p>Tweets and Replies</p></a>
+                <a href="<?php echo e(route('retweetprofile',$user->id)); ?>"><p>Tweets and Replies</p></a>
                 <a href="<?php echo e(route('mediaprofile',$user->id)); ?>"><p>Media</p></a>
                 <a href="<?php echo e(route('likeprofile',$user->id)); ?>"><p>Likes</p></a>
             </div>
@@ -103,8 +103,18 @@
                             <span><?php echo e($tweet->comments_count); ?></span>
                         </li>
                         <li>
-                            <ion-icon name="repeat-outline"></ion-icon>
-                            <span><?php echo e($tweet->comments_count); ?></span>
+                            <?php
+                                $retweet = auth()->user()->retweetTweets->contains($tweet->id);
+                            ?>
+                                <form action="<?php echo e(route('postretweet',$tweet->id)); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <?php if($retweet): ?>
+                                        <button type="submit" class="delete-btn"><ion-icon name="repeat-sharp" ></ion-icon></button>
+                                    <?php else: ?>
+                                        <button type="submit" class="delete-btn"><ion-icon name="repeat" ></ion-icon></button>
+                                    <?php endif; ?>
+                                </form>
+                            <span><?php echo e($tweet->retweets_count); ?></span>
                         </li>
                         <li>
                             <?php

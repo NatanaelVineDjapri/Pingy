@@ -75,5 +75,8 @@ Route::prefix('pingy')->group(function(){
 
     //notifications
     Route::get('/notification',[NotificationController::class,'index'])->middleware('auth')->name('shownotification');
+    Route::patch('/notifications/like/{user}/{like}', [NotificationController::class, 'destroyLikeNotif'])->name('deletenotiflike');
+    Route::patch('/notifications/comment/{user}/{comment}', [NotificationController::class, 'destroyCommentNotif'])->name('deletenotifcomment');
+
 });
 
