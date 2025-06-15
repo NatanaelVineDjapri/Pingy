@@ -16,7 +16,6 @@
                 </div>
             </form>
         </div>
-
         <div class="tweet-list">
             @forelse ($users as $user)
                 <div class="tweet-item">
@@ -43,7 +42,6 @@
             @endforelse
              <div class="message">
                 @forelse($contacts as $contact)
-            
                 <div class="message-item">
                 <div class="tweet-header">
                     @if($contact->avatar)

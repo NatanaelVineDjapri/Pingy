@@ -22,7 +22,6 @@
                 </div>
             </form>
         </div>
-
         <div class="tweet-list">
             @forelse ($users as $user)
                 <div class="tweet-item">
@@ -74,7 +73,7 @@
                 </div>  
             </div>
             @endforeach
-    </div>
+        </div>
         </div>
     </div>
 @endsection

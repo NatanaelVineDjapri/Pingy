@@ -10,11 +10,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
     
-    public function index(User $user,Request $request){
+    public function index(User $user,Request $request)
+    {
         $user->loadCount(['followers', 'following']);
 
         $tweets = $user->tweets()->withCount(['likes', 'comments', 'retweets'])->latest()->get();
@@ -29,30 +31,51 @@ class ProfileController extends Controller
         return view('profiles.profile-show', compact('user', 'tweets', 'repliedTweets'));
     }
 
-    public function media(User $user,Request $request){
+    public function media(User $user,Request $request)
+    {
         $user->loadCount(['followers', 'following']);
-        $tweetImage=$user->tweets()->whereNotNull('tweetImage')->latest()->get();
+
+        $tweetImage=$user->tweets()
+            ->whereNotNull('tweetImage')
+            ->latest()
+            ->get();
 
         return view('profiles.profile-media',compact('user','tweetImage'));
     }
 
-    public function like(User $user){
+    public function like(User $user)
+    {
         $user->loadCount(['followers', 'following']);
-        $likeTweets = $user->likedTweets()->with(['user'])->withCount(['comments', 'likes', 'retweets'])->orderBy('likes.created_at','desc')->get();
+
+        $likeTweets = $user->likedTweets()
+            ->with(['user'])
+            ->withCount(['comments', 'likes', 'retweets'])
+            ->orderBy('likes.created_at','desc')
+            ->get();
+
         return view('profiles.profile-like',compact('user','likeTweets'));
     }
 
-    public function retweet(User $user){
+    public function retweet(User $user)
+    {
         $user->loadCount(['followers', 'following']);
-        $retweetTweets = $user->retweetTweets()->with(['user'])->withCount(['comments', 'likes', 'retweets'])->orderBy('retweets.created_at','desc')->get();
+
+        $retweetTweets = $user->retweetTweets()
+            ->with(['user'])
+            ->withCount(['comments', 'likes', 'retweets'])
+            ->orderBy('retweets.created_at','desc')
+            ->get();   
+
         return view('profiles.profile-retweet',compact('user','retweetTweets'));
     }
 
-    public function edit(User $user){
+    public function edit(User $user)
+    {
         return view('profiles.profile-edit',compact('user'));
     }
 
-    public function update(Request $request,User $user){
+    public function update(Request $request,User $user)
+    {
         $validate=$request->validate([
             'name' => 'required',
             'username' => 'required|unique:users,username,'.$user->id,
@@ -61,8 +84,8 @@ class ProfileController extends Controller
             'banner' => 'image|nullable|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        if($request->hasFile('avatar')){
-            if($user->avatar){
+        if($request->hasFile('avatar')) {
+            if($user->avatar) {
                 Storage::disk('public')->delete($user->avatar);
             }
         
@@ -70,8 +93,9 @@ class ProfileController extends Controller
 
             $validate['avatar'] = $newAvatar;
         }
-        if($request->hasFile('banner')){
-            if($user->banner){
+
+        if($request->hasFile('banner')) {
+            if($user->banner) {
                 Storage::disk('public')->delete($user->banner);
             }
         
@@ -79,7 +103,9 @@ class ProfileController extends Controller
 
             $validate['banner'] = $newBanner;
         }
+
         $user->update($validate);
+
         return redirect()->route('showprofile', $user->id);
     }
 

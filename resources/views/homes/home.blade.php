@@ -3,8 +3,8 @@
 @section('head')
     <link rel="stylesheet" href="{{ asset('css/styleHome.css') }}">
     @yield('head')
-
 @endsection
+
 @section('content')
 <div class="content">
     <div class="feed-toggle">
@@ -67,7 +67,6 @@
                     <ul class="retweeticons">
                         <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
                         <span>{{ $tweet->comments_count }}</span>
-
                         @php
                             $retweet = auth()->user()->retweetTweets->contains($tweet->id);
                         @endphp
@@ -79,8 +78,7 @@
                                 <button type="submit" class="like-btn"><ion-icon name="repeat" ></ion-icon></button>
                             @endif
                         </form>
-                        <span>{{ $tweet->retweets_count }}</span>
-                                
+                        <span>{{ $tweet->retweets_count }}</span>    
                         @php
                             $liked = auth()->user()->likedTweets->contains($tweet->id);
                         @endphp

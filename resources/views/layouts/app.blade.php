@@ -89,7 +89,6 @@
         <a href="{{ route('showprofile', auth()->user()->id) }}" class="item-link">Profile</a>
       </li>
       @endif
-
       <li class="nav-item">
         <form action="{{ route('logout') }}" method="POST" ">
         @csrf

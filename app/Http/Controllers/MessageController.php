@@ -9,11 +9,13 @@ use App\Models\User;
 
 class MessageController extends Controller
 {   
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
     }
     
-    private function getContacts(){
+    private function getContacts()
+    {
         $userId = Auth::id();
 
         return User::whereHas('sentMessages', function ($query) use ($userId) {
@@ -23,30 +25,36 @@ class MessageController extends Controller
         })->get();
     }
 
-    private function searchUsers($search){
+    private function searchUsers($search)
+    {
         return User::where('name', 'like', $search . '%')->orWhere('username', 'like', $search . '%')->get();
     }
 
-    public function inbox(Request $request,User $user = null){
+    public function inbox(Request $request,User $user = null)
+    {
         $search = $request->input('search');
         
         $users =[];
-        if($search){
+
+        if($search) {
             $users = $this->searchUsers($search);
         }
 
         $contacts = $this->getContacts();
 
         return view('messages.inbox-messages',compact('contacts','users','search'));
-        }
+    }
 
-    public function index(Request $request,User $user){
+    public function index(Request $request,User $user)
+    {
         $search = $request->input('search');
         
         $users =[];
-        if($search){
+
+        if($search) {
             $users = $this->searchUsers($search);
         }
+
         $userId = Auth::id();
 
         $messages = Message::where(function($query) use ($userId,$user){
@@ -60,7 +68,9 @@ class MessageController extends Controller
 
         return view('messages.show-messages',compact('messages','user','contacts','search','users'));
     }
-    public function store(Request $request,User $user){
+
+    public function store(Request $request,User $user)
+    {
         $request->validate([
             'message'=>'required|string|max:1000',
         ]);
@@ -74,17 +84,18 @@ class MessageController extends Controller
         return redirect()->route('showmessage',$user->id);
     }
 
-    public function destroy(USer $user,Message $message){
-
+    public function destroy(User $user,Message $message)
+    {
         if(Auth::id() !== $user->id){
-            abort(403,'Unauthorized Action');
+            abort(403,'You Cannot Delete This Messages.');
         }
 
-        if((int)Auth::id() !== (int)$message->sender_id){
-            abort(403,'Unauthorized Actionm');
+        if((int) Auth::id() !== (int) $message->sender_id){
+            abort(403,'Only the sender can delete this message.');
         }
 
         $message->delete();
+
         return redirect()->back();
     }
 }

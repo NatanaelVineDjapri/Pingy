@@ -15,12 +15,14 @@ class Comment extends Model
         'body',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
+
     public function tweet()
     {
         return $this->belongsTo(Tweet::class);
     }
-    // public function likes() next time??
+    
 }

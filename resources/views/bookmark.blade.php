@@ -60,9 +60,9 @@
                     <form action="{{ route('postbookmarks', $tweet->id) }}" method="POST">
                         @csrf
                         @if($bookmarked)
-                            <button type="submit" ><ion-icon name="bookmark"></ion-icon></button>
+                            <button type="submit" class="like-btn"><ion-icon name="bookmark"></ion-icon></button>
                         @else
-                            <button type="submit"><ion-icon name="bookmark-outline"></ion-icon></button>
+                            <button type="submit" class="like-btn"><ion-icon name="bookmark-outline"></ion-icon></button>
                         @endif
                     </form>
                 </ul>

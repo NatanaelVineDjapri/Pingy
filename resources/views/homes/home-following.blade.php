@@ -3,8 +3,8 @@
 @section('head')
     <link rel="stylesheet" href="{{ asset('css/styleHome.css') }}">
     @yield('head')
-
 @endsection
+
 @section('content')
 <div class="content">
     <div class="feed-toggle">
@@ -29,7 +29,6 @@
                     <button type="submit" class="tweet-submit-btn">Tweet</button>
                 </div>
             </form>
-
             @if(session('previewPath'))
                 <div class="image-preview">
                     <img src="{{ asset('storage/' . session('previewPath')) }}" alt="Preview" class="tweet-image"/>
@@ -66,7 +65,6 @@
                     <ul class="retweeticons">
                         <a href="{{ route('showcomment', ['tweet' => $tweet->id]) }}"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></a>
                         <span>{{ $tweet->comments_count }}</span>
-
                         @php
                             $retweet = auth()->user()->retweetTweets->contains($tweet->id);
                         @endphp
@@ -79,8 +77,6 @@
                             @endif
                         </form>
                         <span>{{ $tweet->retweets_count }}</span>
-                                
-                                
                         @php
                             $liked = auth()->user()->likedTweets->contains($tweet->id);
                         @endphp

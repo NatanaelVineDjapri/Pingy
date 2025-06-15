@@ -11,7 +11,7 @@
 
 <body>
     <video class="video-bg" autoplay muted loop>
-    <source src="image/video1.mp4" type="video/mp4">
+    <source src="{{ asset('image/video1.mp4') }}" type="video/mp4">
   </video>
 
     <div class="container" id="container">

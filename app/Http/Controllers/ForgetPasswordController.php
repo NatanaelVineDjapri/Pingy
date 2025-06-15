@@ -9,16 +9,18 @@ use App\Models\User;
 
 class ForgetPasswordController extends Controller
 {
-    public function formForgetPassword(){
+    public function formForgetPassword()
+    {
         return view('auth.forget-password');
     }
 
-    public function submitForgetPassForm(Request $request){
+    public function submitForgetPassForm(Request $request)
+    {
         $validator = Validator::make($request->all(), [
-        'username' => 'required',
-        'email' => 'required|email',
-        'dob' => 'required|date',
-        'password' => 'required|min:6|confirmed',
+            'username' => 'required',
+            'email' => 'required|email',
+            'dob' => 'required|date',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -26,19 +28,22 @@ class ForgetPasswordController extends Controller
              ->withErrors($validator, 'reset')
              ->withInput();
         }
+
         $user = User::where('username',$request->username)
                  ->where('email',$request->email)
                  ->where('dob',$request->dob)
                  ->first();
 
-        if(!$user){
+        if(!$user) {
             return redirect()->back()
-            ->withErrors(['reset'=>'The provided credentials are incorrect or the user does not exist.'],'reset')
-            ->onlyInput('username');
+                 ->withErrors(['reset'=>'The provided credentials are incorrect or the user does not exist.'],'reset')
+                 ->onlyInput('username');
         }
 
         $user->password = Hash::make($request->password);
+
         $user->save();
+
         return redirect()->route('login')->with('Password has been reset.Please login.');
 
     }

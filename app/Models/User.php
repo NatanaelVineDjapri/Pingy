@@ -34,76 +34,89 @@ class User extends Authenticatable
 
     ];
 
-    public function tweets(){
+    public function tweets()
+    {
         return $this->hasMany(Tweet::class)->latest();
     }
 
-    public function followers(){
+    public function followers()
+    {
         return $this->belongsToMany(User::class, 'follows', 'following_user_id', 'user_id');
     }
 
-    public function following(){
+    public function following()
+    {
         return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
     }
 
-    public function follow(User $user){
+    public function follow(User $user)
+    {
         return $this->following()->attach($user->id);
     }
 
-    public function unfollow(User $user){
+    public function unfollow(User $user)
+    {
         return $this->following()->detach($user->id);
     }
 
-    public function toggleFollow(User $user){
+    public function toggleFollow(User $user)
+    {
         return $this->following()->toggle($user->id);
     }
 
-    public function isFollowing(User $user){
+    public function isFollowing(User $user)
+    {
         return $this->following()->where('following_user_id', $user->id)->exists();
     }
-    public function likes(){
+
+    public function likes()
+    {
         return $this->hasMany(Like::class);
     }
 
-    public function likedTweets(){
+    public function likedTweets()
+    {
         return $this->belongsToMany(Tweet::class,'likes')->withTimestamps();
     }
-    public function comments(){
+
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function getAvatar($value){
+    public function getAvatar($value)
+    {
         if($value){
             return asset('storage/'.$value);
         }
         return asset('');
     }
 
-    public function getBanner($value){
+    public function getBanner($value)
+    {
         if($value){
             return asset('storage/'.$value);
         }
         return asset('');
     }
 
-    public function bookmarkedTweets(){
-    return $this->belongsToMany(Tweet::class, 'bookmarks')->withTimestamps();
+    public function bookmarkedTweets()
+    {
+        return $this->belongsToMany(Tweet::class, 'bookmarks')->withTimestamps();
     }
 
-    public function sentMessages(){
+    public function sentMessages()
+    {
         return $this->hasMany(Message::class,'sender_id');
     }
 
-    public function receivedMessages(){
+    public function receivedMessages()
+    {
         return $this->hasMany(Message::class,'receiver_id');
     }
 
     public function retweetTweets(){
-    return $this->belongsToMany(Tweet::class, 'retweets')->withTimestamps();
+        return $this->belongsToMany(Tweet::class, 'retweets')->withTimestamps();
     }
-
-    //public function hasRetweeted(Tweet $tweet){
-    //    return $this->retweets()->where('tweet_id', $tweet->id)->exists();
-    //}
 
 }
