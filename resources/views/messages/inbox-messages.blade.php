@@ -1,6 +1,7 @@
 @extends('layouts.app-3')
 
 @section('head')
+    <title>Messages | Pingy</title>
     <link rel="stylesheet" href="{{ asset('css/styleHome.css') }}">
 @endsection
 

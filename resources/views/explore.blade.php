@@ -1,6 +1,7 @@
 @extends('layouts.app-2')
 
 @section('head')
+    <title>Explore | Pingy</title>
     <link rel="stylesheet" href="{{ asset('css/styleHome.css') }}">
     @yield('head')
 @endsection

@@ -1,6 +1,7 @@
 @extends('layouts.app') 
 
 @section('head')
+    <title>Profile | Pingy</title>
     <link rel="stylesheet" href="{{ asset('css/styleProfileEdit.css') }}">
     @yield('head')
 @endsection

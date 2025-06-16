@@ -1,6 +1,7 @@
 @extends('layouts.app') 
 
 @section('head')
+    <title>Followers - Following | Pingy</title>
     <link rel="stylesheet" href="{{ asset('css/styleComment.css') }}">
     @yield('head')
 
