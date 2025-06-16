@@ -34,6 +34,10 @@
                 <h1 class ="h1-pink">Sign In</h1>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
+                    <div class="packs-remember">
+                        <input type="checkbox" name="remember">
+                        <span>Remember Me</span>
+                    </div>
                 <a href="{{ route('forgetpassword') }}">Forget Your Password?</a>
                 <button>Sign In</button>
                 @error('email')

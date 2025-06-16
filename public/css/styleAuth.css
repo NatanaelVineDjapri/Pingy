@@ -222,3 +222,24 @@ body{
     font-size: 10px;
     margin: 0px;
 }
+
+.packs-remember{
+    padding-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.packs-remember span{
+    padding-right: 20px;
+    font-size: 13px;
+    color: #fba7c9;
+    white-space: nowrap;
+}
+
+.packs-remember input {
+    accent-color: #fba7c9;
+    margin: 0;
+    border-color: 2px solid #fba7c9;
+}
+

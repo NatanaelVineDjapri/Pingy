@@ -22,7 +22,9 @@ class AuthSessionController extends Controller
             'password'=>['required'],
         ]);
 
-        if (Auth::attempt($userInput)){
+        $remember = $request->has('remember');
+
+        if (Auth::attempt($userInput,$remember)){
             $request->session()->regenerate();
             return redirect()->route('home');
         }
