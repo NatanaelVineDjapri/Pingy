@@ -19,7 +19,6 @@ return new class extends Migration {
             $table->text('avatar')->nullable();
             $table->text('banner')->nullable();
             $table->string('description')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->date('dob')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
