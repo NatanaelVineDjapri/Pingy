@@ -137,7 +137,8 @@ body {
 a.profile-btn {
   margin-top: auto;
   width: 225px;
- justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
   border-radius: 50px;
