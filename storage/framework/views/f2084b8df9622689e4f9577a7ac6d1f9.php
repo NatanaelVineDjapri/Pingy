@@ -1,4 +1,5 @@
 <?php $__env->startSection('head'); ?>
+    <title>Notification | Pingy</title>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleHome.css')); ?>">
     <?php echo $__env->yieldContent('head'); ?>
 <?php $__env->stopSection(); ?>
@@ -24,16 +25,24 @@
                 <div class="tweet-body">
                     <?php if($notif->body): ?>
                         <p>Comment Your Tweet :"<?php echo e($notif->body); ?>"</p>
+                        <form action="<?php echo e(route('deletenotifcomment', ['user' => auth()->id(), 'comment' => $notif->id])); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('PATCH'); ?>
+                            <button class="like-btn" style ="margin-left:500px"><ion-icon name="close-circle-outline"></ion-icon></button>
+                        </form>
                     <?php else: ?>
-                        <p>Liked Your tweet: <?php echo e($notif->tweet->body); ?></p>
+                        <p>Liked Your tweet</p>
+                        <form action="<?php echo e(route('deletenotiflike', ['user' => auth()->id(), 'like' => $notif->id])); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('PATCH'); ?>
+                            <button class="like-btn" style="margin-left:500px"><ion-icon name="close-circle-outline"></ion-icon></button>
+                        </form>
                     <?php endif; ?>
-
                     <?php if($notif->tweet->tweetImage): ?>
                         <div class="tweet-image">
                             <img src="<?php echo e(asset('storage/' . $notif->tweet->tweetImage)); ?>"alt="Tweet image" style="width: 100%; max-width: 675px; max-height:900px; border-radius: 10px; margin-top: 10px;">
                         </div>
                     <?php endif; ?>
-
                     <a href="<?php echo e(route('showcomment', $notif->tweet->id)); ?>">See Details Tweet</a>
                 </div>
             </div>

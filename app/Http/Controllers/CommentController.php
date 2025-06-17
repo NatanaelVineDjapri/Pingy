@@ -17,7 +17,9 @@ class CommentController extends Controller
     {
         $tweet->loadCount(['comments', 'likes','retweets']);
 
-        $comments = $tweet->comments()->with('user')->get();
+        $comments = $tweet->comments()
+            ->with('user')
+            ->get();
         
         return view('comment', compact('comments', 'tweet'));
     }
@@ -39,11 +41,11 @@ class CommentController extends Controller
     public function destroy(Tweet $tweet, Comment $comment)
     {
         if ($comment->tweet_id !== $tweet->id) {
-            abort(404);
+            abort(403,'This comment does not belong to the selected tweet');
         }
 
         if ($comment->user_id !== auth()->id()) {
-            abort(403);
+            abort(403,'You are not authorized to delete this comment.');
         }
 
         $comment->delete();

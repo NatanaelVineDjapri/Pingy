@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('image/p-logo.png') }}" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styleForgetPass.css') }}">
-    <title>Forget Password Page-Pingy</title>
+    <title>Forget Password | Pingy</title>
 </head>
 
 <body>
     <video class="video-bg" autoplay muted loop>
-    <source src="image/video1.mp4" type="video/mp4">
+    <source src="{{ asset('image/video1.mp4') }}" type="video/mp4">
   </video>
 
     <div class="container" id="container">

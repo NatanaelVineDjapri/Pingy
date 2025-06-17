@@ -19,7 +19,7 @@ class FollowFactory extends Factory
         $user = User::factory()->create();
         $following = User::factory()->create();
          
-        while($user->id === $following->id){
+        while($user->id === $following->id) {
             $following = User::factory()->create();
         }
         return [

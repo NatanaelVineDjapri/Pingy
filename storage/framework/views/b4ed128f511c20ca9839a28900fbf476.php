@@ -1,6 +1,7 @@
  
 
 <?php $__env->startSection('head'); ?>
+    <title>Followers - Following | Pingy</title>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleComment.css')); ?>">
     <?php echo $__env->yieldContent('head'); ?>
 

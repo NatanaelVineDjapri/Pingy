@@ -1,6 +1,7 @@
 @extends('layouts.app-3')
 
 @section('head')
+    <title>Messages | Pingy</title>
     <link rel="stylesheet" href="{{ asset('css/styleHome.css') }}">
 @endsection
 
@@ -16,12 +17,10 @@
                 </div>
             </form>
         </div>
-
         <div class="tweet-list">
             @forelse ($users as $user)
                 <div class="tweet-item">
                     <div class="tweet-header">
-                        
                         @if($user->avatar)
                             <img src="{{ asset('storage/' . $user->avatar) }}" class="avatar">
                         @else
@@ -44,7 +43,6 @@
             @endforelse
              <div class="message">
                 @forelse($contacts as $contact)
-            
                 <div class="message-item">
                 <div class="tweet-header">
                     @if($contact->avatar)
@@ -88,7 +86,6 @@
                 </div>
             </div>
         </div>
-
         <div class="chat">
         @forelse($messages as $message)
             @if ($message->sender_id == auth()->id())

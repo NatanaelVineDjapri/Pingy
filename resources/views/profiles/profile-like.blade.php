@@ -1,9 +1,9 @@
 @extends('layouts.app') 
 
 @section('head')
+    <title>Profile | Pingy</title>
     <link rel="stylesheet" href="{{ asset('css/styleProfileShowEdit.css') }}">
     @yield('head')
-
 @endsection
 
 @section('content')
@@ -18,17 +18,15 @@
         <section class="twitterprofile">
             <div class="headerprofileimage">
                 @if($user->banner)
-                <img src="{{ asset('storage/' . $user->banner) }}" alt="header" id="headerimage" class = "header-a">
+                    <img src="{{ asset('storage/' . $user->banner) }}" alt="header" id="headerimage" class = "header-a">
                 @else
-                <img src="{{ asset('image/banner.jpg') }}" alt="header default" id="headerimage" class = "header-b">
+                    <img src="{{ asset('image/banner.jpg') }}" alt="header default" id="headerimage" class = "header-b">
                 @endif
-
                 @if($user->avatar)
-                <img src="{{ asset('storage/' . $user->avatar) }}" alt="profile pic" id="profilepic">
+                    <img src="{{ asset('storage/' . $user->avatar) }}" alt="profile pic" id="profilepic">
                 @else
-                <img src="{{ asset('image/profilepicture.jpg') }}" alt="profile pic" id="profilepic">
+                    <img src="{{ asset('image/profilepicture.jpg') }}" alt="profile pic" id="profilepic">
                 @endif
-               
                 <div class="editprofile">
                     @if(Auth::id() == $user->id)
                         <a href="{{ route('editprofile', $user->id) }}">Edit Profile</a>

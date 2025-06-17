@@ -14,13 +14,18 @@ class BookmarkController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(User $user){
+    public function index(User $user)
+    {
 
-        if (Auth::id() !== $user->id){
-        abort(403, 'Unauthorized');
+        if (Auth::id() !== $user->id) {
+            abort(403, 'Unauthorized');
         }
 
-        $bookmarked = $user->bookmarkedTweets()->with(['user'])->withCount(['comments', 'likes'])->orderBy('bookmarks.created_at','desc')->get();
+        $bookmarked = $user->bookmarkedTweets()
+            ->with(['user'])
+            ->withCount(['comments', 'likes'])
+            ->orderBy('bookmarks.created_at','desc')
+            ->get();
 
         return view('bookmark', compact('bookmarked'));
 
@@ -29,7 +34,10 @@ class BookmarkController extends Controller
     public function store(Tweet $tweet)
     {
         $user = auth()->user();
-        $bookmarked = $user->bookmarkedTweets()->where('tweet_id', $tweet->id)->exists();
+
+        $bookmarked = $user->bookmarkedTweets()
+            ->where('tweet_id', $tweet->id)
+            ->exists();
 
         if ($bookmarked) {
             $user->bookmarkedTweets()->detach($tweet->id);

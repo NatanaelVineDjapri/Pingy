@@ -1,6 +1,7 @@
 @extends('layouts.app') 
 
 @section('head')
+    <title>Comment | Pingy</title>
     <link rel="stylesheet" href="{{ asset('css/styleComment.css') }}">
     @yield('head')
 
@@ -43,8 +44,7 @@
                             <button type="submit" class="like-btn"><ion-icon name="repeat" ></ion-icon></button>
                         @endif
                     </form>
-                    <span>{{ $tweet->retweets_count }}</span>
-                            
+                    <span>{{ $tweet->retweets_count }}</span>  
                     @php
                         $liked = auth()->user()->likedTweets->contains($tweet->id);
                     @endphp

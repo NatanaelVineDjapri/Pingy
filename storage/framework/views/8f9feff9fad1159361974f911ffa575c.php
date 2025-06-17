@@ -1,4 +1,5 @@
 <?php $__env->startSection('head'); ?>
+    <title>Messages | Pingy</title>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleHome.css')); ?>">
 <?php $__env->stopSection(); ?>
 
@@ -14,12 +15,10 @@
                 </div>
             </form>
         </div>
-
         <div class="tweet-list">
             <?php $__empty_1 = true; $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="tweet-item">
                     <div class="tweet-header">
-                        
                         <?php if($user->avatar): ?>
                             <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" class="avatar">
                         <?php else: ?>
@@ -42,7 +41,6 @@
             <?php endif; ?>
              <div class="message">
                 <?php $__empty_1 = true; $__currentLoopData = $contacts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $contact): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-            
                 <div class="message-item">
                 <div class="tweet-header">
                     <?php if($contact->avatar): ?>
@@ -86,7 +84,6 @@
                 </div>
             </div>
         </div>
-
         <div class="chat">
         <?php $__empty_1 = true; $__currentLoopData = $messages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <?php if($message->sender_id == auth()->id()): ?>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('tweet_id')->constrained()->onDelete('cascade');
             $table->unique(['user_id','tweet_id']);
+            $table->boolean('is_notified')->default(true);
         });
     }
 

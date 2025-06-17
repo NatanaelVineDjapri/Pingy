@@ -1,4 +1,5 @@
 <?php $__env->startSection('head'); ?>
+    <title>Explore | Pingy</title>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleHome.css')); ?>">
     <?php echo $__env->yieldContent('head'); ?>
 <?php $__env->stopSection(); ?>
@@ -20,7 +21,6 @@
                 </div>
             </form>
         </div>
-
         <div class="tweet-list">
             <?php $__empty_1 = true; $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="tweet-item">
@@ -72,7 +72,7 @@
                 </div>  
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </div>
+        </div>
         </div>
     </div>
 <?php $__env->stopSection(); ?>

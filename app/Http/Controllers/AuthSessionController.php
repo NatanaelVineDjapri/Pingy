@@ -10,25 +10,30 @@ use App\Models\User;
 
 class AuthSessionController extends Controller
 {
-    public function formLogin(){
+    public function formLogin()
+    {
         return view('auth.login');  
     }
 
-    public function manualLogin(Request $request){
+    public function manualLogin(Request $request)
+    {
         $userInput = $request->validate([
             'email'=>['required','email'],
             'password'=>['required'],
         ]);
-        if (Auth::attempt($userInput)) {
-        $request->session()->regenerate();
 
-        return redirect()->route('home');
+        $remember = $request->has('remember');
 
+        if (Auth::attempt($userInput,$remember)){
+            $request->session()->regenerate();
+            return redirect()->route('home');
         }
+
         return back()->withErrors([
             'email' => 'Sorry, your email/password was incorrect. Please double-check your email/password.',
         ]);
     }
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -39,7 +44,9 @@ class AuthSessionController extends Controller
 
         return redirect()->route('login');
     }
-    public function register(Request $request){
+
+    public function register(Request $request)
+    {
     
         $validator = Validator::make($request->all(), [
         'username' => ['required', 'string', 'max:255', 'unique:users,username'],
@@ -50,9 +57,7 @@ class AuthSessionController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator, 'register')
-                ->onlyInput('username');
+            return redirect()->back()->withErrors($validator, 'register')->onlyInput('username');
         }
 
         $validated = $validator->validated();

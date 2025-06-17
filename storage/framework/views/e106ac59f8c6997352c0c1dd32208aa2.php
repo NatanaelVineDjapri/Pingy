@@ -1,9 +1,9 @@
  
 
 <?php $__env->startSection('head'); ?>
+    <title>Profile | Pingy</title>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleProfileShowEdit.css')); ?>">
     <?php echo $__env->yieldContent('head'); ?>
-
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -18,17 +18,15 @@
         <section class="twitterprofile">
             <div class="headerprofileimage">
                 <?php if($user->banner): ?>
-                <img src="<?php echo e(asset('storage/' . $user->banner)); ?>" alt="header" id="headerimage" class = "header-a">
+                    <img src="<?php echo e(asset('storage/' . $user->banner)); ?>" alt="header" id="headerimage" class = "header-a">
                 <?php else: ?>
-                <img src="<?php echo e(asset('image/banner.jpg')); ?>" alt="header default" id="headerimage" class ="header-b">
+                    <img src="<?php echo e(asset('image/banner.jpg')); ?>" alt="header default" id="headerimage" class ="header-b">
                 <?php endif; ?>
-
                 <?php if($user->avatar): ?>
-                <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" alt="profile pic" id="profilepic">
+                    <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" alt="profile pic" id="profilepic">
                 <?php else: ?>
-                <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="profile pic" id="profilepic" >
+                    <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="profile pic" id="profilepic" >
                 <?php endif; ?>
-               
                 <div class="editprofile">
                     <?php if(Auth::id() == $user->id): ?>
                         <a href="<?php echo e(route('editprofile', $user->id)); ?>" class ="follow-btn">Edit Profile</a>
@@ -69,7 +67,7 @@
             </div>
         </section>
         <section class="mytweets">
-            <?php $__currentLoopData = $tweets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tweet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $retweetTweets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tweet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="tweet">
                     <div>
                     <?php if($tweet->user->avatar): ?>
@@ -169,4 +167,4 @@
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\New folder\htdocs\UAS\Pingy\resources\views/profiles/profile-show.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\UAS_BACKEND\pingy\resources\views/profiles/profile-retweet.blade.php ENDPATH**/ ?>

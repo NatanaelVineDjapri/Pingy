@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pingy</title>
+  <link rel="icon" href="<?php echo e(asset('image/p-logo.png')); ?>" type="image/png">
   <link rel="stylesheet" href="<?php echo e(asset('css/styleLayout.css')); ?>">
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -89,7 +89,6 @@
         <a href="<?php echo e(route('showprofile', auth()->user()->id)); ?>" class="item-link">Profile</a>
       </li>
       <?php endif; ?>
-
       <li class="nav-item">
         <form action="<?php echo e(route('logout')); ?>" method="POST" ">
         <?php echo csrf_field(); ?>

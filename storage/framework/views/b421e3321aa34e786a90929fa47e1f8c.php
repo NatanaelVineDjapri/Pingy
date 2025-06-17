@@ -1,6 +1,7 @@
  
 
 <?php $__env->startSection('head'); ?>
+    <title>Profile | Pingy</title>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleProfileEdit.css')); ?>">
     <?php echo $__env->yieldContent('head'); ?>
 <?php $__env->stopSection(); ?>

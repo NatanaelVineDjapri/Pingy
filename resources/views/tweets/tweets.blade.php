@@ -1,7 +1,7 @@
 @extends('layouts.app') 
 
-
 @section('head')
+    <title>Tweet | Pingy</title>
     <link rel="stylesheet" href="{{ asset('css/styleTweets.css') }}">
     @yield('head')
 @endsection
@@ -25,7 +25,6 @@
                 <button type="submit" class="tweet-submit-btn">Tweet</button>
             </div>
         </form>
-
         @if(session('previewPath'))
             <div class="image-preview">
                 <img src="{{ asset('storage/' . session('previewPath')) }}" alt="Preview" class="tweet-image"/>

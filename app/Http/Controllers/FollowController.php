@@ -12,21 +12,26 @@ class FollowController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(User $user){
+    public function store(User $user)
+    {
         $authUser = auth()->user();
 
-        if ($authUser->id === $user->id){
+        if ($authUser->id === $user->id) {
             abort(403, 'You cannot follow yourself.');
         }
+
         $authUser->toggleFollow($user);
+
         return back();
     }
 
-    public function index(User $user){
+    public function index(User $user)
+    {
         return view('follow-show',[
             'user'=> $user,
             'followers'=>$user->followers,
             'following'=>$user->followings,
         ]);
+
     }
 }

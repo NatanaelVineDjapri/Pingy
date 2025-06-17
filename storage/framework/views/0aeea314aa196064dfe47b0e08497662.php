@@ -1,6 +1,7 @@
  
 
 <?php $__env->startSection('head'); ?>
+    <title>Bookmark | Pingy</title>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleHome.css')); ?>">
     <?php echo $__env->yieldContent('head'); ?>
 
@@ -62,9 +63,9 @@
                     <form action="<?php echo e(route('postbookmarks', $tweet->id)); ?>" method="POST">
                         <?php echo csrf_field(); ?>
                         <?php if($bookmarked): ?>
-                            <button type="submit" ><ion-icon name="bookmark"></ion-icon></button>
+                            <button type="submit" class="like-btn"><ion-icon name="bookmark"></ion-icon></button>
                         <?php else: ?>
-                            <button type="submit"><ion-icon name="bookmark-outline"></ion-icon></button>
+                            <button type="submit" class="like-btn"><ion-icon name="bookmark-outline"></ion-icon></button>
                         <?php endif; ?>
                     </form>
                 </ul>

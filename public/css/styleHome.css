@@ -2,6 +2,9 @@ body {
     background-color: #fba7c9;
 }
 
+.content{
+    border-right: 2px solid #fff;
+}
 .tweet-container {
     padding: 20px;
     width: 600px;

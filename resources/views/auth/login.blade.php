@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('image/p-logo.png') }}" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styleAuth.css') }}">
-    <title>Login Page-Pingy</title>
+    <title>Login Page | Pingy</title>
 </head>
 
 <body>
@@ -34,6 +35,10 @@
                 <h1 class ="h1-pink">Sign In</h1>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" placeholder="Password" required>
+                    <div class="packs-remember">
+                        <input type="checkbox" name="remember">
+                        <span>Remember Me</span>
+                    </div>
                 <a href="{{ route('forgetpassword') }}">Forget Your Password?</a>
                 <button>Sign In</button>
                 @error('email')

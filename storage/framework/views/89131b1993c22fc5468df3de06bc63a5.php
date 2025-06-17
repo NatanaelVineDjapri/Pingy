@@ -1,9 +1,9 @@
  
 
 <?php $__env->startSection('head'); ?>
+    <title>Profile | Pingy</title>
     <link rel="stylesheet" href="<?php echo e(asset('css/styleProfileShowEdit.css')); ?>">
     <?php echo $__env->yieldContent('head'); ?>
-
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -18,17 +18,15 @@
         <section class="twitterprofile">
             <div class="headerprofileimage">
                 <?php if($user->banner): ?>
-                <img src="<?php echo e(asset('storage/' . $user->banner)); ?>" alt="header" id="headerimage" class = "header-a">
+                    <img src="<?php echo e(asset('storage/' . $user->banner)); ?>" alt="header" id="headerimage" class = "header-a">
                 <?php else: ?>
-                <img src="<?php echo e(asset('image/banner.jpg')); ?>" alt="header default" id="headerimage" class ="header-b">
+                    <img src="<?php echo e(asset('image/banner.jpg')); ?>" alt="header default" id="headerimage" class ="header-b">
                 <?php endif; ?>
-
                 <?php if($user->avatar): ?>
-                <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" alt="profile pic" id="profilepic">
+                    <img src="<?php echo e(asset('storage/' . $user->avatar)); ?>" alt="profile pic" id="profilepic">
                 <?php else: ?>
-                <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="profile pic" id="profilepic" >
+                    <img src="<?php echo e(asset('image/profilepicture.jpg')); ?>" alt="profile pic" id="profilepic" >
                 <?php endif; ?>
-               
                 <div class="editprofile">
                     <?php if(Auth::id() == $user->id): ?>
                         <a href="<?php echo e(route('editprofile', $user->id)); ?>" class ="follow-btn">Edit Profile</a>
@@ -63,7 +61,7 @@
         <section class="tweets">
             <div class="heading">
                 <a href="<?php echo e(route('showprofile',$user->id)); ?>"><p>Tweets</p></a>
-                <a href=""><p>Tweets and Replies</p></a>
+                <a href="<?php echo e(route('retweetprofile',$user->id)); ?>"><p>Tweets and Replies</p></a>
                 <a href="<?php echo e(route('mediaprofile',$user->id)); ?>"><p>Media</p></a>
                 <a href="<?php echo e(route('likeprofile',$user->id)); ?>"><p>Likes</p></a>
             </div>
@@ -103,8 +101,18 @@
                             <span><?php echo e($tweet->comments_count); ?></span>
                         </li>
                         <li>
-                            <ion-icon name="repeat-outline"></ion-icon>
-                            <span><?php echo e($tweet->comments_count); ?></span>
+                            <?php
+                                $retweet = auth()->user()->retweetTweets->contains($tweet->id);
+                            ?>
+                                <form action="<?php echo e(route('postretweet',$tweet->id)); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <?php if($retweet): ?>
+                                        <button type="submit" class="delete-btn"><ion-icon name="repeat-sharp" ></ion-icon></button>
+                                    <?php else: ?>
+                                        <button type="submit" class="delete-btn"><ion-icon name="repeat" ></ion-icon></button>
+                                    <?php endif; ?>
+                                </form>
+                            <span><?php echo e($tweet->retweets_count); ?></span>
                         </li>
                         <li>
                             <?php

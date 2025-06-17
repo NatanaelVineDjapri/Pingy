@@ -59,6 +59,7 @@ class UserSeeder extends Seeder
                     'tweet_id' => $tweetId,
                 ]);
             }
-         });
+         }); 
+       
     }
 }
