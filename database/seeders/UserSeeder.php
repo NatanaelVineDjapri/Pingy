@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Tweet;
 use App\Models\Comment;
 use App\Models\Like;
+use App\Models\Retweet;
 
 class UserSeeder extends Seeder
 {
@@ -43,11 +44,22 @@ class UserSeeder extends Seeder
                     'tweet_id'=>$tweetId,
                 ]);
             }
-            
+
             $user->following()->attach(
                 User::inRandomOrder()->where('id', '!=', $user->id)->take(rand(10, 100))->pluck('id')
             );
-    
-        });
+            
+            $retweetCount = min(rand(15, 150), $allTweets->count());
+
+            $randomTweet = $allTweets->random($retweetCount)->pluck('id');
+
+            foreach ($randomTweet as $tweetId) {
+                Retweet::factory()->create([
+                    'user_id' => $user->id,
+                    'tweet_id' => $tweetId,
+                ]);
+            }
+         }); 
+       
     }
 }
