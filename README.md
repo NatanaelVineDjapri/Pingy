@@ -15,16 +15,18 @@ Pingy is a Laravel 11-based backend project inspired by Twitter/X, developed for
 
 ## 🚀 Features
 
+- 🔐 User authentication (register, login, logout, and forgot password)
 - ✍️ Post tweets (with optional image attachments)
 - 💬 Comment on tweets
 - 🔁 Retweet tweets from other users
 - ❤️ Like and unlike tweets
 - 👤 Follow and unfollow other users
+- 🔖 Bookmark Tweet
 - 🧵 Personalized home showing tweets from followed and public users
 - 🔍 Explore page to discover public users
 - 📸 User profiles 
 - 📥 Private messaging (DMs) between users
-- 🔐 User authentication (register, login, logout, and forgot password)
+- 🔔 Notification
 
 
 ---
