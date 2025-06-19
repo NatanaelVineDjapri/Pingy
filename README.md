@@ -3,15 +3,15 @@
 Pingy is a Laravel 11-based backend project inspired by Twitter/X, developed for a final exam. It showcases core backend skills like API design, data handling, and scalable architecture, ready for frontend integration and future feature expansion.
 
 ---
+
 ## 👨‍💻 Created By
 
-
-| No | Name                  | NIM         |
-|----|-----------------------|-------------|
-| 1  | Natanael Vine Djapri  | 535240042   |
-| 2  | Ryan Prasetya Arjuna  | 535240043   |
-| 3  | Vivian Carolina       | 535240060   |
-| 4  | Stanley Varian Rahman | 535240061   |
+| No  | Name                  | NIM       |
+| --- | --------------------- | --------- |
+| 1   | Natanael Vine Djapri  | 535240042 |
+| 2   | Ryan Prasetya Arjuna  | 535240043 |
+| 3   | Vivian Carolina       | 535240060 |
+| 4   | Stanley Varian Rahman | 535240061 |
 
 ## 🚀 Features
 
@@ -24,10 +24,9 @@ Pingy is a Laravel 11-based backend project inspired by Twitter/X, developed for
 - 🔖 Bookmark Tweet
 - 🧵 Personalized home showing tweets from followed and public users
 - 🔍 Explore page to discover public users
-- 📸 User profiles 
+- 📸 User profiles
 - 📥 Private messaging (DMs) between users
 - 🔔 Notification
-
 
 ---
 
@@ -54,7 +53,7 @@ Pingy is a Laravel 11-based backend project inspired by Twitter/X, developed for
 
 ### 3. Install Node.js dependencies
 
-`npm install`  
+`npm install`
 
 ### 4. Create environment file and generate app key
 
@@ -73,4 +72,3 @@ Pingy is a Laravel 11-based backend project inspired by Twitter/X, developed for
 ### 7. Run the server
 
 `php artisan serve`
-

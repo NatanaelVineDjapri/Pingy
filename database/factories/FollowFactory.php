@@ -15,16 +15,18 @@ class FollowFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {   
+    {
         $user = User::factory()->create();
+
         $following = User::factory()->create();
-         
-        while($user->id === $following->id) {
+
+        while ($user->id === $following->id) {
             $following = User::factory()->create();
         }
+
         return [
             'user_id' => $user->id,
-            'following_user_id' =>$following->id,
+            'following_user_id' => $following->id,
         ];
     }
 }

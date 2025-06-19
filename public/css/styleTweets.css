@@ -20,7 +20,7 @@
 
 .tweet-input-section textarea {
     width: 100%;
-    padding: 20px 70px ;
+    padding: 20px 70px;
     font-size: 1rem;
     resize: none;
     border: none;
@@ -39,19 +39,18 @@
 .packs-name {
     padding-top: 0;
     color: #fba7c9;
-    
 }
 
-.packs-name .name{
+.packs-name .name {
     font-weight: bold;
     font-size: 15px;
 }
 
-.username{
+.username {
     color: rgb(113, 106, 106);
     font-weight: 300px;
     font-size: 12px;
-    margin-top:2.5px;
+    margin-top: 2.5px;
 }
 
 .upload-label {
@@ -62,7 +61,7 @@
 }
 
 .tweet-submit-btn {
-    background-color:#fba7c9;
+    background-color: #fba7c9;
     border: none;
     padding: 8px 16px;
     color: white;
@@ -73,10 +72,10 @@
 }
 
 .tweet-submit-btn:hover {
-    background-color:#e481a8;
+    background-color: #e481a8;
 }
-    
-.tweet-actions {     
+
+.tweet-actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -99,22 +98,22 @@
     border-radius: 16px;
     padding: 15px;
     gap: 10px;
-    align-items:flex-start;
+    align-items: flex-start;
 }
 
 .tweet-body {
     flex-grow: 1;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
-textarea{
-    padding:5px 205px 0px 5px;
-    border-radius:8px;
+textarea {
+    padding: 5px 205px 0px 5px;
+    border-radius: 8px;
 }
 
 .tweet-body p {
-    margin: 0 ;
+    margin: 0;
     margin-top: 6px;
     white-space: pre-wrap;
     font-size: 13px;
@@ -131,10 +130,10 @@ textarea{
     font-size: 13px;
     cursor: pointer;
     padding: 8px 12px;
-    margin-left:  370px;
+    margin-left: 370px;
     background-color: #fba7c9;
     border-radius: 8px;
-    margin-top: 3px
+    margin-top: 3px;
 }
 
 .delete-btn:hover {
@@ -163,12 +162,12 @@ a {
     text-decoration: none;
 }
 
-.delete-update{
+.delete-update {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.delete-btn p{
-   padding-top: 100px;
+.delete-btn p {
+    padding-top: 100px;
 }

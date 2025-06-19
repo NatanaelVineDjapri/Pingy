@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\User;
-use App\Models\tweet;
+use Illuminate\Database\Eloquent\Model;
+
 class Retweet extends Model
 {
     use HasFactory;
-    protected $fillable =[
+
+    protected $fillable = [
         'user_id',
         'tweet_id',
     ];

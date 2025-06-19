@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Tweet;
 
 class HomeController extends Controller
@@ -12,7 +11,8 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index()
+    {
 
         $following = auth()->user()
             ->following()
@@ -25,13 +25,14 @@ class HomeController extends Controller
             ->latest()
             ->paginate(20);
 
-        return view('homes.home-following',[
-            'tweets' => $tweets
+        return view('homes.home-following', [
+            'tweets' => $tweets,
         ]);
 
     }
 
-     public function home(){
+    public function home()
+    {
 
         $following = auth()->user()->following()->pluck('users.id')->push(auth()->id());
 
@@ -40,9 +41,9 @@ class HomeController extends Controller
             ->whereNotIn('user_id', $following)
             ->inRandomOrder()
             ->paginate(20);
-        
-        return view('homes.home',[
-            'tweets' => $tweets
+
+        return view('homes.home', [
+            'tweets' => $tweets,
         ]);
 
     }

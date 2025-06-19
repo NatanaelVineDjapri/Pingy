@@ -2,19 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Like;
-use App\Models\User;
-use App\Models\Comment;
+use Illuminate\Database\Eloquent\Model;
 
 class Tweet extends Model
 {
-
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'user_id',
         'body',
         'tweetImage',
@@ -37,7 +32,7 @@ class Tweet extends Model
 
     public function isLikedBy(User $user)
     {
-        return $this->likes()->where('user_id',$user->id)->exists();
+        return $this->likes()->where('user_id', $user->id)->exists();
     }
 
     public function bookmarks()
@@ -74,5 +69,4 @@ class Tweet extends Model
     {
         return $this->belongsTo(Tweet::class, 'retweet_from');
     }
-
 }

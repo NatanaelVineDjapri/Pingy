@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Tweet;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BookmarkController extends Controller
-{   
+{
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,7 +23,7 @@ class BookmarkController extends Controller
         $bookmarked = $user->bookmarkedTweets()
             ->with(['user'])
             ->withCount(['comments', 'likes'])
-            ->orderBy('bookmarks.created_at','desc')
+            ->orderBy('bookmarks.created_at', 'desc')
             ->get();
 
         return view('bookmark', compact('bookmarked'));

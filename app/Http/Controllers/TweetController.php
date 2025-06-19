@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Tweet;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,12 +16,12 @@ class TweetController extends Controller
 
     public function index()
     {
-        $tweets = Tweet::where('user_id',auth()->id())
+        $tweets = Tweet::where('user_id', auth()->id())
             ->latest()
             ->get();
-        
-        return view('tweets.tweets',[
-            'tweets'=> $tweets,
+
+        return view('tweets.tweets', [
+            'tweets' => $tweets,
         ]);
     }
 
@@ -30,34 +29,35 @@ class TweetController extends Controller
     {
         $validated = $request->validate([
             'body' => 'nullable|max:280',
-            'tweetImage' => 'nullable|image|max:2048' 
+            'tweetImage' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        if (!$request->filled('body') && !$request->hasFile('tweetImage')) {
+        if (! $request->filled('body') && ! $request->hasFile('tweetImage')) {
             return redirect()->back()->withErrors(['error' => 'Teks atau gambar harus diisi.']);
         }
-        $validated['user_id']= auth()->id();
+
+        $validated['user_id'] = auth()->id();
 
         $validated['body'] = $request->input('body');
 
-        if($request->hasFile('tweetImage')) {
-            $validated['tweetImage'] = $request->file('tweetImage')->store('tweetImages','public');
+        if ($request->hasFile('tweetImage')) {
+            $validated['tweetImage'] = $request->file('tweetImage')->store('tweetImages', 'public');
         }
 
-        Tweet::create($validated); 
-        
+        Tweet::create($validated);
+
         return back();
     }
-   
+
     public function edit(Tweet $tweet)
     {
-        return view('tweets.tweets-edit',compact('tweet'));
+        return view('tweets.tweets-edit', compact('tweet'));
     }
 
     public function update(Request $request, Tweet $tweet)
-    {   
-        if(Auth::user()->id !== $tweet->user_id){
-            abort(403,'You Cannot Update the Tweet.');
+    {
+        if (Auth::user()->id !== $tweet->user_id) {
+            abort(403, 'You Cannot Update the Tweet.');
         }
 
         $data = $request->validate([
@@ -68,11 +68,11 @@ class TweetController extends Controller
 
         return redirect()->route('edittweet', $tweet->id);
     }
-    
+
     public function destroy(Tweet $tweet)
     {
-        if(Auth::user()->id !== $tweet->user_id) {
-            abort(403,'You Cannot Delete the Tweet');
+        if (Auth::user()->id !== $tweet->user_id) {
+            abort(403, 'You Cannot Delete the Tweet');
         }
 
         if ($tweet->tweetImage) {
@@ -80,7 +80,7 @@ class TweetController extends Controller
         }
 
         $tweet->delete();
-        
+
         return back();
     }
 }

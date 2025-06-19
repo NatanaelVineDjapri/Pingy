@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
+body {
     background-color: #c9d6ff;
-    background: linear-gradient(to right, #fb58b5,#fcb3ec);
+    background: linear-gradient(to right, #fb58b5, #fcb3ec);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,7 +27,7 @@ body{
     z-index: -1;
 }
 
-.container{
+.container {
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
@@ -38,21 +38,21 @@ body{
     min-height: 480px;
 }
 
-.container p{
+.container p {
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.3px;
     margin: 20px 0;
 }
 
-.container a{
-    color:#fba7c9;
+.container a {
+    color: #fba7c9;
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
 }
 
-.container button{
+.container button {
     background-color: #fba7c9;
     color: #fff;
     font-size: 12px;
@@ -68,8 +68,8 @@ body{
     cursor: pointer;
 }
 
-.container form{
-    background-color:#fff;
+.container form {
+    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,7 +78,7 @@ body{
     height: 100%;
 }
 
-.container input{
+.container input {
     background-color: #eee;
     border: 2px solid transparent;
     margin: 8px 0px 8px 27px;
@@ -98,37 +98,36 @@ body{
     background-color: #f7eaf5;
 }
 
-.h1-pink{
+.h1-pink {
     color: #fba7c9;
     padding-bottom: 5px;
     margin-left: 15px;
 }
 
-.h1-pinkys{
+.h1-pinkys {
     font-size: 25px;
 }
-.form-container{
+.form-container {
     position: absolute;
     top: 0;
     height: 100%;
     left: 0;
-  
 }
 
-.sign-up{
+.sign-up {
     left: 50%;
 }
 
 .toggle-container {
     position: absolute;
     top: 0;
-    left: 0; 
+    left: 0;
     width: 50%;
     height: 100%;
     z-index: 1;
     overflow: hidden;
-    border-top-right-radius: 150px; 
-    border-bottom-right-radius: 150px; 
+    border-top-right-radius: 150px;
+    border-bottom-right-radius: 150px;
 }
 
 .toggle {
@@ -143,7 +142,7 @@ body{
     color: white;
 }
 
-.error_situation{
+.error_situation {
     color: red;
     text-align: center;
 }

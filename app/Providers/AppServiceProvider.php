@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use App\Models\Tweet;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -27,28 +28,27 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-    View::composer('*', function ($view) {
+        View::composer('*', function ($view) {
 
-        if ($view->getName() ==='explore'){
-            return; 
-        }
-        
-        $user = Auth::user();
-        $suggestusers = collect();
+            if ($view->getName() === 'explore') {
+                return;
+            }
 
-        if ($user) {
-            $suggestusers = User::where('id', '!=', $user->id)
-                ->whereDoesntHave('followers', function ($query) use ($user) {
-                    $query->where('following_user_id', $user->id);
-                })
-                ->inRandomOrder()
-                ->take(7)
-                ->get();
-        }
+            $user = Auth::user();
+            $suggestusers = collect();
 
-        $tweetstrending = Tweet::trending(3);
-        $view->with(['suggestusers' => $suggestusers,'tweetstrending'=>$tweetstrending]);
-    });
-}
+            if ($user) {
+                $suggestusers = User::where('id', '!=', $user->id)
+                    ->whereDoesntHave('followers', function ($query) use ($user) {
+                        $query->where('following_user_id', $user->id);
+                    })
+                    ->inRandomOrder()
+                    ->take(7)
+                    ->get();
+            }
 
+            $tweetstrending = Tweet::trending(3);
+            $view->with(['suggestusers' => $suggestusers, 'tweetstrending' => $tweetstrending]);
+        });
+    }
 }

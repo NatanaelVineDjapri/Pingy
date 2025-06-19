@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -28,7 +26,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $casts =[
+    protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
 
@@ -41,12 +39,12 @@ class User extends Authenticatable
 
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'follows', 'following_user_id', 'user_id')->withTimestamps();;
+        return $this->belongsToMany(User::class, 'follows', 'following_user_id', 'user_id')->withTimestamps();
     }
 
     public function following()
     {
-        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id')->withTimestamps();;
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id')->withTimestamps();
     }
 
     public function follow(User $user)
@@ -76,7 +74,7 @@ class User extends Authenticatable
 
     public function likedTweets()
     {
-        return $this->belongsToMany(Tweet::class,'likes')->withTimestamps();
+        return $this->belongsToMany(Tweet::class, 'likes')->withTimestamps();
     }
 
     public function comments()
@@ -86,17 +84,19 @@ class User extends Authenticatable
 
     public function getAvatar($value)
     {
-        if($value){
+        if ($value) {
             return asset('storage/'.$value);
         }
+
         return asset('');
     }
 
     public function getBanner($value)
     {
-        if($value){
+        if ($value) {
             return asset('storage/'.$value);
         }
+
         return asset('');
     }
 
@@ -107,16 +107,16 @@ class User extends Authenticatable
 
     public function sentMessages()
     {
-        return $this->hasMany(Message::class,'sender_id');
+        return $this->hasMany(Message::class, 'sender_id');
     }
 
     public function receivedMessages()
     {
-        return $this->hasMany(Message::class,'receiver_id');
+        return $this->hasMany(Message::class, 'receiver_id');
     }
 
-    public function retweetTweets(){
+    public function retweetTweets()
+    {
         return $this->belongsToMany(Tweet::class, 'retweets')->withTimestamps();
     }
-
 }

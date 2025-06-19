@@ -2,7 +2,7 @@ body {
     background-color: #fba7c9;
 }
 
-.content{
+.content {
     border-right: 2px solid #fff;
 }
 .tweet-container {
@@ -11,14 +11,14 @@ body {
     margin-left: 60px;
 }
 
-.comment-container{
+.comment-container {
     padding: 20px;
     width: 600px;
     margin-left: 100px;
 }
 
-.container{
-    justify-content: center; 
+.container {
+    justify-content: center;
 }
 
 .tweet-list {
@@ -31,12 +31,11 @@ body {
     background-color: #fff;
     border: 1px solid #e6ecf0;
     border-radius: 16px;
-    padding: 15px ;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
 
 .tweet-header {
     display: flex;
@@ -59,17 +58,17 @@ body {
 
 .name {
     font-weight: bold;
-    font-size:15px;
+    font-size: 15px;
     margin: 0;
 }
 
-.packs-name .name{
+.packs-name .name {
     color: #fba7c9;
 }
 
 a {
-  text-decoration: none;
-  color: #fba7c9;
+    text-decoration: none;
+    color: #fba7c9;
 }
 
 .username {
@@ -81,7 +80,6 @@ a {
 .tweet-body {
     display: flex;
     flex-direction: column;
-   
 }
 
 .tweet-body p {
@@ -89,7 +87,6 @@ a {
     white-space: pre-wrap;
     font-size: 15px;
 }
-
 
 .tweet-img {
     max-width: 80%;
@@ -102,11 +99,11 @@ a {
     gap: 15px;
     margin-left: 10px;
     cursor: pointer;
-    padding-top:5px
+    padding-top: 5px;
 }
 
-ion-icon{
-    color:#fba7c9;
+ion-icon {
+    color: #fba7c9;
 }
 
 span {
@@ -136,7 +133,7 @@ span {
 
 .tweet-input-section textarea {
     width: 100%;
-    padding: 20px 70px ;
+    padding: 20px 70px;
     font-size: 1rem;
     resize: none;
     border: none;
@@ -145,20 +142,20 @@ span {
     outline: none;
 }
 
-.search-input{
-    width: 100%; 
+.search-input {
+    width: 100%;
     padding: 10px;
-    border-radius: 10px; 
+    border-radius: 10px;
     border: 1px solid #ccc;
 }
 
-.tweet-input-section input:focus{
-    border-color: #e974a3 ;
-    outline: none ;
+.tweet-input-section input:focus {
+    border-color: #e974a3;
+    outline: none;
 }
 
 .tweet-submit-btn {
-    background-color:  #fba7c9;
+    background-color: #fba7c9;
     border: none;
     padding: 8px 16px;
     color: white;
@@ -169,10 +166,10 @@ span {
 }
 
 .tweet-submit-btn:hover {
-    background-color:  #e481a8;
+    background-color: #e481a8;
 }
 
-.tweet-actions {     
+.tweet-actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -180,7 +177,7 @@ span {
 }
 
 .image-preview {
-     margin-top: 10px;
+    margin-top: 10px;
 }
 
 .upload-label {
@@ -197,33 +194,33 @@ span {
     background: url('/image/z2.jpg');
     background-size: contain;
     background-size: 100%;
-    background-repeat: repeat;    
+    background-repeat: repeat;
     background-position: center;
 }
 
 .feed-toggle a {
     text-decoration: none;
     color: white;
-    padding: 13px 142px 10px 150px ;
+    padding: 13px 142px 10px 150px;
     font-weight: bold;
     border-bottom: 2px solid transparent;
-    text-shadow:2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.search-empty{
-    padding: 20px; 
-    color:white;
+.search-empty {
+    padding: 20px;
+    color: white;
 }
 
 .message-container {
-    height: 100vh; 
+    height: 100vh;
     padding: 20px;
     width: 400px;
     margin-left: 40px;
     padding-right: 50px;
     border-right: 2px solid white;
-     overflow-y: auto;
-     position: fixed;
+    overflow-y: auto;
+    position: fixed;
 }
 
 .message-box {
@@ -235,7 +232,7 @@ span {
     margin-bottom: 20px;
 }
 
-.messsage-actions {     
+.messsage-actions {
     display: flex;
     justify-content: flex-end;
     margin-top: 10px;
@@ -246,7 +243,7 @@ span {
     left: 100px;
     margin-left: 180px;
     margin-top: 10px;
-    background-color: #fba7c9; 
+    background-color: #fba7c9;
     color: white;
     border: none;
     border-radius: 8px;
@@ -266,87 +263,86 @@ span {
     margin-top: 12px;
 }
 
-.message{
+.message {
     border-top: 1px solid white;
 }
 
-.personal-container{
+.personal-container {
     width: 60%;
-    margin-left:480px;
-    gap: 20px;         
+    margin-left: 480px;
+    gap: 20px;
 }
 
-.profil{
+.profil {
     margin-top: 10px;
-    display:flex;
-    
+    display: flex;
+
     background-color: #fff;
     border: 1px solid #e6ecf0;
     border-radius: 16px;
-    padding: 15px;  
+    padding: 15px;
     padding-right: 100px;
     gap: 10px;
     margin-bottom: 10px;
     z-index: 1000;
 }
 
-.profil-container{
+.profil-container {
     width: 96.267%;
     border-bottom: 2px solid #fff;
 }
 
-.chat{
+.chat {
     width: 96.267%;
 }
 
-.message-header-left{
+.message-header-left {
     display: flex;
-    gap: 10px;;
+    gap: 10px;
     align-items: center;
 }
 
-.message-header-right{
-    gap: 10px;;
+.message-header-right {
+    gap: 10px;
     align-items: center;
-    margin-left: auto; 
+    margin-left: auto;
     align-items: flex-end;
-
 }
 
-.header-profile{
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.header-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.message-body-right{
-  background-color: #e974a3;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: right;
+.message-body-right {
+    background-color: #e974a3;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: right;
 }
 
-.message-body-left{
-  background-color: #fba7c9;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: left;
+.message-body-left {
+    background-color: #fba7c9;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: left;
 }
 
 .input {
-    padding: 15px 16px ;
+    padding: 15px 16px;
     margin-top: 30px;
     background-color: #fff;
     position: fixed;
     bottom: 0;
     z-index: 10;
-    border-radius: 8px ;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2)
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.message-actions{
+.message-actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -354,41 +350,41 @@ span {
 }
 
 .submit-btn {
-    background-color:  #fba7c9;
+    background-color: #fba7c9;
     border: none;
     padding: 10px 16px;
     color: white;
-    border-radius:8px;
+    border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s ease;
 }
 
 .submit-btn:hover {
-    background-color:  #e481a8;
+    background-color: #e481a8;
 }
 
-textarea{
-    width: 625px;   
-    padding:5px 0px 0px 5px;
-    border-radius:8px;
+textarea {
+    width: 625px;
+    padding: 5px 0px 0px 5px;
+    border-radius: 8px;
     border-color: #fba7c9;
 }
 textarea:focus {
-    border-color: #e974a3 ;
-    outline: none ;
+    border-color: #e974a3;
+    outline: none;
 }
 
-.pembatas{
+.pembatas {
     margin-top: 75px;
     color: #fba7c9;
 }
 
-.delete-btn{
+.delete-btn {
     padding: 8px 10px;
     margin-left: 180px;
     margin-top: 10px;
-    background-color: #fff; 
+    background-color: #fff;
     color: white;
     border: none;
     cursor: pointer;

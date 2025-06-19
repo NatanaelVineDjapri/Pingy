@@ -2,33 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Tweet;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class ExploreController extends Controller
-{  
-   public function __construct()
-   {
-     $this->middleware('auth');
-   }
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-   public function index(Request $request)
-   {
-     $search = $request->input('search');
-     
-     $users =[];
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
 
-     if($search) {
-          $users = User::where('name','like',$search.'%')
-                    ->orWhere('username', 'like',$search . '%')
-                    ->get();
-     }
+        $users = [];
 
-     $tweetstrending = Tweet::trending(10);
+        if ($search) {
+            $users = User::where('name', 'like', $search.'%')
+                ->orWhere('username', 'like', $search.'%')
+                ->get();
+        }
 
-     return view('explore',compact('users','tweetstrending'));
+        $tweetstrending = Tweet::trending(10);
 
-   }
+        return view('explore', compact('users', 'tweetstrending'));
+
+    }
 }

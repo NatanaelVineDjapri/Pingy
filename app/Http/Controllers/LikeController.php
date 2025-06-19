@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Tweet;
-use Illuminate\Http\Request;
 
 class LikeController extends Controller
-{   
+{
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     public function store(Tweet $tweet)
     {
         $user = auth()->user();
@@ -19,11 +19,12 @@ class LikeController extends Controller
             ->where('tweet_id', $tweet->id)
             ->exists();
 
-        if($liked) {
+        if ($liked) {
             $user->likedTweets()->detach($tweet->id);
-        }else {
+        } else {
             $user->likedTweets()->attach($tweet->id);
         }
+
         return back();
     }
 }

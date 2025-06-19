@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 
 class FollowController extends Controller
@@ -27,10 +26,10 @@ class FollowController extends Controller
 
     public function index(User $user)
     {
-        return view('follow-show',[
-            'user'=> $user,
-            'followers'=>$user->followers,
-            'following'=>$user->followings,
+        return view('follow-show', [
+            'user' => $user,
+            'followers' => $user->followers,
+            'following' => $user->followings,
         ]);
 
     }

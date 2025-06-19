@@ -11,9 +11,9 @@ a {
 
 .flexcontainer {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     padding: 10px 0;
-    width: 100%; 
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -31,13 +31,13 @@ a {
 .packs-name {
     display: inline-flex;
     align-items: center;
-    gap: 2px; 
+    gap: 2px;
 }
 
-.name{
+.name {
     font-weight: 700;
 }
-.username{
+.username {
     color: rgb(113, 106, 106);
     margin-left: 10px;
     font-weight: 300px;
@@ -52,10 +52,10 @@ a {
 .header-title {
     display: flex;
     align-items: center;
-    gap: 8px; 
+    gap: 8px;
 }
 
-.item-icon{
+.item-icon {
     margin: 5px 3px 0px 10px;
 }
 .back-icon {
@@ -70,11 +70,11 @@ a {
     outline: 2px solid white;
 }
 
-img.header-a{
+img.header-a {
     width: 105.6%;
 }
 
-img.header-b{
+img.header-b {
     width: 100%;
 }
 
@@ -97,7 +97,7 @@ img.header-b{
     border-radius: 20px;
     padding: 6px 15px;
     font-weight: bold;
-    cursor: pointer;    
+    cursor: pointer;
     color: white;
     background-color: transparent;
 }
@@ -125,7 +125,7 @@ span {
 }
 
 .heading {
-    display: flex;   
+    display: flex;
     justify-content: space-around;
     border-bottom: 1px solid white;
     margin-top: 20px;
@@ -133,7 +133,7 @@ span {
 }
 
 .heading p {
-    cursor: pointer;    
+    cursor: pointer;
     padding: 10px 0;
     padding: 10px;
     margin-bottom: 5px;
@@ -141,7 +141,7 @@ span {
 }
 
 .heading p:hover {
-    background-color: rgba(250,211,226,0.6);
+    background-color: rgba(250, 211, 226, 0.6);
     border-radius: 20px;
 }
 
@@ -156,7 +156,7 @@ span {
     padding: 5px;
     padding-bottom: 10px;
     margin-right: 10px;
-    border-bottom: 1px solid rgba(250,211,226,0.6);
+    border-bottom: 1px solid rgba(250, 211, 226, 0.6);
 }
 
 .tweetcontent {
@@ -190,8 +190,8 @@ span {
     margin-left: 10px;
     cursor: pointer;
     align-items: center;
-    height: auto; 
-    flex-wrap: wrap;   
+    height: auto;
+    flex-wrap: wrap;
 }
 
 .retweeticons li {
@@ -214,10 +214,10 @@ span {
 
 .follow-btn {
     display: inline-block;
-    padding:3px 5px;     
-    font-size: 0.875rem;          
-    font-weight: 500;  
-    background-color: #fba7c9;  
+    padding: 3px 5px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: #fba7c9;
     border: 1px solid #fba7c9;
     color: white;
     cursor: pointer;
@@ -225,15 +225,14 @@ span {
     outline: none;
 }
 
-.image-container{
+.image-container {
     display: flex;
     flex-wrap: wrap;
-   margin-left: 30px;
+    margin-left: 30px;
 }
 
-.tweet-image{
-    flex: 0 0 32%;   
+.tweet-image {
+    flex: 0 0 32%;
     padding-bottom: 10px;
-    border-buttom: 1px solid white;     
+    border-buttom: 1px solid white;
 }
-

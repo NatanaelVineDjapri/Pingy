@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator; 
-use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class ForgetPasswordController extends Controller
 {
@@ -25,19 +25,19 @@ class ForgetPasswordController extends Controller
 
         if ($validator->fails()) {
             return redirect()->back()
-             ->withErrors($validator, 'reset')
-             ->withInput();
+                ->withErrors($validator, 'reset')
+                ->withInput();
         }
 
-        $user = User::where('username',$request->username)
-                 ->where('email',$request->email)
-                 ->where('dob',$request->dob)
-                 ->first();
+        $user = User::where('username', $request->username)
+            ->where('email', $request->email)
+            ->where('dob', $request->dob)
+            ->first();
 
-        if(!$user) {
+        if (! $user) {
             return redirect()->back()
-                 ->withErrors(['reset'=>'The provided credentials are incorrect or the user does not exist.'],'reset')
-                 ->onlyInput('username');
+                ->withErrors(['reset' => 'The provided credentials are incorrect or the user does not exist.'], 'reset')
+                ->onlyInput('username');
         }
 
         $user->password = Hash::make($request->password);

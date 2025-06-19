@@ -40,7 +40,7 @@
     object-fit: cover;
 }
 
-.avatar2{
+.avatar2 {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -48,11 +48,11 @@
 }
 
 .packs-name {
-    align-items: center; 
-    gap: 2px; 
+    align-items: center;
+    gap: 2px;
 }
 
-.packs-name a{
+.packs-name a {
     color: #fba7c9;
     text-decoration: none;
 }
@@ -139,14 +139,14 @@
     padding-bottom: 10px;
 }
 
-.user-info{
+.user-info {
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 10px;
 }
 .comment-body {
     margin-top: 10px;
-    margin-left:40px;
+    margin-left: 40px;
 }
 
 .delete-btn {
@@ -161,7 +161,7 @@
     border-radius: 8px;
 }
 
-ion-icon{
+ion-icon {
     color: #fba7c9;
 }
 
@@ -176,11 +176,11 @@ span {
     padding: 0;
 }
 
-textarea{
+textarea {
     width: 500px;
     height: 150px;
 }
 
-a{
+a {
     text-decoration: none;
 }
