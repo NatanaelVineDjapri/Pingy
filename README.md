@@ -44,31 +44,39 @@ Pingy is a Laravel 11-based backend project inspired by Twitter/X, developed for
 
 ### 1. Clone the repository
 
-`git clone https://github.com/your-username/laravel-twitter-clone.git`  
-`cd laravel-twitter-clone`
+```bash
+git clone https://github.com/your-username/laravel-twitter-clone.git
+cd laravel-twitter-clone
+```
 
 ### 2. Install PHP dependencies
-
-`composer install`
+```bash
+composer install
+```
 
 ### 3. Install Node.js dependencies
-
-`npm install`
+```bash
+npm install
+```
 
 ### 4. Create environment file and generate app key
-
-`cp .env.example .env`  
-`php artisan key:generate`
+```bash
+cp .env.example .env  
+php artisan key:generate
+```
 
 ### 5. Database setup
-
-`php artisan migrate`
-`php artisan db:seed`
+```bash
+php artisan migrate
+php artisan db:seed
+```
 
 ### 6. Link the storage for images
-
-`php artisan storage:link`
+```bash
+php artisan storage:link
+```
 
 ### 7. Run the server
-
-`php artisan serve`
+```bash
+php artisan serve
+```
