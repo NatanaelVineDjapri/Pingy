@@ -1,6 +1,6 @@
 # Pingy
 
-Pingy is a Laravel 11-based backend project inspired by Twitter/X, developed for a final exam. It showcases core backend skills like API design, data handling, and scalable architecture, ready for frontend integration and future feature expansion.
+Pingy is a backend project built using the Laravel 11 framework, inspired by the social media platform Twitter/X. It was developed as part of a final semester assignment, focusing on building a clean and organized backend structure. This project also served as a way to apply backend development concepts in a more practical and structured context, and it’s designed to be further developed in the future.
 
 ---
 
